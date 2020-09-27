@@ -1,22 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ThemeProvider } from 'styled-components/native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import GraphQLProvider from 'GraphQLProvider';
+import { theme } from 'ui';
+import { Provider as PaperProvider } from 'react-native-paper';
+import AuthProvider from 'AuthProvider';
+import Test from 'screens/Test';
+import Home from 'screens/Home';
+import { NavigationContainer } from '@react-navigation/native';
+import { useAuth, useApp } from 'hooks';
+import AuthNavigator from 'navigation/AuthNavigator';
+import { List, ListItem } from 'components/List';
+import { Button } from 'ui';
+
+const Logged = () => {
+  const { onReset } = useAuth();
+  return (
+    <SafeAreaView>
+      <Button onPress={onReset} title="Se déconnecter" />
+    </SafeAreaView>
+  );
+};
+
+const Root = () => {
+  const { accessToken } = useAuth();
+
+  return (
+    <NavigationContainer>
+      {Boolean(accessToken) ? <Logged /> : <AuthNavigator />}
+    </NavigationContainer>
+  );
+};
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <PaperProvider theme={theme}>
+        <AuthProvider>
+          <GraphQLProvider>
+            <Root />
+          </GraphQLProvider>
+        </AuthProvider>
+      </PaperProvider>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
