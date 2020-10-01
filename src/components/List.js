@@ -10,7 +10,6 @@ export const List = styled(View)`
 `;
 
 const TextItem = styled(Text)`
-  font-family: Quicksand-Bold;
   ${({ theme }) => theme.material.subheading};
 `;
 

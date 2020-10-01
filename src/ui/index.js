@@ -20,10 +20,6 @@ export const theme = {
 
     primary: '#000',
   },
-  fonts: {
-    regular: { fontFamily: 'Quicksand' },
-    medium: { fontFamily: 'Quicksand-Medium' },
-  },
 
   spacing,
 
