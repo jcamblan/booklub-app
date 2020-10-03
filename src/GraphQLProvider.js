@@ -51,23 +51,24 @@ const GraphQLProvider = ({ children }) => {
       onError(({ graphQLErrors, networkError, operation, forward }) => {
         if (
           (graphQLErrors || []).filter(
-            ({ message }) => message === 'Unauthorized'
+            ({ extensions }) => extensions?.code === 'Unauthorized'
           ).length > 0
         ) {
-          return fromPromise(refreshToken()).flatMap(
-            ({ data: { accessToken, refreshToken } }) => {
-              onUpdate({ accessToken, refreshToken });
-              operation.setContext({
-                headers: {
-                  authorization: `Bearer ${accessToken}`,
-                },
-              });
-              return forward(operation);
-            },
-            (error) => {
-              onReset();
-            }
-          );
+          onReset();
+          // return fromPromise(refreshToken()).flatMap(
+          //   ({ data: { accessToken, refreshToken } }) => {
+          //     onUpdate({ accessToken, refreshToken });
+          //     operation.setContext({
+          //       headers: {
+          //         authorization: `Bearer ${accessToken}`,
+          //       },
+          //     });
+          //     return forward(operation);
+          //   },
+          //   (error) => {
+          //     onReset();
+          //   }
+          // );
         }
       }),
       onError(({ graphQLErrors, networkError, ...rest }) => {
