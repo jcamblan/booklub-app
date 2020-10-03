@@ -54,7 +54,6 @@ const GraphQLProvider = ({ children }) => {
             ({ extensions }) => extensions?.code === 'Unauthorized'
           ).length > 0
         ) {
-          onReset();
           // return fromPromise(refreshToken()).flatMap(
           //   ({ data: { accessToken, refreshToken } }) => {
           //     onUpdate({ accessToken, refreshToken });
