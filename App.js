@@ -6,11 +6,11 @@ import GraphQLProvider from 'GraphQLProvider';
 import { theme } from 'ui';
 import { Provider as PaperProvider } from 'react-native-paper';
 import AuthProvider from 'AuthProvider';
-import Test from 'screens/Test';
 import Home from 'screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { useAuth, useApp } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
+import BooklubNavigator from 'navigation/BooklubNavigator';
 import { List, ListItem } from 'components/List';
 import { Button } from 'ui';
 
@@ -28,7 +28,7 @@ const Root = () => {
 
   return (
     <NavigationContainer>
-      {Boolean(accessToken) ? <Logged /> : <AuthNavigator />}
+      {Boolean(accessToken) ? <BooklubNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };
