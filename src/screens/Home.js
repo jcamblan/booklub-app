@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import book from 'images/book.png';
 import { Title, Button } from 'ui';
+import LogoName from 'components/LogoName';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -24,15 +25,8 @@ const Home = ({ navigation }) => {
           height: windowHeight,
         }}
       >
-        <Image
-          source={book}
-          style={{
-            width: windowWidth / 2,
-            height: windowWidth / 2,
-            resizeMode: 'contain',
-          }}
-        />
-        <Title>BØØKLÜB</Title>
+        <LogoName size={windowWidth / 2} />
+
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Button
             title="S'inscrire"
@@ -41,6 +35,7 @@ const Home = ({ navigation }) => {
           <Button
             title="Se connecter"
             onPress={() => navigation.navigate('Login')}
+            dark
           />
         </View>
       </View>
