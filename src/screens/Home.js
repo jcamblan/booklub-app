@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
             resizeMode: 'contain',
           }}
         />
-        <Title>BOOKLUB</Title>
+        <Title>BØØKLÜB</Title>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Button
             title="S'inscrire"
