@@ -5,6 +5,7 @@ import { useAuth } from 'hooks';
 import { ApolloLink, Observable, fromPromise } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { createUploadLink } from 'apollo-upload-client';
+import { refreshToken } from 'api/auth';
 
 const GraphQLProvider = ({ children }) => {
   const { accessToken, onUpdate, onReset } = useAuth();
@@ -54,20 +55,19 @@ const GraphQLProvider = ({ children }) => {
             ({ extensions }) => extensions?.code === 'Unauthorized'
           ).length > 0
         ) {
-          // return fromPromise(refreshToken()).flatMap(
-          //   ({ data: { accessToken, refreshToken } }) => {
-          //     onUpdate({ accessToken, refreshToken });
-          //     operation.setContext({
-          //       headers: {
-          //         authorization: `Bearer ${accessToken}`,
-          //       },
-          //     });
-          //     return forward(operation);
-          //   },
-          //   (error) => {
-          //     onReset();
-          //   }
-          // );
+          return fromPromise(
+            refreshToken().catch((error) => {
+              onReset();
+            })
+          ).flatMap(({ data: { accessToken, refreshToken } }) => {
+            onUpdate({ accessToken, refreshToken });
+            operation.setContext({
+              headers: {
+                authorization: `Bearer ${accessToken}`,
+              },
+            });
+            return forward(operation);
+          });
         }
       }),
       onError(({ graphQLErrors, networkError, ...rest }) => {
