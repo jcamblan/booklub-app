@@ -16,6 +16,7 @@ import { useAuth } from 'hooks';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import book from 'images/book.png';
+import LogoName from 'components/LogoName';
 
 const Login = ({ navigation }) => {
   const { onUpdate } = useAuth();
@@ -45,17 +46,7 @@ const Login = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <Image
-              source={book}
-              style={{
-                width: '100%',
-                maxWidth: '60%',
-                resizeMode: 'contain',
-                height: 'auto',
-                aspectRatio: 3,
-              }}
-            />
-            <Title>BOOKLUB</Title>
+            <LogoName />
 
             <Formik
               validationSchema={Yup.object().shape({

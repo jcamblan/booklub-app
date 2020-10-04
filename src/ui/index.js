@@ -45,10 +45,10 @@ export const TextLink = ({ title, ...props }) => (
   </TouchableOpacity>
 );
 
-export const Button = ({ title, onPress, variant = 'light' }) => {
+export const Button = ({ title, onPress, dark = false }) => {
   const colors = {
-    background: variant == 'light' ? '#fff' : '#000',
-    text: variant == 'light' ? '#000' : '#fff',
+    background: dark ? 'black' : 'white',
+    text: dark ? 'white' : 'black',
   };
 
   return (
@@ -59,8 +59,9 @@ export const Button = ({ title, onPress, variant = 'light' }) => {
         borderRadius: 5,
         paddingVertical: 5,
         paddingHorizontal: 10,
-        borderColor: colors.text,
+        borderColor: 'black',
         backgroundColor: colors.background,
+        margin: 3,
       }}
       onPress={onPress}
     >

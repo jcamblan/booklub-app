@@ -17,6 +17,7 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
+import LogoName from 'components/LogoName';
 
 const REGISTER = gql`
   mutation register($input: RegisterInput!) {
@@ -65,17 +66,7 @@ const Register = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <Image
-              source={book}
-              style={{
-                width: '100%',
-                maxWidth: '60%',
-                resizeMode: 'contain',
-                height: 'auto',
-                aspectRatio: 3,
-              }}
-            />
-            <Title>BOOKLUB</Title>
+            <LogoName size={40} flexDirection="row" />
           </View>
           <Formik
             validationSchema={Yup.object().shape({
