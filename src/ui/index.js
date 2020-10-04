@@ -45,9 +45,33 @@ export const TextLink = ({ title, ...props }) => (
   </TouchableOpacity>
 );
 
-export const Button = (props) => (
-  <RnButton color={theme.colors.primary} {...props} />
-);
+export const Button = ({ title, onPress, variant = 'light' }) => {
+  const colors = {
+    background: variant == 'light' ? '#fff' : '#000',
+    text: variant == 'light' ? '#000' : '#fff',
+  };
+
+  return (
+    <TouchableOpacity
+      style={{
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        borderColor: colors.text,
+        backgroundColor: colors.background,
+      }}
+      onPress={onPress}
+    >
+      <Text
+        style={{ textAlign: 'center', fontWeight: '500', color: colors.text }}
+      >
+        {title}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 const TextLinkText = styled(Text)`
   color: ${({ theme }) => theme.colors.primary};
