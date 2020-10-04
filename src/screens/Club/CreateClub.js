@@ -34,7 +34,9 @@ const CREATE_CLUB = gql`
 `;
 
 const CreateClub = ({ navigation }) => {
-  const [createClub] = useMutation(CREATE_CLUB);
+  const [createClub] = useMutation(CREATE_CLUB, {
+    refetchQueries: ['myClubs'],
+  });
 
   const handleCreateClub = async (values) => {
     try {
