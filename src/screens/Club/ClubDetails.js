@@ -94,6 +94,11 @@ const CLUB = gql`
                 }
                 totalCount
               }
+              notes {
+                nodes {
+                  value
+                }
+              }
             }
           }
         }
@@ -190,16 +195,38 @@ const StateBar = ({ state }) => {
   );
 };
 
+const findNoteColor = (note) => {
+  if (note < 3) {
+    return theme.colors.light.ternary;
+  }
+
+  if (note >= 3 && note < 6) {
+    return theme.colors.light.warning;
+  }
+
+  if (note >= 6 && note < 8) {
+    return theme.colors.light.success;
+  }
+
+  if (note >= 8) {
+    return theme.colors.light.important;
+  }
+};
+
 const SessionCard = ({ session, current = false }) => {
   const book = session?.selectedBook;
   const submitters = session?.selectedBookSubmitters?.nodes;
   const readDueDate = formatDate(session?.readDueDate, 'dd/MM/yyyy');
   const submissionDueDate = formatDistanceDate(session?.submissionDueDate);
+  const note =
+    (session?.notes?.nodes ?? [])
+      .map(({ value }) => value)
+      .reduce((sum, note) => sum + note, 0) / session?.notes?.nodes?.length;
 
   return (
     <View style={{ width: '100%' }}>
       {current && <StateBar state={session.state} />}
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <View style={{ flexShrink: 2 }}>
           {Boolean(book) && session?.state !== 'submission' && (
             <>
@@ -243,11 +270,16 @@ const SessionCard = ({ session, current = false }) => {
           <Text>Fin de la session le : {readDueDate}</Text>
         </View>
 
-        {!current && (
-          <View style={{ paddingLeft: 10, justifyContent: 'center' }}>
+        {!current && Boolean(note) && (
+          <View
+            style={{
+              paddingLeft: 10,
+              justifyContent: 'center',
+            }}
+          >
             <View
               style={{
-                backgroundColor: theme.colors.light.success,
+                backgroundColor: findNoteColor(note),
                 width: 45,
                 paddingVertical: 6,
                 borderRadius: 10,
@@ -257,7 +289,7 @@ const SessionCard = ({ session, current = false }) => {
                 <Text
                   style={{ textAlign: 'center', color: 'white', fontSize: 20 }}
                 >
-                  5
+                  {note}
                 </Text>
               </View>
               <View alignItems="center">
