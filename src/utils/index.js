@@ -1,3 +1,6 @@
+import { format, formatDistance, formatRelative, subDays } from 'date-fns';
+import { fr } from 'date-fns/locale';
+
 export const ERRORS = {
   REQUIRED: 'Ce champ est requis',
   TAKEN: 'Cette valeur est déjà prise',
@@ -10,4 +13,38 @@ export const ERRORS = {
   INVALID_GRANT: 'Votre email ou mot de mot de passe est incorrect.',
   PASSWORDS_DO_NOT_MATCH: 'Les mots de passe ne concordent pas',
   CURRENT_PASSWORD_INVALID: 'Votre mot de passe actuel est erroné',
+};
+
+export const formatDate = (date, frmt) => {
+  try {
+    return format(new Date(date), frmt, { locale: fr });
+  } catch (err) {
+    console.log(err.message, date);
+    try {
+      return format(date, frmt, { locale: fr });
+    } catch (err) {
+      console.log(err.message);
+      return '';
+    }
+  }
+};
+
+export const formatDistanceDate = (date) => {
+  try {
+    return formatDistance(new Date(date), new Date(), {
+      addSuffix: true,
+      locale: fr,
+    });
+  } catch (err) {
+    console.log(err.message, date);
+    try {
+      return formatDistance(date, new Date(), {
+        addSuffix: true,
+        locale: fr,
+      });
+    } catch (err) {
+      console.log(err.message);
+      return '';
+    }
+  }
 };

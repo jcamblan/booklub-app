@@ -4,6 +4,7 @@ import {
   Dimensions,
   Text as RnText,
   Button as RnButton,
+  View,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
@@ -15,19 +16,20 @@ export const spacing = (input = 1) => `${input * base}px`;
 
 export const theme = {
   ...DefaultTheme,
+  spacing,
+  material,
   colors: {
     ...DefaultTheme.colors,
-
-    primary: '#000',
+    light: {
+      primary: '#343434',
+      secondary: '#F0F0F0',
+      ternary: '#BFBFBF',
+      success: '#92C84F',
+      warning: '#E6973F',
+      important: '#D23669',
+      textLink: '#48A0E1',
+    },
   },
-
-  spacing,
-
-  cardBoxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
-
-  buttonBorderRadius: '22px',
-  screenWithFixedButtonBottomPadding: '80px',
-  material,
 };
 
 export const Text = styled(RnText)`
@@ -47,8 +49,8 @@ export const TextLink = ({ title, ...props }) => (
 
 export const Button = ({ title, onPress, dark = false }) => {
   const colors = {
-    background: dark ? 'black' : 'white',
-    text: dark ? 'white' : 'black',
+    background: dark ? theme.colors.light.primary : 'white',
+    text: dark ? 'white' : theme.colors.light.primary,
   };
 
   return (
@@ -59,7 +61,7 @@ export const Button = ({ title, onPress, dark = false }) => {
         borderRadius: 5,
         paddingVertical: 5,
         paddingHorizontal: 10,
-        borderColor: 'black',
+        borderColor: theme.colors.light.primary,
         backgroundColor: colors.background,
         margin: 3,
       }}
@@ -80,13 +82,31 @@ const TextLinkText = styled(Text)`
 
 export const Title = styled(Text)`
   ${material.display1};
-  color: ${({ theme }) => theme.colors.text};
-  margin-bottom: ${({ theme }) => theme.spacing(2)};
-  font-weight: bold;
 
-  ${({ hasBareMargin }) =>
-    hasBareMargin &&
-    `
-    margin: 0
-  `}
+  color: ${({ theme }) => theme.colors.light.primary};
+  font-size: 25;
+  padding-top: 3;
+  padding-bottom: 3;
+  font-weight: bold;
 `;
+
+export const ShadowBox = ({ children }) => (
+  <View
+    style={{
+      shadowColor: '#BFBFBF',
+      shadowOffset: {
+        width: 0,
+        height: 9,
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 12.35,
+
+      elevation: 19,
+      backgroundColor: 'white',
+      borderRadius: 15,
+      padding: 10,
+    }}
+  >
+    {children}
+  </View>
+);

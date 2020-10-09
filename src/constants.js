@@ -2,7 +2,7 @@ import Constants from 'expo-constants';
 
 const ENV = {
   dev: {
-    API_BASE: 'http://657e9cb06093.ngrok.io',
+    API_BASE: 'http://68563c599a12.ngrok.io',
     CLIENT_ID: '8sluZTyLSdqtikAdBykm5mzTKe82PZ2kARYsVdxQxck',
   },
 };
