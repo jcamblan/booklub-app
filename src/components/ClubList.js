@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { Divider } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { theme, Text } from 'ui';
 
 const ClubCard = ({ club }) => {
   const navigation = useNavigation();
@@ -14,8 +15,7 @@ const ClubCard = ({ club }) => {
           borderRadius: 5,
           paddingVertical: 5,
           paddingHorizontal: 10,
-          borderColor: 'black',
-          backgroundColor: 'white',
+          borderColor: theme.colors.text,
           marginBottom: 10,
         }}
       >

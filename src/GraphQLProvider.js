@@ -44,7 +44,7 @@ const GraphQLProvider = ({ children }) => {
   const client = new ApolloClient({
     defaultOptions: {
       query: {
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'cache-and-network',
         errorPolicy: 'all',
       },
     },

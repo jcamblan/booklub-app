@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { TextInput } from 'react-native-paper';
-import { Text } from 'ui';
+import { Text, theme } from 'ui';
 
 export const Input = ({ style, ...props }) => {
   const { label } = props;
@@ -10,7 +10,8 @@ export const Input = ({ style, ...props }) => {
       mode="outlined"
       autoCapitalize="none"
       label={label}
-      style={{ ...style, backgroundColor: '#fff' }}
+      style={{ ...style }}
+      theme={theme}
       {...props}
     />
   );

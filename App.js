@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import GraphQLProvider from 'GraphQLProvider';
 import { theme } from 'ui';
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -27,7 +27,7 @@ const Root = () => {
   const { accessToken } = useAuth();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       {Boolean(accessToken) ? <BooklubNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );

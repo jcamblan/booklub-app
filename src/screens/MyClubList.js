@@ -2,7 +2,7 @@ import React from 'react';
 import { View, SafeAreaView, Text, ScrollView, StyleSheet } from 'react-native';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import { Title, Button } from 'ui';
+import { Title, Button, theme } from 'ui';
 import ClubList from 'components/ClubList';
 import { FAB } from 'react-native-paper';
 
@@ -60,7 +60,7 @@ const MyClubList = ({ navigation }) => {
   const handlePreviousPage = () => {
     fetchMore({
       variables: {
-        before: data?.myClubs?.pageInfo.startCursor,
+        before: data?.myClubs?.pageInfo?.startCursor,
         last: clubsPerPage,
         first: null,
       },
@@ -128,16 +128,16 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     top: 5,
-    backgroundColor: 'black',
-    color: 'white',
+    backgroundColor: theme.colors.text,
+    color: theme.colors.background,
   },
   fab2: {
     position: 'absolute',
     margin: 16,
     right: 50,
     top: 5,
-    backgroundColor: 'white',
-    color: 'black',
+    backgroundColor: theme.colors.background,
+    color: theme.colors.text,
   },
 });
 

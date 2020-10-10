@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Image, Platform, Text, Dimensions } from 'react-native';
+import { View, Image, Platform, Dimensions } from 'react-native';
 import book from 'images/book.png';
 import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
-import { theme } from 'ui';
+import { theme, Text } from 'ui';
 
 const Title = styled(Text)`
   ${material.display1};
-  color: ${theme.colors.light.primary};
+  color: ${theme.colors.text};
   font-weight: bold;
 `;
 
@@ -35,8 +35,8 @@ const LogoName = ({
         }}
       />
       <Title style={{ display: hideTitle ? 'none' : 'flex' }}>
-        BØØ
-        <Text style={{ color: theme.colors.light.important }}>K</Text>
+        BOO
+        <Title style={{ color: theme.colors.primary }}>K</Title>
         LÜB
       </Title>
     </View>
