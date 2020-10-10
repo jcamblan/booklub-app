@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
@@ -104,8 +104,8 @@ const Login = ({ navigation }) => {
                     }
                   />
                   <Error>{status}</Error>
-                  <View style={{ marginTop: 32 }}>
-                    <Button
+                  <View style={{ marginTop: 32, alignItems: 'center' }}>
+                    <TextLink
                       title="Connexion"
                       onPress={() => handleSubmit(values)}
                       isLoading={isSubmitting}

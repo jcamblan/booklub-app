@@ -3,12 +3,11 @@ import {
   Image,
   KeyboardAvoidingView,
   SafeAreaView,
-  Text,
   ScrollView,
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { Button, Title } from 'ui';
+import { Button, Title, TextLink, Text } from 'ui';
 import { Input, Error } from 'ui/form';
 import book from 'images/book.png';
 import { ERRORS } from 'utils';
@@ -66,7 +65,7 @@ const Register = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <LogoName size={40} flexDirection="row" />
+            <LogoName hideLogo size={40} flexDirection="row" />
           </View>
           <Formik
             validationSchema={Yup.object().shape({
@@ -127,8 +126,8 @@ const Register = ({ navigation }) => {
                   error={touched.password && errors.password}
                 />
                 <Error>{status}</Error>
-                <View style={{ marginTop: 32 }}>
-                  <Button
+                <View style={{ marginTop: 32, alignItems: 'center' }}>
+                  <TextLink
                     title="S'enregister"
                     onPress={() => handleSubmit(values)}
                     isLoading={isSubmitting}

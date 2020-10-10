@@ -3,12 +3,11 @@ import {
   Image,
   KeyboardAvoidingView,
   SafeAreaView,
-  Text,
   ScrollView,
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { Button, Title } from 'ui';
+import { Button, Title, Text } from 'ui';
 import { Input, Error } from 'ui/form';
 import book from 'images/book.png';
 import { ERRORS } from 'utils';

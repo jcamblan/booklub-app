@@ -12,7 +12,6 @@ const AuthNavigator = () => {
   return (
     <AuthStack.Navigator
       screenOptions={{
-        cardStyle: { backgroundColor: '#fff' },
         headerShown: false,
       }}
     >
