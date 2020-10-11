@@ -9,7 +9,7 @@ const screenWidth = Dimensions.get('window').width;
 const LastSessions = ({ sessions }) => (
   <View style={{ marginLeft: -20, width: screenWidth }}>
     <Carousel
-      keyExtractor={({ node }) => node?.id}
+      keyExtractor={(item) => item?.id}
       data={sessions}
       renderItem={({ item, index, separators }) => {
         const width = screenWidth - 40;
@@ -21,7 +21,6 @@ const LastSessions = ({ sessions }) => (
               marginBottom: 25,
               justifyContent: 'center',
             }}
-            key={item?.id}
           >
             <ShadowBox>
               <SessionCard session={item} />
