@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { formatDistanceDate, formatDate } from 'utils';
+import { formatDistanceDate, formatDate, findNoteColor } from 'utils';
 import { Title, theme, ShadowBox, Text } from 'ui';
 
 const StatePill = ({ pillState, sessionState }) => {
@@ -53,28 +53,6 @@ const StateBar = ({ state }) => {
       <StatePill sessionState={state} pillState="conclusion" />
     </View>
   );
-};
-
-const findNoteColor = (note) => {
-  if (!Boolean(note)) {
-    return theme.colors.ternary;
-  }
-
-  if (note < 3) {
-    return theme.colors.ternary;
-  }
-
-  if (note >= 3 && note < 6) {
-    return theme.colors.warning;
-  }
-
-  if (note >= 6 && note < 8) {
-    return theme.colors.success;
-  }
-
-  if (note >= 8) {
-    return theme.colors.primary;
-  }
 };
 
 const SessionCard = ({ session, current = false }) => {
