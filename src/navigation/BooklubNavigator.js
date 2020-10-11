@@ -5,6 +5,7 @@ import MyClubList from 'screens/MyClubList';
 import CreateClub from 'screens/Club/CreateClub';
 import JoinClub from 'screens/Club/JoinClub';
 import ClubDetails from 'screens/Club/ClubDetails';
+import BookList from 'screens/Book/BookList';
 import { theme } from 'ui';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -81,7 +82,7 @@ const BooklubNavigator = () => {
       />
       <Tab.Screen
         name="Books"
-        component={Test}
+        component={BookList}
         options={{
           tabBarLabel: 'Livres',
           tabBarIcon: ({ color }) => (

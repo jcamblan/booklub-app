@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { Text, theme } from 'ui';
 
 const MemberList = ({ userEdges }) => {
-  console.log(userEdges);
   return (
     <View>
       <View

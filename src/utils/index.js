@@ -1,5 +1,6 @@
 import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { theme } from 'ui';
 
 export const ERRORS = {
   REQUIRED: 'Ce champ est requis',
@@ -46,5 +47,27 @@ export const formatDistanceDate = (date) => {
       console.log(err.message);
       return '';
     }
+  }
+};
+
+export const findNoteColor = (note) => {
+  if (!Boolean(note)) {
+    return theme.colors.ternary;
+  }
+
+  if (note < 3) {
+    return theme.colors.ternary;
+  }
+
+  if (note >= 3 && note < 6) {
+    return theme.colors.warning;
+  }
+
+  if (note >= 6 && note < 8) {
+    return theme.colors.success;
+  }
+
+  if (note >= 8) {
+    return theme.colors.primary;
   }
 };
