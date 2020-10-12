@@ -1,7 +1,7 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import MyClubList from 'screens/MyClubList';
+import ClubHome from 'screens/ClubHome';
 import CreateClub from 'screens/Club/CreateClub';
 import JoinClub from 'screens/Club/JoinClub';
 import ClubDetails from 'screens/Club/ClubDetails';
@@ -20,8 +20,8 @@ const KlubStack = () => {
       }}
     >
       <BooklubStack.Screen
-        name="MyClubList"
-        component={MyClubList}
+        name="ClubHome"
+        component={ClubHome}
         options={{ headerTitle: 'Mes clubs' }}
       />
       <BooklubStack.Screen

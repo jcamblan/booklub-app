@@ -2,7 +2,7 @@ import React from 'react';
 import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import { Title, Button, theme, Text, Separator } from 'ui';
+import { Title, Button, theme, Text, Separator, TextLink } from 'ui';
 import ClubList from 'components/ClubList';
 import ClubListCarousel from 'components/ClubListCarousel';
 
@@ -145,7 +145,7 @@ const CurrentSessionList = ({ sessions }) => {
   );
 };
 
-const MyClubList = ({ navigation }) => {
+const ClubHome = ({ navigation }) => {
   const { data, loading } = useQuery(CLUBS);
   const clubs = (data?.myClubs?.edges ?? []).map(({ node }) => ({
     ...node,
@@ -171,9 +171,21 @@ const MyClubList = ({ navigation }) => {
 
         <Title>Mes clubs</Title>
         <ClubListCarousel clubs={clubs} />
+        <Separator />
+
+        <View style={{ justifyContent: 'space-around', flexDirection: 'row' }}>
+          <TextLink
+            title="Rejoindre un club"
+            onPress={() => navigation.navigate('JoinClub')}
+          />
+          <TextLink
+            title="Créer un club"
+            onPress={() => navigation.navigate('CreateClub')}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
 };
 
-export default MyClubList;
+export default ClubHome;

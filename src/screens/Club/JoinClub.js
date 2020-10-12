@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { Button, Title } from 'ui';
+import { TextLink, Title } from 'ui';
 import { Input, Error } from 'ui/form';
 import book from 'images/book.png';
 import { ERRORS } from 'utils';
@@ -50,7 +50,7 @@ const JoinClub = ({ navigation }) => {
         const status = errors.map((error) => error.message).join(', ');
         setStatus(status);
       } else {
-        navigation.navigate('MyClubList');
+        navigation.navigate('ClubHome');
       }
     } catch (err) {
       console.dir(err);
@@ -61,6 +61,7 @@ const JoinClub = ({ navigation }) => {
     <SafeAreaView>
       <KeyboardAvoidingView>
         <ScrollView style={{ padding: 20 }}>
+          <Title>Rejoindre un club</Title>
           <Formik
             validationSchema={Yup.object().shape({
               invitationCode: Yup.string(),
@@ -90,9 +91,9 @@ const JoinClub = ({ navigation }) => {
                   error={touched.invitationCode && errors.invitationCode}
                 />
                 <Error>{status}</Error>
-                <View style={{ marginTop: 32 }}>
-                  <Button
-                    title="Rejoindre un club"
+                <View style={{ alignItems: 'center' }}>
+                  <TextLink
+                    title="Valider"
                     onPress={() => handleSubmit(values)}
                     isLoading={isSubmitting}
                   />
