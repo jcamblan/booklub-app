@@ -1,144 +1,179 @@
 import React from 'react';
-import { View, SafeAreaView, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import { Title, Button, theme } from 'ui';
+import { Title, Button, theme, Text, Separator } from 'ui';
 import ClubList from 'components/ClubList';
-import { FAB } from 'react-native-paper';
+import ClubListCarousel from 'components/ClubListCarousel';
 
-const MY_CLUBS = gql`
-  query myClubs($after: String, $before: String, $first: Int, $last: Int) {
-    myClubs(first: $first, last: $last, after: $after, before: $before) {
+const CLUBS = gql`
+  query myClubs {
+    myClubs(last: 5) {
       edges {
         node {
-          name
           id
+          name
+          users {
+            totalCount
+          }
+          sessions(last: 1) {
+            nodes {
+              readDueDate
+            }
+          }
+          currentSession {
+            id
+            name
+            state
+            readDueDate
+            submissionDueDate
+            submissions {
+              edges {
+                node {
+                  book {
+                    author
+                    title
+                  }
+                }
+              }
+              totalCount
+            }
+            selectedBook {
+              id
+              title
+              author
+            }
+            selectedBookSubmitters {
+              nodes {
+                id
+                username
+              }
+            }
+          }
         }
-      }
-
-      pageInfo {
-        startCursor
-        endCursor
-        hasNextPage
-        hasPreviousPage
       }
     }
   }
 `;
-
-const MyClubList = ({ navigation }) => {
-  const clubsPerPage = 6;
-  const { data, fetchMore } = useQuery(MY_CLUBS, {
-    variables: { first: clubsPerPage },
-  });
-  const clubs = (data?.myClubs?.edges ?? []).map(({ node }) => ({
-    ...node,
-  }));
-  const handleNextPage = () => {
-    fetchMore({
-      variables: {
-        after: data?.myClubs?.pageInfo.endCursor,
-        first: clubsPerPage,
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        const newEdges = fetchMoreResult.myClubs.edges;
-        const pageInfo = fetchMoreResult.myClubs.pageInfo;
-
-        return newEdges.length
-          ? {
-              myClubs: {
-                __typename: previousResult.myClubs.__typename,
-                edges: [...newEdges],
-                pageInfo,
-              },
-            }
-          : previousResult;
-      },
-    });
+const CurrentSessionItem = ({ session }) => {
+  const states = {
+    submission: 'Inscript.',
+    draw: 'Tirage',
+    reading: 'Lecture',
+    conclusion: 'Vote',
+    archived: 'Archivé',
   };
-
-  const handlePreviousPage = () => {
-    fetchMore({
-      variables: {
-        before: data?.myClubs?.pageInfo?.startCursor,
-        last: clubsPerPage,
-        first: null,
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        const newEdges = fetchMoreResult.myClubs.edges;
-        const pageInfo = fetchMoreResult.myClubs.pageInfo;
-
-        return newEdges.length
-          ? {
-              myClubs: {
-                __typename: previousResult.myClubs.__typename,
-                edges: [...newEdges],
-                pageInfo,
-              },
-            }
-          : previousResult;
-      },
-    });
-  };
-
   return (
-    <View style={{ paddingTop: 70 }}>
-      <FAB
-        style={styles.fab}
-        small
-        animated
-        icon="plus"
-        onPress={() => navigation.navigate('CreateClub')}
-      />
-      <FAB
-        style={styles.fab2}
-        small
-        animated
-        icon="account-arrow-left-outline"
-        onPress={() => navigation.navigate('JoinClub')}
-      />
-      <SafeAreaView style={{ marginHorizontal: 20 }}>
-        <Title>Mes clubs</Title>
-        <ClubList clubs={clubs} />
-        {(data?.myClubs?.pageInfo?.hasNextPage ||
-          data?.myClubs?.pageInfo?.hasPreviousPage) && (
-          <View
+    <>
+      <View
+        style={{
+          flexDirection: 'row',
+          width: '100%',
+          justifyContent: 'space-between',
+          marginBottom: 3,
+        }}
+        key={id}
+      >
+        <View
+          style={{
+            backgroundColor: theme.colors.success,
+            flexGrow: 2,
+            marginRight: 2,
+            borderRadius: 5,
+            padding: 10,
+            flexShrink: 2,
+          }}
+        >
+          <Text>{session.club?.name}</Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: theme.colors.success,
+            marginRight: 2,
+            borderRadius: 5,
+            padding: 10,
+            justifyContent: 'center',
+          }}
+        >
+          <Text
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              paddingTop: 30,
+              textAlign: 'center',
+              color: 'white',
             }}
           >
-            {data?.myClubs?.pageInfo?.hasPreviousPage && (
-              <Button onPress={handlePreviousPage} title="Page précédente" />
-            )}
-            {data?.myClubs?.pageInfo?.hasNextPage && (
-              <Button onPress={handleNextPage} title="Page suivante" />
-            )}
-          </View>
-        )}
-      </SafeAreaView>
+            {session?.readDueDate}
+          </Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: theme.colors.success,
+            borderRadius: 5,
+            padding: 10,
+            justifyContent: 'center',
+          }}
+        >
+          <Text
+            style={{
+              textAlign: 'center',
+              color: 'white',
+            }}
+          >
+            {states[session.state]}
+          </Text>
+        </View>
+      </View>
+      <View
+        style={{
+          backgroundColor: theme.colors.primary,
+          borderRadius: 5,
+          padding: 10,
+          justifyContent: 'center',
+        }}
+      >
+        <Text>{session.selectedBook?.title}</Text>
+      </View>
+    </>
+  );
+};
+const CurrentSessionList = ({ sessions }) => {
+  return (
+    <View style={{ width: '100%' }}>
+      {sessions.map((session) => (
+        <CurrentSessionItem key={session.id} session={session} />
+      ))}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    top: 5,
-    backgroundColor: theme.colors.text,
-    color: theme.colors.background,
-  },
-  fab2: {
-    position: 'absolute',
-    margin: 16,
-    right: 50,
-    top: 5,
-    backgroundColor: theme.colors.background,
-    color: theme.colors.text,
-  },
-});
+const MyClubList = ({ navigation }) => {
+  const { data, loading } = useQuery(CLUBS);
+  const clubs = (data?.myClubs?.edges ?? []).map(({ node }) => ({
+    ...node,
+  }));
+
+  const currentSessions = (clubs ?? [])
+    .filter(({ currentSession }) => Boolean(currentSession?.id))
+    .map(({ currentSession, name, id }) => ({
+      ...currentSession,
+      ...{ club: { name: name, id: id } },
+    }));
+
+  return (
+    <SafeAreaView>
+      <View style={{ padding: 20 }}>
+        {currentSessions.length > 0 && (
+          <>
+            <Title>Session{currentSessions.length > 1 && `s`} en cours</Title>
+            <CurrentSessionList sessions={currentSessions} />
+            <Separator />
+          </>
+        )}
+
+        <Title>Mes clubs</Title>
+        <ClubListCarousel clubs={clubs} />
+      </View>
+    </SafeAreaView>
+  );
+};
 
 export default MyClubList;

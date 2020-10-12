@@ -6,6 +6,7 @@ import CreateClub from 'screens/Club/CreateClub';
 import JoinClub from 'screens/Club/JoinClub';
 import ClubDetails from 'screens/Club/ClubDetails';
 import BookList from 'screens/Book/BookList';
+import Settings from 'screens/Setting/Settings';
 import { theme } from 'ui';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -106,7 +107,7 @@ const BooklubNavigator = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Test}
+        component={Settings}
         options={{
           tabBarLabel: 'Paramètres',
           tabBarIcon: ({ color }) => (

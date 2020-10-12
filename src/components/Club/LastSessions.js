@@ -11,7 +11,6 @@ const LastSessions = ({ sessions }) => (
     <Carousel
       keyExtractor={(item) => item?.id}
       data={sessions}
-      layout={'default'}
       renderItem={({ item, index, separators }) => (
         <ShadowBox>
           <SessionCard session={item} />
