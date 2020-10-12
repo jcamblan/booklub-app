@@ -11,25 +11,15 @@ const LastSessions = ({ sessions }) => (
     <Carousel
       keyExtractor={(item) => item?.id}
       data={sessions}
-      renderItem={({ item, index, separators }) => {
-        const width = screenWidth - 40;
-        return (
-          <View
-            style={{
-              width: width,
-              marginHorizontal: 20,
-              marginBottom: 25,
-              justifyContent: 'center',
-            }}
-          >
-            <ShadowBox>
-              <SessionCard session={item} />
-            </ShadowBox>
-          </View>
-        );
-      }}
+      layout={'default'}
+      renderItem={({ item, index, separators }) => (
+        <ShadowBox>
+          <SessionCard session={item} />
+        </ShadowBox>
+      )}
       sliderWidth={screenWidth}
-      itemWidth={screenWidth}
+      itemWidth={screenWidth - 50}
+      slideStyle={{ justifyContent: 'center' }}
     />
   </View>
 );
