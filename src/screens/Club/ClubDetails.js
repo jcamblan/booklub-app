@@ -1,6 +1,5 @@
 import React from 'react';
 import { SafeAreaView, View, ScrollView } from 'react-native';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import { Title, theme, Text, Separator } from 'ui';
 import LogoName from 'components/LogoName';
@@ -8,100 +7,7 @@ import LastSessions from 'components/Club/LastSessions';
 import MemberList from 'components/Club/MemberList';
 import InvitationCodeChunk from 'components/Club/InvitationCodeChunk';
 import CurrentSession from 'components/Club/CurrentSession';
-
-const CLUB = gql`
-  query club($id: ID!) {
-    node(id: $id) {
-      ... on Club {
-        id
-        name
-        invitationCode
-        users {
-          edges {
-            node {
-              id
-              username
-            }
-            sessionCount
-            selectionCount
-            bonusScore
-          }
-        }
-        currentSession {
-          id
-          name
-          state
-          readDueDate
-          submissionDueDate
-          submissions {
-            edges {
-              node {
-                book {
-                  author
-                  title
-                }
-              }
-            }
-            totalCount
-          }
-          selectedBook {
-            id
-            title
-            author
-          }
-          selectedBookSubmitters {
-            nodes {
-              id
-              username
-            }
-          }
-        }
-        manager {
-          id
-          username
-        }
-        sessions {
-          edges {
-            node {
-              id
-              name
-              state
-              selectedBook {
-                id
-                title
-                author
-              }
-              selectedBookSubmitters {
-                nodes {
-                  id
-                  username
-                }
-              }
-              readDueDate
-              submissionDueDate
-              submissions {
-                edges {
-                  node {
-                    book {
-                      author
-                      title
-                    }
-                  }
-                }
-                totalCount
-              }
-              notes {
-                nodes {
-                  value
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import { CLUB_FULL_DETAILS } from 'api/queries';
 
 const ClubName = ({ name }) => (
   <View style={{ flexDirection: 'row' }}>
@@ -111,7 +17,7 @@ const ClubName = ({ name }) => (
 );
 
 const ClubDetails = ({ route }) => {
-  const { data, loading } = useQuery(CLUB, {
+  const { data, loading } = useQuery(CLUB_FULL_DETAILS, {
     variables: { id: route.params.id },
   });
   const node = data?.node;

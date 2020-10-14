@@ -8,41 +8,10 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Text, theme, Title, Separator } from 'ui';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import { findNoteColor } from 'utils';
 import { Input } from 'ui/form';
-
-const BOOKS = gql`
-  query books(
-    $orderBy: BookOrderBy!
-    $orderDirection: OrderDirection
-    $search: String
-    $after: String
-  ) {
-    books(
-      order: { by: $orderBy, direction: $orderDirection }
-      search: $search
-      first: 10
-      after: $after
-    ) {
-      edges {
-        node {
-          id
-          title
-          author
-          averageNote
-          submissionCount
-          noteCount
-        }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-    }
-  }
-`;
+import { BOOKS } from 'api/queries';
 
 const SearchBook = ({ onSearch }) => {
   return (

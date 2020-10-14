@@ -12,25 +12,8 @@ import { Input, Error } from 'ui/form';
 import book from 'images/book.png';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
-
-const CREATE_CLUB = gql`
-  mutation createClub($input: CreateClubInput!) {
-    createClub(input: $input) {
-      club {
-        name
-        id
-      }
-      errors {
-        attribute
-        error
-        message
-        path
-      }
-    }
-  }
-`;
+import { CREATE_CLUB } from 'api/mutations';
 
 const CreateClub = ({ navigation }) => {
   const [createClub] = useMutation(CREATE_CLUB, {

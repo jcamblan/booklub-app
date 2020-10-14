@@ -1,60 +1,11 @@
 import React from 'react';
 import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import { Title, Button, theme, Text, Separator, TextLink } from 'ui';
 import ClubList from 'components/ClubList';
 import ClubListCarousel from 'components/ClubListCarousel';
+import { CLUBS } from 'api/queries';
 
-const CLUBS = gql`
-  query myClubs {
-    myClubs(last: 5) {
-      edges {
-        node {
-          id
-          name
-          users {
-            totalCount
-          }
-          sessions(last: 1) {
-            nodes {
-              readDueDate
-            }
-          }
-          currentSession {
-            id
-            name
-            state
-            readDueDate
-            submissionDueDate
-            submissions {
-              edges {
-                node {
-                  book {
-                    author
-                    title
-                  }
-                }
-              }
-              totalCount
-            }
-            selectedBook {
-              id
-              title
-              author
-            }
-            selectedBookSubmitters {
-              nodes {
-                id
-                username
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 const CurrentSessionItem = ({ session }) => {
   const states = {
     submission: 'Inscript.',
@@ -64,7 +15,7 @@ const CurrentSessionItem = ({ session }) => {
     archived: 'Archivé',
   };
   return (
-    <>
+    <View style={{ marginBottom: 8 }}>
       <View
         style={{
           flexDirection: 'row',
@@ -72,7 +23,7 @@ const CurrentSessionItem = ({ session }) => {
           justifyContent: 'space-between',
           marginBottom: 3,
         }}
-        key={id}
+        key={session.id}
       >
         <View
           style={{
@@ -132,7 +83,7 @@ const CurrentSessionItem = ({ session }) => {
       >
         <Text>{session.selectedBook?.title}</Text>
       </View>
-    </>
+    </View>
   );
 };
 const CurrentSessionList = ({ sessions }) => {

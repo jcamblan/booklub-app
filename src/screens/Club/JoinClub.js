@@ -13,25 +13,8 @@ import { Input, Error } from 'ui/form';
 import book from 'images/book.png';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
-
-const JOIN_CLUB = gql`
-  mutation joinClub($input: JoinClubInput!) {
-    joinClub(input: $input) {
-      club {
-        name
-        id
-      }
-      errors {
-        attribute
-        error
-        message
-        path
-      }
-    }
-  }
-`;
+import { JOIN_CLUB } from 'api/mutations';
 
 const JoinClub = ({ navigation }) => {
   const [joinClub] = useMutation(JOIN_CLUB);
