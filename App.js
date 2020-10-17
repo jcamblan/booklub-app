@@ -10,7 +10,7 @@ import Home from 'screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { useAuth, useApp } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
-import BooklubNavigator from 'navigation/BooklubNavigator';
+import BottomTabNavigator from 'navigation/BottomTabNavigator';
 import { List, ListItem } from 'components/List';
 import { Button } from 'ui';
 
@@ -28,7 +28,7 @@ const Root = () => {
 
   return (
     <NavigationContainer theme={theme}>
-      {Boolean(accessToken) ? <BooklubNavigator /> : <AuthNavigator />}
+      {Boolean(accessToken) ? <BottomTabNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };
