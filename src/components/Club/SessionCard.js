@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { formatDistanceDate, formatDate, findNoteColor } from 'utils';
-import { Title, theme, ShadowBox, Text } from 'ui';
+import { H1, theme, ShadowBox, Text } from 'ui';
 
 const StatePill = ({ pillState, sessionState }) => {
   const states = {
@@ -13,12 +13,12 @@ const StatePill = ({ pillState, sessionState }) => {
   };
 
   const backgroundColor =
-    pillState == sessionState
+    pillState === sessionState
       ? theme.colors.highlight.text
       : theme.colors.highlight.secondary;
 
   const color =
-    pillState == sessionState
+    pillState === sessionState
       ? theme.colors.highlight.background
       : theme.colors.highlight.ternary;
 
@@ -55,7 +55,7 @@ const StateBar = ({ state }) => {
   );
 };
 
-const SessionCard = ({ session, current = false }) => {
+const SessionCard = ({ session, current = false, style }) => {
   const book = session?.selectedBook;
   const submitters = session?.selectedBookSubmitters?.nodes;
   const readDueDate = formatDate(session?.readDueDate, 'dd/MM/yyyy');
@@ -68,7 +68,7 @@ const SessionCard = ({ session, current = false }) => {
   const textColor = current ? theme.colors.highlight.text : theme.colors.text;
 
   return (
-    <View style={{ width: '100%' }}>
+    <View style={{ width: '100%', ...style }}>
       {current && <StateBar state={session?.state} />}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <View style={{ flexShrink: 2 }}>

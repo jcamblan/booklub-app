@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { Button, Title, TextLink, Text } from 'ui';
+import { Button, H1, TextLink, Text } from 'ui';
 import { Input, Error } from 'ui/form';
 import book from 'images/book.png';
 import { ERRORS } from 'utils';

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Formik } from 'formik';
 import { Input, Error } from 'ui/form';
-import { Button, Title } from 'ui';
+import { Button, H1 } from 'ui';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
 import { ERRORS } from 'utils';
@@ -35,7 +35,7 @@ const Login = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
-        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
         <ScrollView style={{ padding: 20 }} alwaysBounceVertical={false}>

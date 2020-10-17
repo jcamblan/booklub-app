@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
 import { theme, Text } from 'ui';
 
-const Title = styled(Text)`
+const H1 = styled(Text)`
   ${material.display1};
   color: ${theme.colors.text};
   font-weight: bold;
@@ -34,11 +34,11 @@ const LogoName = ({
           display: hideLogo ? 'none' : 'flex',
         }}
       />
-      <Title style={{ display: hideTitle ? 'none' : 'flex' }}>
+      <H1 style={{ display: hideTitle ? 'none' : 'flex' }}>
         BOO
-        <Title style={{ color: theme.colors.primary }}>K</Title>
+        <H1 style={{ color: theme.colors.primary }}>K</H1>
         LÜB
-      </Title>
+      </H1>
     </View>
   );
 };

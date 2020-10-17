@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { Title, Button, theme, Text, Separator, TextLink } from 'ui';
+import { H1, Button, theme, Text, Separator, TextLink } from 'ui';
 import ClubList from 'components/ClubList';
 import ClubListCarousel from 'components/ClubListCarousel';
 import { CLUBS } from 'api/queries';
@@ -114,13 +114,13 @@ const ClubHome = ({ navigation }) => {
       <View style={{ padding: 20 }}>
         {currentSessions.length > 0 && (
           <>
-            <Title>Session{currentSessions.length > 1 && `s`} en cours</Title>
+            <H1>Session{currentSessions.length > 1 && `s`} en cours</H1>
             <CurrentSessionList sessions={currentSessions} />
             <Separator />
           </>
         )}
 
-        <Title>Mes clubs</Title>
+        <H1>Mes clubs</H1>
         <ClubListCarousel clubs={clubs} />
         <Separator />
 

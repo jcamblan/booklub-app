@@ -7,7 +7,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import { Text, theme, Title, Separator } from 'ui';
+import { Text, theme, H1, Separator } from 'ui';
 import { useQuery } from '@apollo/client';
 import { findNoteColor } from 'utils';
 import { Input } from 'ui/form';
@@ -203,7 +203,7 @@ const BookList = () => {
   };
 
   const handleFetchMore = async () => {
-    if (data?.books?.pageInfo?.hasNextPage == false) {
+    if (data?.books?.pageInfo?.hasNextPage === false) {
       return;
     }
     setFetching(true);
@@ -243,7 +243,7 @@ const BookList = () => {
         }}
         scrollEventThrottle={500}
       >
-        <Title>Livres proposés</Title>
+        <H1>Livres proposés</H1>
         <SearchBook onSearch={handleSearch} />
         <List books={books} onReorder={handleReorder} />
         {(loading || fetching) && <ActivityIndicator margin={10} />}

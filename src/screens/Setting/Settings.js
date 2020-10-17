@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View } from 'react-native';
-import { Title, TextLink } from 'ui';
+import { H1, TextLink } from 'ui';
 import { useAuth } from 'hooks';
 
 const Settings = () => {
@@ -9,7 +9,7 @@ const Settings = () => {
   return (
     <SafeAreaView>
       <View style={{ padding: 20 }}>
-        <Title>Paramètres</Title>
+        <H1>Paramètres</H1>
         <TextLink onPress={() => onReset()} title="Se déconnecter" />
       </View>
     </SafeAreaView>

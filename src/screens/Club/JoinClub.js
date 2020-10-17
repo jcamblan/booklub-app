@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { TextLink, Title } from 'ui';
+import { TextLink, H1 } from 'ui';
 import { Input, Error } from 'ui/form';
 import book from 'images/book.png';
 import { ERRORS } from 'utils';
@@ -44,7 +44,7 @@ const JoinClub = ({ navigation }) => {
     <SafeAreaView>
       <KeyboardAvoidingView>
         <ScrollView style={{ padding: 20 }}>
-          <Title>Rejoindre un club</Title>
+          <H1>Rejoindre un club</H1>
           <Formik
             validationSchema={Yup.object().shape({
               invitationCode: Yup.string(),

@@ -13,11 +13,11 @@ const LastSessions = ({ sessions }) => (
       data={sessions}
       renderItem={({ item, index, separators }) => (
         <ShadowBox>
-          <SessionCard session={item} />
+          <SessionCard style={{ paddingHorizontal: 10 }} session={item} />
         </ShadowBox>
       )}
       sliderWidth={screenWidth}
-      itemWidth={screenWidth - 50}
+      itemWidth={screenWidth - 64}
       slideStyle={{ justifyContent: 'center' }}
     />
   </View>

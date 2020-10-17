@@ -1,9 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Title, theme, Separator } from 'ui';
+import { H2, theme, Separator, TextLink, Text } from 'ui';
 import SessionCard from 'components/Club/SessionCard';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
 const CurrentSession = ({ session }) => {
+  const navigation = useNavigation();
+
   return (
     <>
       <View
@@ -16,9 +20,25 @@ const CurrentSession = ({ session }) => {
           borderRadius: 40,
         }}
       >
-        <Title style={{ marginBottom: 10, color: theme.colors.highlight.text }}>
-          Session active
-        </Title>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <H2 style={{ marginBottom: 10, color: theme.colors.highlight.text }}>
+            Session active
+          </H2>
+          <TextLink
+            title={'+ Voir le détail'}
+            textStyle={{ color: 'white', fontWeight: '600' }}
+            onPress={() =>
+              navigation.navigate('SessionDetails', { sessionId: session.id })
+            }
+          />
+        </View>
+
         <SessionCard session={session} current />
       </View>
       <Separator />

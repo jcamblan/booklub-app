@@ -99,13 +99,17 @@ export const Text = styled(RnText)`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const TextLink = ({ title, ...props }) => (
+export const TextLink = ({
+  title,
+  textStyle = { color: theme.colors.textLink },
+  ...props
+}) => (
   <TouchableOpacity
     activeOpacity={0.8}
     {...props}
     style={{ paddingVertical: 8 }}
   >
-    <TextLinkText>{title}</TextLinkText>
+    <Text style={textStyle}>{title}</Text>
   </TouchableOpacity>
 );
 
@@ -138,15 +142,28 @@ export const Button = ({ title, onPress, dark = false }) => {
   );
 };
 
-const TextLinkText = styled(Text)`
-  color: ${({ theme }) => theme.colors.textLink};
-`;
-
-export const Title = styled(Text)`
+export const H1 = styled(Text)`
   ${material.display1};
 
   color: ${({ theme }) => theme.colors.title};
-  font-size: 25;
+  padding-top: 3;
+  padding-bottom: 3;
+  font-weight: bold;
+`;
+
+export const H2 = styled(Text)`
+  ${material.headline};
+
+  color: ${({ theme }) => theme.colors.title};
+  padding-top: 3;
+  padding-bottom: 3;
+  font-weight: bold;
+`;
+
+export const H3 = styled(Text)`
+  ${material.title};
+
+  color: ${({ theme }) => theme.colors.title};
   padding-top: 3;
   padding-bottom: 3;
   font-weight: bold;

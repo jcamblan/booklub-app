@@ -6,11 +6,12 @@ export const BOOKS = gql`
     $orderDirection: OrderDirection
     $search: String
     $after: String
+    $first: Int
   ) {
     books(
       order: { by: $orderBy, direction: $orderDirection }
       search: $search
-      first: 10
+      first: $first
       after: $after
     ) {
       edges {

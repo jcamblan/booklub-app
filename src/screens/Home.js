@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import book from 'images/book.png';
-import { Title, Button } from 'ui';
+import { H1, Button } from 'ui';
 import LogoName from 'components/LogoName';
 
 const windowWidth = Dimensions.get('window').width;

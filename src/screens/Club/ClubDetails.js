@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, View, ScrollView } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { Title, theme, Text, Separator } from 'ui';
+import { H1, H2, theme, Text, Separator } from 'ui';
 import LogoName from 'components/LogoName';
 import LastSessions from 'components/Club/LastSessions';
 import MemberList from 'components/Club/MemberList';
@@ -12,7 +12,7 @@ import { CLUB_FULL_DETAILS } from 'api/queries';
 const ClubName = ({ name }) => (
   <View style={{ flexDirection: 'row' }}>
     <LogoName hideLogo />
-    <Title style={{ fontSize: 30, fontWeight: 'bold' }}> - {name}</Title>
+    <H1 style={{ fontSize: 30, fontWeight: 'bold' }}> - {name}</H1>
   </View>
 );
 
@@ -45,7 +45,7 @@ const ClubDetails = ({ route }) => {
 
         {Boolean(node?.users?.edges) && (
           <>
-            <Title style={{ marginBottom: 10 }}>Membres</Title>
+            <H2 style={{ marginBottom: 10 }}>Membres</H2>
             <MemberList userEdges={node?.users?.edges} />
             <Separator />
           </>
@@ -53,7 +53,7 @@ const ClubDetails = ({ route }) => {
 
         {sessions.length > 0 && (
           <>
-            <Title style={{ marginBottom: 10 }}>Derniers livres</Title>
+            <H2 style={{ marginBottom: 10 }}>Derniers livres</H2>
             <LastSessions sessions={sessions} />
             <Separator />
           </>

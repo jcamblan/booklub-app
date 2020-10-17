@@ -5,7 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import { Text, theme, Title, Separator, ShadowBox } from 'ui';
+import { Text, theme, H1, Separator, ShadowBox } from 'ui';
 import Carousel from 'react-native-snap-carousel';
 import { useNavigation } from '@react-navigation/native';
 
