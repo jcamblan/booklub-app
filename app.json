@@ -1,15 +1,10 @@
 {
   "expo": {
-    "name": "booklub-app",
-    "slug": "booklub-app",
-    "version": "1.0.0",
+    "name": "BOOKLÜB",
+    "slug": "booklub",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,7 +12,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "buildNumber": "0.1.0",
+      "bundleIdentifier": "app.booklub.ios"
     },
     "web": {
       "favicon": "./assets/favicon.png"

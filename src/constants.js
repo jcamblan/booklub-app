@@ -2,7 +2,7 @@ import Constants from 'expo-constants';
 
 const ENV = {
   dev: {
-    API_BASE: 'http://39cdd8824c70.ngrok.io',
+    API_BASE: 'https://booklub-api.herokuapp.com',
     CLIENT_ID: '8sluZTyLSdqtikAdBykm5mzTKe82PZ2kARYsVdxQxck',
   },
 };
