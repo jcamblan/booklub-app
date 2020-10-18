@@ -44,7 +44,6 @@ const JoinClub = ({ navigation }) => {
     <SafeAreaView>
       <KeyboardAvoidingView>
         <ScrollView style={{ padding: 20 }}>
-          <H1>Rejoindre un club</H1>
           <Formik
             validationSchema={Yup.object().shape({
               invitationCode: Yup.string(),

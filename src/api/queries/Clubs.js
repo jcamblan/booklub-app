@@ -57,6 +57,9 @@ export const CLUB_FULL_DETAILS = gql`
         id
         name
         invitationCode
+        canCreateSession {
+          value
+        }
         users {
           edges {
             node {
@@ -78,6 +81,7 @@ export const CLUB_FULL_DETAILS = gql`
             edges {
               node {
                 book {
+                  id
                   author
                   title
                 }
@@ -124,6 +128,7 @@ export const CLUB_FULL_DETAILS = gql`
                 edges {
                   node {
                     book {
+                      id
                       author
                       title
                     }
@@ -133,6 +138,7 @@ export const CLUB_FULL_DETAILS = gql`
               }
               notes {
                 nodes {
+                  id
                   value
                 }
               }

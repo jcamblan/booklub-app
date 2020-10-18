@@ -9,7 +9,6 @@ const Settings = () => {
   return (
     <SafeAreaView>
       <View style={{ padding: 20 }}>
-        <H1>Paramètres</H1>
         <TextLink onPress={() => onReset()} title="Se déconnecter" />
       </View>
     </SafeAreaView>

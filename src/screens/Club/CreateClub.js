@@ -37,7 +37,6 @@ const CreateClub = ({ navigation }) => {
     <SafeAreaView>
       <KeyboardAvoidingView>
         <ScrollView style={{ padding: 20 }}>
-          <H1>Créer un club</H1>
           <Formik
             validationSchema={Yup.object().shape({ name: Yup.string() })}
             initialValues={{ name: '' }}

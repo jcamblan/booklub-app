@@ -7,12 +7,12 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import { Picker } from '@react-native-community/picker';
 import { H1, H2, H3, Text, theme, TextLink, Separator, ShadowBox } from 'ui';
 import { Input } from 'ui/form';
 import { useQuery, useMutation } from '@apollo/client';
 import { BOOKS } from 'api/queries';
 import { CREATE_SUBMISSION } from 'api/mutations';
+import { useNavigation } from '@react-navigation/native';
 
 const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
   const { data, loading, fetchMore } = useQuery(BOOKS, {
@@ -159,15 +159,16 @@ const NewBookForm = ({ onSwitchForm, onSubmit }) => {
 };
 
 const CreateSubmission = ({ route }) => {
-  const sessionId =
-    route?.params?.sessionId ||
-    'U2Vzc2lvbi1mYjk0ODkyOC0zOWFkLTRiYjktYjY1ZC0yZjhkYmYxNzk2NzA=';
+  const sessionId = route?.params?.sessionId;
   const [book, setBook] = useState();
   const [newBook, setNewBook] = useState();
   const [form, setForm] = useState('search');
   const submittedBook = book ?? newBook;
+  const navigation = useNavigation();
 
-  const [createSubmission] = useMutation(CREATE_SUBMISSION);
+  const [createSubmission] = useMutation(CREATE_SUBMISSION, {
+    refetchQueries: ['session'],
+  });
 
   const handleCreateSubmission = async () => {
     const bookInput = Boolean(book)
@@ -183,7 +184,7 @@ const CreateSubmission = ({ route }) => {
           },
         },
       });
-      navigation.navigate('ClubHome');
+      navigation.navigate('SessionDetails', { sessionId: sessionId });
     } catch (err) {
       console.dir(err);
     }
@@ -192,8 +193,6 @@ const CreateSubmission = ({ route }) => {
   return (
     <SafeAreaView>
       <ScrollView style={{ padding: 20 }}>
-        <H1>Inscription</H1>
-        <Separator />
         {!Boolean(submittedBook) && form === 'search' && (
           <BookSelection
             onSetBook={(value) => setBook(value)}

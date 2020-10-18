@@ -34,7 +34,10 @@ const CurrentSession = ({ session }) => {
             title={'+ Voir le détail'}
             textStyle={{ color: 'white', fontWeight: '600' }}
             onPress={() =>
-              navigation.navigate('SessionDetails', { sessionId: session.id })
+              navigation.navigate('SessionDetails', {
+                sessionId: session.id,
+                title: session.name,
+              })
             }
           />
         </View>

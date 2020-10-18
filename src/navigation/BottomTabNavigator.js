@@ -1,8 +1,9 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import BookList from 'screens/Book/BookList';
 import Settings from 'screens/Setting/Settings';
 import ClubsNavigator from 'navigation/ClubsNavigator';
+import BooksNavigator from 'navigation/BooksNavigator';
+import SettingsNavigator from 'navigation/SettingsNavigator';
 import { theme } from 'ui';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -30,7 +31,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Books"
-        component={BookList}
+        component={BooksNavigator}
         options={{
           tabBarLabel: 'Livres',
           tabBarIcon: ({ color }) => (
@@ -44,7 +45,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsNavigator}
         options={{
           tabBarLabel: 'Paramètres',
           tabBarIcon: ({ color }) => (

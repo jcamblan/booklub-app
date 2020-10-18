@@ -9,8 +9,10 @@ import {
 import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
 import { DefaultTheme, DarkTheme } from 'react-native-paper';
+import { Appearance } from 'react-native';
 
 const { height } = Dimensions.get('window');
+
 export const base = 16;
 export const spacing = (input = 1) => `${input * base}px`;
 
@@ -36,14 +38,6 @@ const lightTheme = {
     },
   },
   shadowBox: {
-    shadowColor: '#BFBFBF',
-    shadowOffset: {
-      width: 0,
-      height: 9,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 12.35,
-
     elevation: 19,
     borderRadius: 15,
     padding: 10,
@@ -92,7 +86,9 @@ const darkTheme = {
   material,
 };
 
-export const theme = darkTheme;
+const colorScheme = Appearance.getColorScheme();
+console.log(colorScheme);
+export const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
 export const Text = styled(RnText)`
   ${({ theme }) => theme.material.body1};
@@ -143,7 +139,7 @@ export const Button = ({ title, onPress, dark = false }) => {
 };
 
 export const H1 = styled(Text)`
-  ${material.display1};
+  ${material.headline};
 
   color: ${({ theme }) => theme.colors.title};
   padding-top: 3;
@@ -152,7 +148,7 @@ export const H1 = styled(Text)`
 `;
 
 export const H2 = styled(Text)`
-  ${material.headline};
+  ${material.title};
 
   color: ${({ theme }) => theme.colors.title};
   padding-top: 3;

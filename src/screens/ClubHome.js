@@ -1,12 +1,21 @@
 import React from 'react';
-import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import { useQuery } from '@apollo/client';
 import { H1, Button, theme, Text, Separator, TextLink } from 'ui';
 import ClubList from 'components/ClubList';
 import ClubListCarousel from 'components/ClubListCarousel';
 import { CLUBS } from 'api/queries';
+import { useNavigation } from '@react-navigation/native';
 
 const CurrentSessionItem = ({ session }) => {
+  const navigation = useNavigation();
+
   const states = {
     submission: 'Inscript.',
     draw: 'Tirage',
@@ -14,8 +23,17 @@ const CurrentSessionItem = ({ session }) => {
     conclusion: 'Vote',
     archived: 'Archivé',
   };
+
   return (
-    <View style={{ marginBottom: 8 }}>
+    <TouchableOpacity
+      style={{ marginBottom: 4 }}
+      onPress={() =>
+        navigation.navigate('SessionDetails', {
+          sessionId: session?.id,
+          title: session?.name,
+        })
+      }
+    >
       <View
         style={{
           flexDirection: 'row',
@@ -27,32 +45,20 @@ const CurrentSessionItem = ({ session }) => {
       >
         <View
           style={{
-            backgroundColor: theme.colors.success,
+            backgroundColor: theme.colors.secondary,
             flexGrow: 2,
             marginRight: 2,
             borderRadius: 5,
             padding: 10,
-            flexShrink: 2,
-          }}
-        >
-          <Text>{session.club?.name}</Text>
-        </View>
-        <View
-          style={{
-            backgroundColor: theme.colors.success,
-            marginRight: 2,
-            borderRadius: 5,
-            padding: 10,
-            justifyContent: 'center',
           }}
         >
           <Text
             style={{
-              textAlign: 'center',
-              color: 'white',
+              textAlign: 'left',
+              color: theme.colors.text,
             }}
           >
-            {session?.readDueDate}
+            {[session.club?.name, session?.name].filter(Boolean).join(' - ')}
           </Text>
         </View>
         <View
@@ -61,6 +67,7 @@ const CurrentSessionItem = ({ session }) => {
             borderRadius: 5,
             padding: 10,
             justifyContent: 'center',
+            width: '25%',
           }}
         >
           <Text
@@ -73,17 +80,7 @@ const CurrentSessionItem = ({ session }) => {
           </Text>
         </View>
       </View>
-      <View
-        style={{
-          backgroundColor: theme.colors.primary,
-          borderRadius: 5,
-          padding: 10,
-          justifyContent: 'center',
-        }}
-      >
-        <Text>{session.selectedBook?.title}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 const CurrentSessionList = ({ sessions }) => {
@@ -111,7 +108,7 @@ const ClubHome = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <View style={{ padding: 20 }}>
+      <ScrollView style={{ paddingHorizontal: 20 }}>
         {currentSessions.length > 0 && (
           <>
             <H1>Session{currentSessions.length > 1 && `s`} en cours</H1>
@@ -134,7 +131,7 @@ const ClubHome = ({ navigation }) => {
             onPress={() => navigation.navigate('CreateClub')}
           />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

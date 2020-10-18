@@ -20,7 +20,12 @@ const ClubCard = ({ club }) => {
         }}
       >
         <Text
-          onPress={() => navigation.navigate('ClubDetails', { id: club.id })}
+          onPress={() =>
+            navigation.navigate('ClubDetails', {
+              clubId: club.id,
+              title: club.name,
+            })
+          }
         >
           {club.name}
         </Text>

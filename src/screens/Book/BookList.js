@@ -241,9 +241,8 @@ const BookList = () => {
             handleFetchMore();
           }
         }}
-        scrollEventThrottle={500}
+        scrollEventThrottle={300}
       >
-        <H1>Livres proposés</H1>
         <SearchBook onSearch={handleSearch} />
         <List books={books} onReorder={handleReorder} />
         {(loading || fetching) && <ActivityIndicator margin={10} />}

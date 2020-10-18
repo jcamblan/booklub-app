@@ -5,7 +5,9 @@ import CreateClub from 'screens/Club/CreateClub';
 import JoinClub from 'screens/Club/JoinClub';
 import ClubDetails from 'screens/Club/ClubDetails';
 import SessionDetails from 'screens/Club/SessionDetails';
+import CreateSession from 'screens/Club/CreateSession';
 import CreateSubmission from 'screens/Club/CreateSubmission';
+import LogoName from 'components/LogoName';
 
 const BooklubStack = createStackNavigator();
 
@@ -13,13 +15,13 @@ const ClubsNavigator = () => {
   return (
     <BooklubStack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
       }}
     >
       <BooklubStack.Screen
         name="ClubHome"
         component={ClubHome}
-        options={{ headerTitle: 'Mes clubs' }}
+        options={{ headerTitle: (props) => <LogoName hideLogo /> }}
       />
       <BooklubStack.Screen
         name="CreateClub"
@@ -34,17 +36,22 @@ const ClubsNavigator = () => {
       <BooklubStack.Screen
         name="ClubDetails"
         component={ClubDetails}
-        options={{ headerTitle: 'Détails du club' }}
+        options={({ route }) => ({ title: route.params.title || 'Club' })}
       />
       <BooklubStack.Screen
         name="SessionDetails"
         component={SessionDetails}
-        options={{ headerTitle: 'Session' }}
+        options={({ route }) => ({ title: route.params.title || 'Session' })}
+      />
+      <BooklubStack.Screen
+        name="CreateSession"
+        component={CreateSession}
+        options={{ headerTitle: 'Lancer une session' }}
       />
       <BooklubStack.Screen
         name="CreateSubmission"
         component={CreateSubmission}
-        options={{ headerTitle: 'Participer à la session' }}
+        options={{ headerTitle: 'Participer' }}
       />
     </BooklubStack.Navigator>
   );

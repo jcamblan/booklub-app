@@ -16,7 +16,12 @@ const ClubCarouselCard = ({ item }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('ClubDetails', { id: item.id })}
+      onPress={() =>
+        navigation.navigate('ClubDetails', {
+          clubId: item.id,
+          title: item.name,
+        })
+      }
     >
       <ShadowBox>
         <Text>

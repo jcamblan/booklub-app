@@ -1,24 +1,16 @@
 import React from 'react';
 import { SafeAreaView, View, ScrollView } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { H1, H2, theme, Text, Separator } from 'ui';
-import LogoName from 'components/LogoName';
+import { H1, H2, theme, Text, Separator, TextLink } from 'ui';
 import LastSessions from 'components/Club/LastSessions';
 import MemberList from 'components/Club/MemberList';
 import InvitationCodeChunk from 'components/Club/InvitationCodeChunk';
 import CurrentSession from 'components/Club/CurrentSession';
 import { CLUB_FULL_DETAILS } from 'api/queries';
 
-const ClubName = ({ name }) => (
-  <View style={{ flexDirection: 'row' }}>
-    <LogoName hideLogo />
-    <H1 style={{ fontSize: 30, fontWeight: 'bold' }}> - {name}</H1>
-  </View>
-);
-
-const ClubDetails = ({ route }) => {
+const ClubDetails = ({ route, navigation }) => {
   const { data, loading } = useQuery(CLUB_FULL_DETAILS, {
-    variables: { id: route.params.id },
+    variables: { id: route.params.clubId },
   });
   const node = data?.node;
   const sessions = (node?.sessions?.edges ?? []).map(({ node }) => ({
@@ -36,11 +28,19 @@ const ClubDetails = ({ route }) => {
   return (
     <SafeAreaView>
       <ScrollView style={{ paddingHorizontal: 20 }}>
-        <ClubName name={node?.name} />
-        <Separator />
-
         {Boolean(node?.currentSession) && (
           <CurrentSession session={node?.currentSession} />
+        )}
+
+        {node?.canCreateSession?.value && (
+          <View style={{ alignItems: 'center' }}>
+            <TextLink
+              title="Lancer une nouvelle session de lecture !"
+              onPress={() =>
+                navigation.navigate('CreateSession', { clubId: node?.id })
+              }
+            />
+          </View>
         )}
 
         {Boolean(node?.users?.edges) && (
