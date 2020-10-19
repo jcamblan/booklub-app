@@ -70,6 +70,7 @@ export const CLUB_FULL_DETAILS = gql`
             selectionCount
             bonusScore
           }
+          totalCount
         }
         currentSession {
           id

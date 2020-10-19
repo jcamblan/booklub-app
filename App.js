@@ -11,7 +11,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useAuth, useApp } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
 import BottomTabNavigator from 'navigation/BottomTabNavigator';
-import { List, ListItem } from 'components/List';
 import { Button } from 'ui';
 
 const Logged = () => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   TouchableOpacity,
-  Dimensions,
   Text as RnText,
   Button as RnButton,
   View,
@@ -10,8 +9,6 @@ import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
 import { DefaultTheme, DarkTheme } from 'react-native-paper';
 import { Appearance } from 'react-native';
-
-const { height } = Dimensions.get('window');
 
 export const base = 16;
 export const spacing = (input = 1) => `${input * base}px`;
@@ -87,11 +84,11 @@ const darkTheme = {
 };
 
 const colorScheme = Appearance.getColorScheme();
-console.log(colorScheme);
+
 export const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
 export const Text = styled(RnText)`
-  ${({ theme }) => theme.material.body1};
+  line-height: 20px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -138,32 +135,43 @@ export const Button = ({ title, onPress, dark = false }) => {
   );
 };
 
-export const H1 = styled(Text)`
-  ${material.headline};
+export const H1 = ({ children, ...props }) => (
+  <RnText
+    style={{
+      ...theme.material.display1,
+      fontWeight: 'bold',
+      color: theme.colors.title,
+      ...props.style,
+      paddingVertical: 3,
+    }}
+  >
+    {children}
+  </RnText>
+);
 
-  color: ${({ theme }) => theme.colors.title};
-  padding-top: 3;
-  padding-bottom: 3;
-  font-weight: bold;
-`;
+export const H2 = ({ children, ...props }) => (
+  <H1
+    style={{
+      ...theme.material.headline,
+      ...props.style,
+      fontWeight: 'bold',
+    }}
+  >
+    {children}
+  </H1>
+);
 
-export const H2 = styled(Text)`
-  ${material.title};
-
-  color: ${({ theme }) => theme.colors.title};
-  padding-top: 3;
-  padding-bottom: 3;
-  font-weight: bold;
-`;
-
-export const H3 = styled(Text)`
-  ${material.title};
-
-  color: ${({ theme }) => theme.colors.title};
-  padding-top: 3;
-  padding-bottom: 3;
-  font-weight: bold;
-`;
+export const H3 = ({ children, ...props }) => (
+  <H1
+    style={{
+      ...theme.material.title,
+      ...props.style,
+      fontWeight: 'bold',
+    }}
+  >
+    {children}
+  </H1>
+);
 
 export const ShadowBox = ({ children }) => (
   <View style={{ ...theme.shadowBox, backgroundColor: theme.colors.secondary }}>

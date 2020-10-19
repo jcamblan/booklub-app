@@ -57,8 +57,8 @@ const SessionDetails = ({ route, navigation }) => {
           <>
             <H2>Notes :</H2>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-              {notes.map(({ value, user }) => (
-                <View style={{ width: '33%' }}>
+              {notes.map(({ id, value, user }) => (
+                <View key={id} style={{ width: '33%' }}>
                   <View style={{ alignItems: 'center' }}>
                     <H3>{value}</H3>
                     <Text>{user?.username}</Text>

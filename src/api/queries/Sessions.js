@@ -16,6 +16,7 @@ export const SESSION_FULL_DETAILS = gql`
         submissions {
           edges {
             node {
+              id
               user {
                 id
                 username
