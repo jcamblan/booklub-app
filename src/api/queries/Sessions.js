@@ -42,12 +42,14 @@ export const SESSION_FULL_DETAILS = gql`
           }
         }
         notes {
-          nodes {
-            id
-            value
-            user {
+          edges {
+            node {
               id
-              username
+              value
+              user {
+                id
+                username
+              }
             }
           }
         }

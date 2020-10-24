@@ -19,5 +19,5 @@ export const Input = ({ style, ...props }) => {
 
 export const Error = styled(Text)`
 color: ${({ theme }) => theme.colors.error}
-margin-top: ${({ theme }) => theme.spacing(0.5)}
+margin-top: ${({ theme }) => `${theme.spacing(0.5)}px`}
 `;

@@ -7,7 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import { H1, H2, H3, Text, theme, TextLink, Separator, ShadowBox } from 'ui';
+import { H1, H2, H3, Text, theme, TextLink, Separator, Card } from 'ui';
 import { Input } from 'ui/form';
 import { useQuery, useMutation } from '@apollo/client';
 import { BOOKS } from 'api/queries';
@@ -207,7 +207,7 @@ const CreateSubmission = ({ route }) => {
         )}
         {Boolean(submittedBook) && (
           <>
-            <ShadowBox>
+            <Card>
               <H3>Livre proposé :</H3>
               <Text style={{ fontSize: 15, color: theme.colors.success }}>
                 {submittedBook.title}, {submittedBook.author}
@@ -221,7 +221,7 @@ const CreateSubmission = ({ route }) => {
                   }}
                 />
               </View>
-            </ShadowBox>
+            </Card>
             <Separator />
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               <TextLink

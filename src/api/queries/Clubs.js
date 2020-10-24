@@ -138,9 +138,11 @@ export const CLUB_FULL_DETAILS = gql`
                 totalCount
               }
               notes {
-                nodes {
-                  id
-                  value
+                edges {
+                  node {
+                    id
+                    value
+                  }
                 }
               }
             }

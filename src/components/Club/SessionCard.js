@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { formatDistanceDate, formatDate, findNoteColor } from 'utils';
-import { H1, theme, ShadowBox, Text } from 'ui';
+import { H1, theme, Card, Text } from 'ui';
 
 const StatePill = ({ pillState, sessionState }) => {
   const states = {
@@ -61,9 +61,9 @@ const SessionCard = ({ session, current = false, style }) => {
   const readDueDate = formatDate(session?.readDueDate, 'dd/MM/yyyy');
   const submissionDueDate = formatDistanceDate(session?.submissionDueDate);
   const note =
-    (session?.notes?.nodes ?? [])
-      .map(({ value }) => value)
-      .reduce((sum, note) => sum + note, 0) / session?.notes?.nodes?.length;
+    (session?.notes?.edges ?? [])
+      .map(({ node: { value } }) => value)
+      .reduce((sum, note) => sum + note, 0) / session?.notes?.edges?.length;
 
   const textColor = current ? theme.colors.highlight.text : theme.colors.text;
 
@@ -142,7 +142,7 @@ const SessionCard = ({ session, current = false, style }) => {
                 <Text
                   style={{
                     textAlign: 'center',
-                    color: theme.colors.text,
+                    color: theme.colors.textLight,
                     fontSize: 20,
                   }}
                 >

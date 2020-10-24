@@ -12,7 +12,7 @@ import { DefaultTheme, DarkTheme } from 'react-native-paper';
 import { Appearance } from 'react-native';
 
 export const base = 16;
-export const spacing = (input = 1) => `${input * base}px`;
+export const spacing = (input = 1) => input * base;
 
 const lightTheme = {
   ...DefaultTheme,
@@ -35,7 +35,7 @@ const lightTheme = {
       ternary: '#F491B2',
     },
   },
-  shadowBox: {
+  card: {
     elevation: 19,
     borderRadius: 15,
     padding: 10,
@@ -77,7 +77,7 @@ const darkTheme = {
       ternary: '#F491B2',
     },
   },
-  shadowBox: {
+  card: {
     elevation: 19,
     borderRadius: 15,
     padding: 10,
@@ -176,8 +176,8 @@ export const H3 = ({ children, ...props }) => (
   </H1>
 );
 
-export const ShadowBox = ({ children }) => (
-  <View style={{ ...theme.shadowBox, backgroundColor: theme.colors.secondary }}>
+export const Card = ({ children }) => (
+  <View style={{ ...theme.card, backgroundColor: theme.colors.secondary }}>
     {children}
   </View>
 );

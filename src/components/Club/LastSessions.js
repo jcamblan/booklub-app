@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { ShadowBox, TextLink } from 'ui';
+import { Card, TextLink } from 'ui';
 import SessionCard from 'components/Club/SessionCard';
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,7 +15,7 @@ const LastSessions = ({ sessions }) => {
         keyExtractor={(item) => item?.id}
         data={sessions}
         renderItem={({ item, index, separators }) => (
-          <ShadowBox>
+          <Card>
             <SessionCard
               style={{ paddingTop: 10, paddingHorizontal: 10 }}
               session={item}
@@ -31,7 +31,7 @@ const LastSessions = ({ sessions }) => {
                 }
               />
             </View>
-          </ShadowBox>
+          </Card>
         )}
         sliderWidth={screenWidth}
         itemWidth={screenWidth - 64}

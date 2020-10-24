@@ -5,7 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import { Text, theme, H1, Separator, ShadowBox } from 'ui';
+import { Text, theme, H1, Separator, Card } from 'ui';
 import Carousel from 'react-native-snap-carousel';
 import { useNavigation } from '@react-navigation/native';
 
@@ -23,13 +23,13 @@ const ClubCarouselCard = ({ item }) => {
         })
       }
     >
-      <ShadowBox>
+      <Card>
         <Text>
           {item?.name} ({item?.users?.totalCount} membres)
         </Text>
         <Text>Dernière session : {item?.sessions?.nodes[0]?.readDueDate}</Text>
         {Boolean(item?.currentSession?.id) && <Text>SESSION EN COURS</Text>}
-      </ShadowBox>
+      </Card>
     </TouchableOpacity>
   );
 };
