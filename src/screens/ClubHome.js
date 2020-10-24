@@ -108,7 +108,9 @@ const ClubHome = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <ScrollView style={{ paddingHorizontal: 20 }}>
+      <ScrollView
+        style={{ paddingHorizontal: 20, minHeight: theme.screenHeight }}
+      >
         {currentSessions.length > 0 && (
           <>
             <H1>Session{currentSessions.length > 1 && `s`} en cours</H1>
