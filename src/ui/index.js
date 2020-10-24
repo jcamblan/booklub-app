@@ -4,6 +4,7 @@ import {
   Text as RnText,
   Button as RnButton,
   View,
+  Dimensions,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
@@ -41,6 +42,8 @@ const lightTheme = {
   },
   spacing,
   material,
+  screenWidth: Dimensions.get('window').width,
+  screenHeight: Dimensions.get('window').height,
 };
 
 const darkTheme = {
