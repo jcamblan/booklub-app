@@ -71,6 +71,7 @@ const JoinClub = ({ navigation }) => {
                   returnKeyType="send"
                   style={{ marginBottom: 16 }}
                   error={touched.invitationCode && errors.invitationCode}
+                  onSubmitEditing={() => handleSubmit(values)}
                 />
                 <Error>{status}</Error>
                 <View style={{ alignItems: 'center' }}>

@@ -62,6 +62,7 @@ const CreateClub = ({ navigation }) => {
                   returnKeyType="send"
                   style={{ marginBottom: 16 }}
                   error={touched.name && errors.name}
+                  onSubmitEditing={() => handleSubmit(values)}
                 />
                 <Error>{status}</Error>
                 <View style={{ alignItems: 'center' }}>

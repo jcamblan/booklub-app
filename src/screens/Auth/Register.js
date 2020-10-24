@@ -124,6 +124,7 @@ const Register = ({ navigation }) => {
                   secureTextEntry
                   returnKeyType="send"
                   error={touched.password && errors.password}
+                  onSubmitEditing={() => handleSubmit(values)}
                 />
                 <Error>{status}</Error>
                 <View style={{ marginTop: 32, alignItems: 'center' }}>

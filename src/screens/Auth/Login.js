@@ -94,6 +94,7 @@ const Login = ({ navigation }) => {
                     secureTextEntry
                     returnKeyType="send"
                     error={touched.password && errors.password}
+                    onSubmitEditing={() => handleSubmit(values)}
                   />
                   <TextLink
                     title="Mot de passe oublié ?"
