@@ -11,16 +11,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useAuth, useApp } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
 import BottomTabNavigator from 'navigation/BottomTabNavigator';
-import { Button } from 'ui';
-
-const Logged = () => {
-  const { onReset } = useAuth();
-  return (
-    <SafeAreaView>
-      <Button onPress={onReset} title="Se déconnecter" />
-    </SafeAreaView>
-  );
-};
 
 const Root = () => {
   const { accessToken } = useAuth();

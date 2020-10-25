@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { H1, Button, theme, Text, Separator, TextLink } from 'ui';
+import { H2, theme, Text, Separator, TextLink } from 'ui';
 import ClubList from 'components/ClubList';
 import ClubListCarousel from 'components/ClubListCarousel';
 import { CLUBS } from 'api/queries';
@@ -85,7 +85,7 @@ const CurrentSessionItem = ({ session }) => {
 };
 const CurrentSessionList = ({ sessions }) => {
   return (
-    <View style={{ width: '100%' }}>
+    <View style={{ width: '100%', paddingTop: theme.spacing() }}>
       {sessions.map((session) => (
         <CurrentSessionItem key={session.id} session={session} />
       ))}
@@ -113,13 +113,14 @@ const ClubHome = ({ navigation }) => {
       >
         {currentSessions.length > 0 && (
           <>
-            <H1>Session{currentSessions.length > 1 && `s`} en cours</H1>
+            <Separator />
+            <H2>Session{currentSessions.length > 1 && `s`} en cours</H2>
             <CurrentSessionList sessions={currentSessions} />
             <Separator />
           </>
         )}
 
-        <H1>Mes clubs</H1>
+        <H2>Mes clubs</H2>
         <ClubListCarousel clubs={clubs} />
         <Separator />
 

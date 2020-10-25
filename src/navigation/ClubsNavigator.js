@@ -7,7 +7,7 @@ import ClubDetails from 'screens/Club/ClubDetails';
 import SessionDetails from 'screens/Club/SessionDetails';
 import CreateSession from 'screens/Club/CreateSession';
 import CreateSubmission from 'screens/Club/CreateSubmission';
-import LogoName from 'components/LogoName';
+import BooklubTitle from 'components/BooklubTitle';
 
 const BooklubStack = createStackNavigator();
 
@@ -21,7 +21,7 @@ const ClubsNavigator = () => {
       <BooklubStack.Screen
         name="ClubHome"
         component={ClubHome}
-        options={{ headerTitle: (props) => <LogoName hideLogo /> }}
+        options={{ headerTitle: (props) => <BooklubTitle /> }}
       />
       <BooklubStack.Screen
         name="CreateClub"

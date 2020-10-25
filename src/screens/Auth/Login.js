@@ -10,13 +10,13 @@ import {
 } from 'react-native';
 import { Formik } from 'formik';
 import { Input, Error } from 'ui/form';
-import { Button, H1 } from 'ui';
+import { H1 } from 'ui';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import book from 'images/book.png';
-import LogoName from 'components/LogoName';
+import BooklubTitle from 'components/BooklubTitle';
 
 const Login = ({ navigation }) => {
   const { onUpdate } = useAuth();
@@ -46,7 +46,7 @@ const Login = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <LogoName />
+            <BooklubTitle />
 
             <Formik
               validationSchema={Yup.object().shape({
@@ -96,14 +96,14 @@ const Login = ({ navigation }) => {
                     error={touched.password && errors.password}
                     onSubmitEditing={() => handleSubmit(values)}
                   />
-                  <TextLink
+                  {/* <TextLink
                     title="Mot de passe oublié ?"
                     onPress={() =>
                       navigation.navigate('ForgotPassword', {
                         email: values.username,
                       })
                     }
-                  />
+                  /> */}
                   <Error>{status}</Error>
                   <View style={{ marginTop: 32, alignItems: 'center' }}>
                     <TextLink
@@ -117,7 +117,7 @@ const Login = ({ navigation }) => {
             </Formik>
             <TextLink
               title="Première connexion ?"
-              onPress={() => navigation.navigate('ProfilePicker')}
+              onPress={() => navigation.navigate('Register')}
             />
           </View>
         </ScrollView>

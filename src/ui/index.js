@@ -2,7 +2,6 @@ import React from 'react';
 import {
   TouchableOpacity,
   Text as RnText,
-  Button as RnButton,
   View,
   Dimensions,
 } from 'react-native';
@@ -44,8 +43,8 @@ const lightTheme = {
   },
   spacing,
   material,
-  screenWidth: Dimensions.get('window').width,
-  screenHeight: Dimensions.get('window').height,
+  screenWidth: Dimensions.get('screen').width,
+  screenHeight: Dimensions.get('screen').height,
 };
 
 const darkTheme = {
@@ -87,6 +86,8 @@ const darkTheme = {
   },
   spacing,
   material,
+  screenWidth: Dimensions.get('screen').width,
+  screenHeight: Dimensions.get('screen').height,
 };
 
 const colorScheme = Appearance.getColorScheme();
@@ -111,35 +112,6 @@ export const TextLink = ({
     <Text style={textStyle}>{title}</Text>
   </TouchableOpacity>
 );
-
-export const Button = ({ title, onPress, dark = false }) => {
-  const colors = {
-    background: dark ? theme.colors.background : theme.colors.text,
-    text: dark ? theme.colors.text : theme.colors.background,
-  };
-
-  return (
-    <TouchableOpacity
-      style={{
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderRadius: 5,
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-        borderColor: theme.colors.text,
-        backgroundColor: colors.background,
-        margin: 3,
-      }}
-      onPress={onPress}
-    >
-      <Text
-        style={{ textAlign: 'center', fontWeight: '500', color: colors.text }}
-      >
-        {title}
-      </Text>
-    </TouchableOpacity>
-  );
-};
 
 export const H1 = styled(RnText)`
   ${({ theme }) => omit(theme.material.display1, ['lineHeight', 'fontWeight'])};

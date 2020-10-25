@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from 'screens/Home';
-import { Button } from 'ui';
 import Login from 'screens/Auth/Login';
 import Register from 'screens/Auth/Register';
 

@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { Button, H1, TextLink, Text } from 'ui';
+import { H1, TextLink, Text } from 'ui';
 import { Input, Error } from 'ui/form';
 import book from 'images/book.png';
 import { ERRORS } from 'utils';
@@ -16,7 +16,7 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
-import LogoName from 'components/LogoName';
+import BooklubTitle from 'components/BooklubTitle';
 
 const REGISTER = gql`
   mutation register($input: RegisterInput!) {
@@ -65,7 +65,7 @@ const Register = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <LogoName hideLogo size={40} flexDirection="row" />
+            <BooklubTitle size={40} />
           </View>
           <Formik
             validationSchema={Yup.object().shape({
@@ -101,7 +101,7 @@ const Register = ({ navigation }) => {
                   error={touched.email && errors.email}
                 />
                 <Input
-                  label="Username"
+                  label="Pseudo"
                   placeholder="Username"
                   value={values.username}
                   onChangeText={handleChange('username')}
@@ -132,6 +132,11 @@ const Register = ({ navigation }) => {
                     title="S'enregister"
                     onPress={() => handleSubmit(values)}
                     isLoading={isSubmitting}
+                  />
+
+                  <TextLink
+                    title="Vous avez déjà un compte ?"
+                    onPress={() => navigation.navigate('Login')}
                   />
                 </View>
               </View>

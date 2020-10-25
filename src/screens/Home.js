@@ -5,15 +5,11 @@ import {
   SafeAreaView,
   ScrollView,
   Platform,
-  Text,
   Dimensions,
 } from 'react-native';
 import book from 'images/book.png';
-import { H1, Button } from 'ui';
-import LogoName from 'components/LogoName';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import { H1, Separator, theme, Text, TextLink } from 'ui';
+import BooklubTitle from 'components/BooklubTitle';
 
 const Home = ({ navigation }) => {
   return (
@@ -22,20 +18,26 @@ const Home = ({ navigation }) => {
         style={{
           alignItems: 'center',
           justifyContent: 'center',
-          height: windowHeight,
+          borderRadius: 15,
+          height: theme.screenHeight,
         }}
       >
-        <LogoName size={windowWidth / 2} />
-
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Button
+        <BooklubTitle size={65} />
+        <View
+          style={{
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            paddingBottom: 150,
+          }}
+        >
+          <TextLink
             title="S'inscrire"
             onPress={() => navigation.navigate('Register')}
           />
-          <Button
+          <TextLink
             title="Se connecter"
             onPress={() => navigation.navigate('Login')}
-            dark
           />
         </View>
       </View>
