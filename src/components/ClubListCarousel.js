@@ -5,9 +5,10 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import { Text, theme, H1, Separator, Card } from 'ui';
+import { Text, theme, H1, H3, Separator, Card } from 'ui';
 import Carousel from 'react-native-snap-carousel';
 import { useNavigation } from '@react-navigation/native';
+import { formatDate } from 'utils';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -24,11 +25,14 @@ const ClubCarouselCard = ({ item }) => {
       }
     >
       <Card>
-        <Text>
-          {item?.name} ({item?.users?.totalCount} membres)
-        </Text>
-        <Text>Dernière session : {item?.sessions?.nodes[0]?.readDueDate}</Text>
-        {Boolean(item?.currentSession?.id) && <Text>SESSION EN COURS</Text>}
+        <H3>{item?.name}</H3>
+        <Text>{item?.users?.totalCount} membres</Text>
+        {item?.sessions?.nodes?.length > 0 && (
+          <Text>
+            Dernière session :{' '}
+            {formatDate(item?.sessions?.nodes[0]?.readDueDate, 'dd/MM/yyyy')}
+          </Text>
+        )}
       </Card>
     </TouchableOpacity>
   );
