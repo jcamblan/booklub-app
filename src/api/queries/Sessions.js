@@ -34,6 +34,7 @@ export const SESSION_FULL_DETAILS = gql`
           id
           title
           author
+          averageNote
         }
         selectedBookSubmitters {
           nodes {
@@ -52,6 +53,13 @@ export const SESSION_FULL_DETAILS = gql`
               }
             }
           }
+        }
+        userNote {
+          id
+          value
+        }
+        canNote {
+          value
         }
       }
     }

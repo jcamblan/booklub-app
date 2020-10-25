@@ -142,7 +142,7 @@ const SessionCard = ({ session, current = false, style }) => {
                 <Text
                   style={{
                     textAlign: 'center',
-                    color: theme.colors.textLight,
+                    color: theme.colors.lightText,
                     fontSize: 20,
                   }}
                 >
@@ -152,7 +152,7 @@ const SessionCard = ({ session, current = false, style }) => {
               <View alignItems="center">
                 <View
                   style={{
-                    borderBottomColor: theme.colors.text,
+                    borderBottomColor: theme.colors.lightText,
                     borderBottomWidth: 1,
                     width: '50%',
                   }}
@@ -162,7 +162,7 @@ const SessionCard = ({ session, current = false, style }) => {
                 <Text
                   style={{
                     textAlign: 'center',
-                    color: theme.colors.text,
+                    color: theme.colors.lightText,
                     fontSize: 20,
                   }}
                 >

@@ -32,7 +32,7 @@ const CurrentSession = ({ session }) => {
           </H2>
           <TextLink
             title={'+ Voir le détail'}
-            textStyle={{ color: 'white', fontWeight: '600' }}
+            textStyle={{ color: theme.colors.lightText, fontWeight: '600' }}
             onPress={() =>
               navigation.navigate('SessionDetails', {
                 sessionId: session.id,

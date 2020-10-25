@@ -1,8 +1,30 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { SESSION_FULL_DETAILS } from 'api/queries';
-import { View, SafeAreaView } from 'react-native';
-import { Text, TextLink, H1, H2, H3, Card, theme } from 'ui';
+import { View, SafeAreaView, ScrollView } from 'react-native';
+import {
+  Text,
+  TextLink,
+  H1,
+  H2,
+  H3,
+  Card,
+  theme,
+  Table,
+  Row,
+  Cell,
+  Separator,
+} from 'ui';
+import { formatDate } from 'utils';
+import SessionNoteForm from 'components/Club/SessionNoteForm';
+
+const states = {
+  submission: 'Inscript.',
+  draw: 'Tirage',
+  reading: 'Lecture',
+  conclusion: 'Vote',
+  archived: 'Archivé',
+};
 
 const SessionDetails = ({ route, navigation }) => {
   const sessionId = route?.params?.sessionId;
@@ -16,10 +38,14 @@ const SessionDetails = ({ route, navigation }) => {
   const notes = (session?.notes?.edges ?? []).map(({ node }) => ({
     ...node,
   }));
+  const averageClubNote =
+    (session?.notes?.edges ?? [])
+      .map(({ node: { value } }) => value)
+      .reduce((sum, note) => sum + note, 0) / session?.notes?.edges?.length;
 
   return (
     <SafeAreaView>
-      <View style={{ padding: 20 }}>
+      <ScrollView style={{ padding: 20 }}>
         {session?.canParticipate?.value && (
           <TextLink
             title="Participer"
@@ -30,13 +56,69 @@ const SessionDetails = ({ route, navigation }) => {
         )}
 
         {Boolean(session?.selectedBook) && (
-          <>
-            <H2>Livre sélectionné :</H2>
-            <Text>
-              {session?.selectedBook?.title}, {session?.selectedBook?.author}
-            </Text>
-          </>
+          <View style={{ paddingHorizontal: -20 }}>
+            <H1 style={{ textAlign: 'center' }}>
+              {session?.selectedBook?.title}
+            </H1>
+            <H2 style={{ textAlign: 'center', fontStyle: 'italic' }}>
+              {session?.selectedBook?.author}
+            </H2>
+
+            <Separator />
+          </View>
         )}
+
+        {session?.canNote?.value && (
+          <SessionNoteForm session={session} userNote={session?.userNote} />
+        )}
+
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
+            <Card>
+              <H3>{session?.submissions?.totalCount}</H3>
+              <Text>Participants</Text>
+            </Card>
+          </View>
+          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
+            <Card>
+              <H3>{states[session?.state]}</H3>
+              <Text>Statut</Text>
+            </Card>
+          </View>
+          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
+            <Card>
+              <H3>{formatDate(session?.submissionDueDate, 'dd/MM/yy')}</H3>
+              <Text>Fin des inscriptions</Text>
+            </Card>
+          </View>
+          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
+            <Card>
+              <H3>{formatDate(session?.readDueDate, 'dd/MM/yy')}</H3>
+              <Text>Date limite de lecture</Text>
+            </Card>
+          </View>
+          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
+            <Card
+              style={{
+                backgroundColor: theme.colors.ternary,
+              }}
+            >
+              <H3 style={{ color: theme.colors.lightText }}>
+                {averageClubNote}
+              </H3>
+              <Text style={{ color: theme.colors.lightText }}>
+                Note moy. (club)
+              </Text>
+            </Card>
+          </View>
+          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
+            <Card>
+              <H3>{session?.selectedBook?.averageNote}</H3>
+              <Text>Note moy. (global)</Text>
+            </Card>
+          </View>
+        </View>
+        <Separator />
 
         {notes.length > 0 && (
           <>
@@ -54,24 +136,27 @@ const SessionDetails = ({ route, navigation }) => {
                 </View>
               ))}
             </View>
+            <Separator />
           </>
         )}
 
         <H2>Propositions :</H2>
         {submissions.length > 0 ? (
-          <>
+          <Table>
             {submissions.map(({ id, book, user }) => (
-              <View key={id}>
-                <Text>
-                  {book.title}, {book.author} - {user.username}
-                </Text>
-              </View>
+              <Row key={id}>
+                <Cell justifyContent="flex-start" flexGrow={3}>
+                  {book.title}, {book.author}
+                </Cell>
+                <Cell variant="primary">{user.username}</Cell>
+              </Row>
             ))}
-          </>
+          </Table>
         ) : (
           <Text>Aucun-e inscrit-e pour le moment.</Text>
         )}
-      </View>
+        <Separator />
+      </ScrollView>
     </SafeAreaView>
   );
 };

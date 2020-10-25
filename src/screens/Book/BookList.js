@@ -76,7 +76,7 @@ const ListItem = ({
       <Text
         style={{
           textAlign: 'center',
-          color: 'white',
+          color: theme.colors.lightText,
           color: findNoteColor(averageNote),
         }}
       >
@@ -95,7 +95,7 @@ const ListItem = ({
       <Text
         style={{
           textAlign: 'center',
-          color: 'white',
+          color: theme.colors.lightText,
           color: findNoteColor(averageNote),
         }}
       >

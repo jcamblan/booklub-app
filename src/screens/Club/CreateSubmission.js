@@ -52,7 +52,7 @@ const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
         const result = (
           <Text
             style={{
-              color: 'white',
+              color: theme.colors.lightText,
             }}
           >
             {item?.title},{' '}

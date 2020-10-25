@@ -17,7 +17,7 @@ const CurrentSessionItem = ({ session }) => {
   const navigation = useNavigation();
 
   const states = {
-    submission: 'Inscript.',
+    submission: 'Inscription',
     draw: 'Tirage',
     reading: 'Lecture',
     conclusion: 'Vote',
@@ -73,7 +73,7 @@ const CurrentSessionItem = ({ session }) => {
           <Text
             style={{
               textAlign: 'center',
-              color: 'white',
+              color: theme.colors.lightText,
             }}
           >
             {states[session.state]}

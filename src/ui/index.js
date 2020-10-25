@@ -10,6 +10,7 @@ import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
 import { DefaultTheme, DarkTheme } from 'react-native-paper';
 import { Appearance } from 'react-native';
+import { omit } from 'lodash';
 
 export const base = 16;
 export const spacing = (input = 1) => input * base;
@@ -19,6 +20,7 @@ const lightTheme = {
   colors: {
     ...DefaultTheme.colors,
     text: '#343434',
+    lightText: 'white',
     title: 'black',
     primary: '#D23669',
     secondary: '#F0F0F0',
@@ -61,6 +63,7 @@ const darkTheme = {
       textLink: 'green',
     },
     text: '#F0F0F0',
+    lightText: 'white',
     title: 'white',
     primary: '#D23669',
     secondary: '#222222',
@@ -138,48 +141,104 @@ export const Button = ({ title, onPress, dark = false }) => {
   );
 };
 
-export const H1 = ({ children, ...props }) => (
-  <RnText
-    style={{
-      ...theme.material.display1,
-      fontWeight: 'bold',
-      color: theme.colors.title,
-      ...props.style,
-      paddingVertical: 3,
-    }}
-  >
-    {children}
-  </RnText>
-);
+export const H1 = styled(RnText)`
+  ${({ theme }) => omit(theme.material.display1, ['lineHeight', 'fontWeight'])};
+  line-height: ${({ theme }) => `${theme.material.display1.lineHeight}px`};
+  font-weight: bold;
+  padding-vertical: 3px;
+  color: ${({ theme }) => theme.colors.title};
+`;
 
-export const H2 = ({ children, ...props }) => (
-  <H1
-    style={{
-      ...theme.material.headline,
-      ...props.style,
-      fontWeight: 'bold',
-    }}
-  >
-    {children}
-  </H1>
-);
+export const H2 = styled(RnText)`
+  ${({ theme }) => omit(theme.material.headline, ['lineHeight', 'fontWeight'])};
+  line-height: ${({ theme }) => `${theme.material.headline.lineHeight}px`};
+  font-weight: bold;
+  padding-vertical: 3px;
+  color: ${({ theme }) => theme.colors.title};
+`;
 
-export const H3 = ({ children, ...props }) => (
-  <H1
-    style={{
-      ...theme.material.title,
-      ...props.style,
-      fontWeight: 'bold',
-    }}
-  >
-    {children}
-  </H1>
-);
+export const H3 = styled(RnText)`
+  ${({ theme }) => omit(theme.material.title, ['lineHeight', 'fontWeight'])};
+  line-height: ${({ theme }) => `${theme.material.title.lineHeight}px`};
+  font-weight: bold;
+  padding-vertical: 3px;
+  color: ${({ theme }) => theme.colors.title};
+`;
 
-export const Card = ({ children }) => (
-  <View style={{ ...theme.card, backgroundColor: theme.colors.secondary }}>
-    {children}
-  </View>
-);
+export const Card = styled(View)`
+  elevation: 19;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: ${({ theme }) => theme.colors.secondary};
+`;
 
 export const Separator = () => <View style={{ marginVertical: 20 }} />;
+
+export const Table = styled(View)`
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+`;
+
+export const Row = styled(View)`
+  width: 100%;
+  flex-flow: row nowrap;
+  margin-bottom: 4px;
+`;
+
+const StyledCell = styled(View)`
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 10px;
+  overflow: hidden;
+  min-width: 0px;
+  border-radius: 5px;
+  margin-horizontal: 1px;
+  align-items: center;
+`;
+
+export const Cell = ({ children, variant, flexGrow, justifyContent }) => {
+  const color = () => {
+    switch (variant) {
+      case 'primary':
+        return 'white';
+      case 'success':
+        return 'white';
+      case 'warning':
+        return 'white';
+      default:
+        return theme.colors.text;
+    }
+  };
+
+  const backgroundColor = () => {
+    switch (variant) {
+      case 'primary':
+        return theme.colors.primary;
+      case 'success':
+        return theme.colors.success;
+      case 'warning':
+        return theme.colors.warning;
+      default:
+        return theme.colors.secondary;
+    }
+  };
+
+  return (
+    <StyledCell
+      style={{
+        backgroundColor: backgroundColor(),
+        flexGrow: flexGrow || 1,
+        justifyContent: justifyContent || 'center',
+      }}
+    >
+      <Text
+        style={{
+          color: color(),
+        }}
+      >
+        {children}
+      </Text>
+    </StyledCell>
+  );
+};

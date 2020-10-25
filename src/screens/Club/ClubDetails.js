@@ -45,7 +45,7 @@ const ClubDetails = ({ route, navigation }) => {
 
         {Boolean(node?.users?.edges) && (
           <>
-            <H2 style={{ marginBottom: 10 }}>Membres</H2>
+            <H2>Membres</H2>
             <MemberList userEdges={node?.users?.edges} />
             <Separator />
           </>

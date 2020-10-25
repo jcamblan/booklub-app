@@ -91,7 +91,9 @@ const MemberList = ({ userEdges }) => {
               padding: 10,
             }}
           >
-            <Text style={{ textAlign: 'center', color: 'white' }}>
+            <Text
+              style={{ textAlign: 'center', color: theme.colors.lightText }}
+            >
               {sessionCount}
             </Text>
           </View>
@@ -104,7 +106,9 @@ const MemberList = ({ userEdges }) => {
               padding: 10,
             }}
           >
-            <Text style={{ textAlign: 'center', color: 'white' }}>
+            <Text
+              style={{ textAlign: 'center', color: theme.colors.lightText }}
+            >
               {selectionCount}
             </Text>
           </View>
@@ -116,7 +120,9 @@ const MemberList = ({ userEdges }) => {
               padding: 10,
             }}
           >
-            <Text style={{ textAlign: 'center', color: 'white' }}>
+            <Text
+              style={{ textAlign: 'center', color: theme.colors.lightText }}
+            >
               {bonusScore}
             </Text>
           </View>

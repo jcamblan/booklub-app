@@ -19,3 +19,20 @@ export const CREATE_SESSION = gql`
     }
   }
 `;
+
+export const NOTE_SESSION = gql`
+  mutation noteSession($input: NoteSessionInput!) {
+    noteSession(input: $input) {
+      note {
+        id
+        value
+      }
+      errors {
+        attribute
+        error
+        message
+        path
+      }
+    }
+  }
+`;
