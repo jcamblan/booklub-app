@@ -17,7 +17,7 @@ const CurrentSessionItem = ({ session }) => {
   const navigation = useNavigation();
 
   const states = {
-    submission: 'Inscription',
+    submission: 'Inscript.',
     draw: 'Tirage',
     reading: 'Lecture',
     conclusion: 'Vote',

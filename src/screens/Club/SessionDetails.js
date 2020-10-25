@@ -19,7 +19,7 @@ import { formatDate } from 'utils';
 import SessionNoteForm from 'components/Club/SessionNoteForm';
 
 const states = {
-  submission: 'Inscript.',
+  submission: 'Inscription',
   draw: 'Tirage',
   reading: 'Lecture',
   conclusion: 'Vote',
