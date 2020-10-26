@@ -2,9 +2,15 @@
   "expo": {
     "name": "BOOKLÜB",
     "slug": "booklub",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "orientation": "portrait",
+    "platforms": ["android", "ios"],
     "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -12,7 +18,7 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "0.1.1",
+      "buildNumber": "0.1.2",
       "bundleIdentifier": "app.booklub.ios"
     },
     "web": {
