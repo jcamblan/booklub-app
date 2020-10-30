@@ -12,12 +12,13 @@ import { useAuth, useApp } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
 import BottomTabNavigator from 'navigation/BottomTabNavigator';
 
-import * as Sentry from '@sentry/react-native';
+import * as Sentry from 'sentry-expo';
 
 Sentry.init({
   dsn:
     'https://104457c6a0324ca98ffeb1781f267865@o466908.ingest.sentry.io/5481638',
-  enableNative: false,
+  enableInExpoDevelopment: true,
+  debug: true, // Sentry will try to print out useful debugging information if something goes wrong with sending an event. Set this to `false` in production.
 });
 
 const Root = () => {

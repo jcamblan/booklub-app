@@ -21,7 +21,7 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "4",
+      "buildNumber": "7",
       "bundleIdentifier": "app.booklub.ios"
     },
     "web": {
@@ -30,6 +30,18 @@
     "userInterfaceStyle": "automatic",
     "android": {
       "package": "app.booklub.ios"
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "julien-camblan",
+            "project": "julien-camblan",
+            "authToken": "7c9d010b9c1248bcb94308edb2e9be0a49bbe80122ae4c2fadf350f6a8c9ce30"
+          }
+        }
+      ]
     }
   }
 }
