@@ -17,6 +17,7 @@ import * as Sentry from '@sentry/react-native';
 Sentry.init({
   dsn:
     'https://104457c6a0324ca98ffeb1781f267865@o466908.ingest.sentry.io/5481638',
+  enableNative: false,
 });
 
 const Root = () => {
