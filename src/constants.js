@@ -5,6 +5,14 @@ const ENV = {
     API_BASE: 'https://booklub-api.herokuapp.com',
     CLIENT_ID: '8sluZTyLSdqtikAdBykm5mzTKe82PZ2kARYsVdxQxck',
   },
+  staging: {
+    API_BASE: 'https://booklub-api.herokuapp.com',
+    CLIENT_ID: '8sluZTyLSdqtikAdBykm5mzTKe82PZ2kARYsVdxQxck',
+  },
+  prod: {
+    API_BASE: 'https://booklub-api.herokuapp.com',
+    CLIENT_ID: '8sluZTyLSdqtikAdBykm5mzTKe82PZ2kARYsVdxQxck',
+  },
 };
 
 const getEnvVars = (env = Constants.manifest.releaseChannel) => {
