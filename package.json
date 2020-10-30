@@ -11,8 +11,8 @@
     "@apollo/client": "^3.2.1",
     "@react-native-community/async-storage": "~1.12.0",
     "@react-native-community/datetimepicker": "3.0.0",
-    "@react-native-community/masked-view": "^0.1.10",
-    "@react-native-community/slider": "^3.0.3",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-native-community/slider": "3.0.3",
     "@react-navigation/bottom-tabs": "^5.9.2",
     "@react-navigation/material-bottom-tabs": "^5.2.19",
     "@react-navigation/native": "^5.7.1",
@@ -34,7 +34,7 @@
     "native-base": "2.13.12",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
     "react-native-appearance": "~0.3.3",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-paper": "^4.2.0",
@@ -44,7 +44,7 @@
     "react-native-scrollable-navigation-bar": "^2.0.3",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-typography": "^1.4.1",
-    "react-native-web": "~0.11.7",
+    "react-native-web": "~0.13.7",
     "react-navigation-material-bottom-tabs": "^2.3.2",
     "styled-components": "^5.1.1",
     "use-deep-compare-effect": "^1.4.0",
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
-    "babel-preset-expo": "~8.1.0"
+    "babel-preset-expo": "^8.3.0"
   },
   "private": true
 }
