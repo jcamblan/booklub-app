@@ -8,7 +8,7 @@ import {
 import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
 import { DefaultTheme, DarkTheme } from 'react-native-paper';
-import { Appearance } from 'react-native';
+// import { Appearance } from 'react-native';
 import { omit } from 'lodash';
 
 export const base = 16;
@@ -90,9 +90,10 @@ const darkTheme = {
   screenHeight: Dimensions.get('screen').height,
 };
 
-const colorScheme = Appearance.getColorScheme();
+// const colorScheme = Appearance.getColorScheme();
 
-export const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
+// export const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
+export const theme = darkTheme;
 
 export const Text = styled(RnText)`
   line-height: 20px;
