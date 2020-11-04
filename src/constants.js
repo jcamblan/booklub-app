@@ -16,15 +16,15 @@ const ENV = {
 };
 
 const getEnvVars = (env = Constants.manifest.releaseChannel) => {
-  if (
-    env === null ||
-    env === undefined ||
-    env === '' ||
-    env.indexOf('dev') !== -1
-  )
-    return ENV.dev;
-  if (env.indexOf('staging') !== -1) return ENV.staging;
-  if (env.indexOf('prod') !== -1) return ENV.prod;
+  if (env?.indexOf('staging') !== -1) {
+    return ENV.staging;
+  }
+
+  if (env?.indexOf('prod') !== -1) {
+    return ENV.prod;
+  }
+
+  return ENV.dev;
 };
 
 const selectedENV = getEnvVars();

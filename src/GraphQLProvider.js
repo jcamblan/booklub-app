@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import env from 'constants';
+import env from './constants';
 import { useAuth } from 'hooks';
 import { ApolloLink, Observable, fromPromise } from 'apollo-link';
 import { onError } from 'apollo-link-error';
