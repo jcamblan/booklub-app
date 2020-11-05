@@ -1,6 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
-import { formatDistanceDate, formatDate, findNoteColor } from 'utils';
+import {
+  formatDistanceDate,
+  formatDate,
+  findNoteColor,
+  pluralize,
+} from 'utils';
 import { H1, theme, Card, Text } from 'ui';
 
 const StatePill = ({ pillState, sessionState }) => {
@@ -98,19 +103,21 @@ const SessionCard = ({ session, current = false, style }) => {
 
               <Text style={{ color: textColor }}>
                 Proposé par :{' '}
-                {submitters?.map((user) => user.username).join(', ')}
+                {submitters?.map(user => user.username).join(', ')}
               </Text>
             </>
           )}
 
           {(session?.state === 'submission' || session?.state === 'draw') && (
             <Text style={{ color: textColor }}>
-              {session?.submissions?.totalCount} livres proposés
+              {session?.submissions?.totalCount}{' '}
+              {pluralize('livre proposé', session?.submissions?.totalCount)}
             </Text>
           )}
 
           <Text style={{ color: textColor }}>
-            {session?.submissions?.totalCount} inscrits
+            {session?.submissions?.totalCount}{' '}
+            {pluralize('inscrit', session?.submissions?.totalCount)}
           </Text>
 
           {session?.state === 'submission' && (

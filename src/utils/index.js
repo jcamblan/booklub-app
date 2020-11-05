@@ -1,4 +1,4 @@
-import { format, formatDistance, formatRelative, subDays } from 'date-fns';
+import { format, formatDistance } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { theme } from 'ui';
 
@@ -16,6 +16,12 @@ export const ERRORS = {
   CURRENT_PASSWORD_INVALID: 'Votre mot de passe actuel est erroné',
 };
 
+export const pluralize = (input, count) =>
+  input
+    .split(' ')
+    .map(i => `${i}${count > 1 ? 's' : ''}`)
+    .join(' ');
+
 export const formatDate = (date, frmt) => {
   try {
     return format(new Date(date), frmt, { locale: fr });
@@ -30,7 +36,7 @@ export const formatDate = (date, frmt) => {
   }
 };
 
-export const formatDistanceDate = (date) => {
+export const formatDistanceDate = date => {
   try {
     return formatDistance(new Date(date), new Date(), {
       addSuffix: true,
@@ -50,7 +56,7 @@ export const formatDistanceDate = (date) => {
   }
 };
 
-export const findNoteColor = (note) => {
+export const findNoteColor = note => {
   if (!Boolean(note)) {
     return theme.colors.ternary;
   }
