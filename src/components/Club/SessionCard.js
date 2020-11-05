@@ -7,6 +7,7 @@ import {
   pluralize,
 } from 'utils';
 import { theme, Text } from 'ui';
+import { round } from 'lodash';
 
 const StatePill = ({ pillState, sessionState }) => {
   const states = {
@@ -65,10 +66,12 @@ const SessionCard = ({ session, current = false, style }) => {
   const submitters = session?.selectedBookSubmitters?.nodes;
   const readDueDate = formatDate(session?.readDueDate, 'dd/MM/yyyy');
   const submissionDueDate = formatDistanceDate(session?.submissionDueDate);
-  const note =
+  const note = round(
     (session?.notes?.edges ?? [])
       .map(({ node: { value } }) => value)
-      .reduce((sum, note) => sum + note, 0) / session?.notes?.edges?.length;
+      .reduce((sum, note) => sum + note, 0) / session?.notes?.edges?.length,
+    1,
+  );
 
   const textColor = current ? theme.colors.highlight.text : theme.colors.text;
 

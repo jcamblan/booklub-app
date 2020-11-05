@@ -11,6 +11,7 @@ import { useQuery } from '@apollo/client';
 import { findNoteColor } from 'utils';
 import { Input } from 'ui/form';
 import { BOOKS } from 'api/queries';
+import { round } from 'lodash';
 
 const SearchBook = ({ onSearch }) => {
   return (
@@ -98,7 +99,7 @@ const ListItem = ({
           color: findNoteColor(averageNote),
         }}
       >
-        {averageNote}
+        {round(averageNote, 1)}
       </Text>
     </View>
   </View>
