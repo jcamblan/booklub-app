@@ -97,26 +97,30 @@ const SessionDetails = ({ route, navigation }) => {
               <Text>Date limite de lecture</Text>
             </Card>
           </View>
-          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
-            <Card
-              style={{
-                backgroundColor: theme.colors.ternary,
-              }}
-            >
-              <H3 style={{ color: theme.colors.lightText }}>
-                {averageClubNote}
-              </H3>
-              <Text style={{ color: theme.colors.lightText }}>
-                Note moy. (club)
-              </Text>
-            </Card>
-          </View>
-          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
-            <Card>
-              <H3>{session?.selectedBook?.averageNote}</H3>
-              <Text>Note moy. (global)</Text>
-            </Card>
-          </View>
+          {Boolean(averageClubNote) && (
+            <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
+              <Card
+                style={{
+                  backgroundColor: theme.colors.ternary,
+                }}
+              >
+                <H3 style={{ color: theme.colors.lightText }}>
+                  {averageClubNote}
+                </H3>
+                <Text style={{ color: theme.colors.lightText }}>
+                  Note moy. (club)
+                </Text>
+              </Card>
+            </View>
+          )}
+          {Boolean(session?.selectedBook?.averageNote) && (
+            <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
+              <Card>
+                <H3>{session?.selectedBook?.averageNote}</H3>
+                <Text>Note moy. (global)</Text>
+              </Card>
+            </View>
+          )}
         </View>
         <Separator />
 
