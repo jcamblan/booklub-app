@@ -12,7 +12,7 @@ const LastSessions = ({ sessions }) => {
   return (
     <View style={{ marginLeft: -20, width: screenWidth }}>
       <Carousel
-        keyExtractor={(item) => item?.id}
+        keyExtractor={item => item?.id}
         data={sessions}
         renderItem={({ item, index, separators }) => (
           <Card>

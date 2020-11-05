@@ -3,19 +3,16 @@ import { TextLink } from 'ui/index';
 import {
   KeyboardAvoidingView,
   View,
-  Image,
   SafeAreaView,
   ScrollView,
   Platform,
 } from 'react-native';
 import { Formik } from 'formik';
 import { Input, Error } from 'ui/form';
-import { H1 } from 'ui';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
-import book from 'images/book.png';
 import BooklubTitle from 'components/BooklubTitle';
 
 const Login = ({ navigation }) => {

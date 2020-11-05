@@ -1,6 +1,8 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "prettier": "prettier --write 'src/**/*.js'",
+    "prettier:check": "prettier -l 'src/**/*.js'",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -50,7 +52,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
-    "babel-preset-expo": "~8.1.0"
+    "babel-preset-expo": "~8.1.0",
+    "prettier": "^2.1.2"
   },
   "private": true
 }

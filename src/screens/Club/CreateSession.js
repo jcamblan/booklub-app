@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, SafeAreaView } from 'react-native';
-import { Text, H2, TextLink } from 'ui';
+import { H2, TextLink } from 'ui';
 import DateTimePicker from 'components/DateTimePicker';
 import { Input } from 'ui/form';
 import { useMutation } from '@apollo/client';
@@ -39,7 +39,7 @@ const CreateSession = ({ navigation, route }) => {
       <View style={{ padding: 20 }}>
         <Input
           label="Nom de session (optionel)"
-          onChangeText={(value) => setName(value)}
+          onChangeText={value => setName(value)}
           textContentType="emailAddress"
           style={{ marginBottom: 16 }}
         />

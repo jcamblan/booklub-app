@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View } from 'react-native';
-import { H1, TextLink } from 'ui';
+import { TextLink } from 'ui';
 import { useAuth } from 'hooks';
 
 const Settings = () => {

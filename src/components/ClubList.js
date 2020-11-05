@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import { Divider } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { theme, Text } from 'ui';
 
@@ -42,7 +41,7 @@ const ClubList = ({ clubs }) => {
         <FlatList
           data={clubs}
           renderItem={({ item }) => <ClubCard club={item} />}
-          keyExtractor={(club) => club.id}
+          keyExtractor={club => club.id}
         />
       )}
     </View>

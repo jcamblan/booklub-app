@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Image,
-  SafeAreaView,
-  ScrollView,
-  Platform,
-  Dimensions,
-} from 'react-native';
-import book from 'images/book.png';
-import { H1, Separator, theme, Text, TextLink } from 'ui';
+import { View, SafeAreaView } from 'react-native';
+import { theme, TextLink } from 'ui';
 import BooklubTitle from 'components/BooklubTitle';
 
 const Home = ({ navigation }) => {

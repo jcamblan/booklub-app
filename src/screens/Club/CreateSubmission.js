@@ -3,11 +3,10 @@ import {
   View,
   ScrollView,
   SafeAreaView,
-  TextInput,
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import { H1, H2, H3, Text, theme, TextLink, Separator, Card } from 'ui';
+import { H2, H3, Text, theme, TextLink, Separator, Card } from 'ui';
 import { Input } from 'ui/form';
 import { useQuery, useMutation } from '@apollo/client';
 import { BOOKS } from 'api/queries';
@@ -105,7 +104,7 @@ const BookSelection = ({ onSetBook, onSwitchForm }) => {
       <Input
         label={'Titre, auteur...'}
         value={inputValue}
-        onChangeText={(value) => {
+        onChangeText={value => {
           setInputValue(value);
         }}
         onEndEditing={() => {
@@ -122,7 +121,7 @@ const BookSelection = ({ onSetBook, onSwitchForm }) => {
           <SearchResults
             search={search}
             onSwitchForm={() => onSwitchForm()}
-            onSetBook={(value) => onSetBook(value)}
+            onSetBook={value => onSetBook(value)}
             onHideResults={() => setResultsDisplay(false)}
           />
           <Separator />
@@ -141,10 +140,10 @@ const NewBookForm = ({ onSwitchForm, onSubmit }) => {
       <H3>Ajouter un nouveau livre :</H3>
       <Input
         label="Titre"
-        onChangeText={(value) => setTitle(value)}
+        onChangeText={value => setTitle(value)}
         style={{ marginBottom: 10 }}
       />
-      <Input label="Auteur" onChangeText={(value) => setAuthor(value)} />
+      <Input label="Auteur" onChangeText={value => setAuthor(value)} />
       <Separator />
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
         <TextLink
@@ -195,14 +194,14 @@ const CreateSubmission = ({ route }) => {
       <ScrollView style={{ padding: 20 }}>
         {!Boolean(submittedBook) && form === 'search' && (
           <BookSelection
-            onSetBook={(value) => setBook(value)}
+            onSetBook={value => setBook(value)}
             onSwitchForm={() => setForm('new')}
           />
         )}
         {!Boolean(submittedBook) && form === 'new' && (
           <NewBookForm
             onSwitchForm={() => setForm('search')}
-            onSubmit={(value) => setNewBook(value)}
+            onSubmit={value => setNewBook(value)}
           />
         )}
         {Boolean(submittedBook) && (

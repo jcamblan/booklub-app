@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
-import {
-  View,
-  ActivityIndicator,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
-import { Text, theme, H1, H3, Separator, Card } from 'ui';
+import React from 'react';
+import { View, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, H3, Card } from 'ui';
 import Carousel from 'react-native-snap-carousel';
 import { useNavigation } from '@react-navigation/native';
 import { formatDate } from 'utils';
@@ -42,7 +37,7 @@ const ClubListCarousel = ({ clubs }) => {
   return (
     <View style={{ marginLeft: -20, width: screenWidth }}>
       <Carousel
-        keyExtractor={(item) => item?.id}
+        keyExtractor={item => item?.id}
         data={clubs}
         renderItem={({ item }) => <ClubCarouselCard item={item} />}
         sliderWidth={screenWidth}

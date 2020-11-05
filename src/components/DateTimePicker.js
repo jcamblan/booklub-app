@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { default as RNDateTimePicker } from '@react-native-community/datetimepicker';
 import { theme } from 'ui';
 

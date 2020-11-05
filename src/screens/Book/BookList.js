@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-  FlatList,
   ActivityIndicator,
 } from 'react-native';
 import { Text, theme, H1, Separator } from 'ui';
@@ -17,7 +16,7 @@ const SearchBook = ({ onSearch }) => {
   return (
     <Input
       label="Titre, auteur..."
-      onChangeText={(value) => onSearch(value)}
+      onChangeText={value => onSearch(value)}
       textContentType="emailAddress"
       style={{ marginBottom: 16 }}
     />
@@ -155,7 +154,7 @@ const List = ({ books, onReorder }) => {
           </Text>
         </TouchableOpacity>
       </View>
-      {books.map((book) => (
+      {books.map(book => (
         <ListItem key={book.id} book={book} />
       ))}
     </View>
@@ -189,7 +188,7 @@ const BookList = () => {
     ...node,
   }));
 
-  const handleReorder = (value) => {
+  const handleReorder = value => {
     if (lastReorder === value) {
       setDirection(direction === 'desc' ? 'asc' : 'desc');
     } else {
@@ -198,7 +197,7 @@ const BookList = () => {
     }
   };
 
-  const handleSearch = (value) => {
+  const handleSearch = value => {
     setSearch(value);
   };
 
