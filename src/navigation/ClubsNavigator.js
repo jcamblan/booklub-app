@@ -21,7 +21,7 @@ const ClubsNavigator = () => {
       <BooklubStack.Screen
         name="ClubHome"
         component={ClubHome}
-        options={{ headerTitle: (props) => <BooklubTitle /> }}
+        options={{ headerTitle: props => <BooklubTitle /> }}
       />
       <BooklubStack.Screen
         name="CreateClub"

@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Image,
   KeyboardAvoidingView,
   SafeAreaView,
   ScrollView,
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { H1, TextLink, Text } from 'ui';
+import { TextLink, Text } from 'ui';
 import { Input, Error } from 'ui/form';
-import book from 'images/book.png';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import gql from 'graphql-tag';

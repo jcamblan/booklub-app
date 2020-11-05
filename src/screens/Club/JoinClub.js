@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Image,
   KeyboardAvoidingView,
   SafeAreaView,
-  Text,
   ScrollView,
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { TextLink, H1 } from 'ui';
+import { TextLink } from 'ui';
 import { Input, Error } from 'ui/form';
-import book from 'images/book.png';
-import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { JOIN_CLUB } from 'api/mutations';
@@ -30,7 +26,7 @@ const JoinClub = ({ navigation }) => {
       const errors = data?.joinClub?.errors;
 
       if (Boolean(errors)) {
-        const status = errors.map((error) => error.message).join(', ');
+        const status = errors.map(error => error.message).join(', ');
         setStatus(status);
       } else {
         navigation.navigate('ClubHome');

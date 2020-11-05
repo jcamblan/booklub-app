@@ -1,14 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
-import { SafeAreaView } from 'react-native';
 import GraphQLProvider from 'GraphQLProvider';
 import { theme } from 'ui';
 import { Provider as PaperProvider } from 'react-native-paper';
 import AuthProvider from 'AuthProvider';
-import Home from 'screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
-import { useAuth, useApp } from 'hooks';
+import { useAuth } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
 import BottomTabNavigator from 'navigation/BottomTabNavigator';
 

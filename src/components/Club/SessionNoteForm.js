@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, SafeAreaView, ScrollView } from 'react-native';
-import { Text, theme, Separator, H3, TextLink } from 'ui';
+import { View } from 'react-native';
+import { Text, theme, Separator, H3 } from 'ui';
 import Slider from '@react-native-community/slider';
 import { useMutation } from '@apollo/client';
 import { NOTE_SESSION } from 'api/mutations';
@@ -38,7 +38,7 @@ export const SessionNoteForm = ({ session, userNote }) => {
         value={note}
         minimumTrackTintColor={theme.colors.primary}
         maximumTrackTintColor={theme.colors.secondary}
-        onValueChange={(value) => setNote(value)}
+        onValueChange={value => setNote(value)}
         onSlidingComplete={() => handleSlidingComplete()}
       />
       {/* <TextLink title="Valider mon vote" /> */}

@@ -6,7 +6,7 @@ import {
   findNoteColor,
   pluralize,
 } from 'utils';
-import { H1, theme, Card, Text } from 'ui';
+import { theme, Text } from 'ui';
 
 const StatePill = ({ pillState, sessionState }) => {
   const states = {

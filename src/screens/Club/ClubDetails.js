@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, View, ScrollView } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { H1, H2, theme, Text, Separator, TextLink } from 'ui';
+import { H2, theme, Text, Separator, TextLink } from 'ui';
 import LastSessions from 'components/Club/LastSessions';
 import MemberList from 'components/Club/MemberList';
 import InvitationCodeChunk from 'components/Club/InvitationCodeChunk';

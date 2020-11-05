@@ -1,9 +1,6 @@
 import React from 'react';
-import { View, Image, Platform, Dimensions } from 'react-native';
-import book from 'images/book.png';
-import styled from 'styled-components/native';
-import { material } from 'react-native-typography';
-import { theme, Text, H1, H2 } from 'ui';
+import { View } from 'react-native';
+import { theme, H1 } from 'ui';
 
 const BooklubTitle = ({ size = 40 }) => {
   return (

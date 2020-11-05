@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Image,
   KeyboardAvoidingView,
   SafeAreaView,
   ScrollView,
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { TextLink, H1, Text } from 'ui';
+import { TextLink } from 'ui';
 import { Input, Error } from 'ui/form';
-import book from 'images/book.png';
-import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { CREATE_CLUB } from 'api/mutations';
@@ -20,7 +17,7 @@ const CreateClub = ({ navigation }) => {
     refetchQueries: ['myClubs'],
   });
 
-  const handleCreateClub = async (values) => {
+  const handleCreateClub = async values => {
     try {
       await createClub({
         variables: {

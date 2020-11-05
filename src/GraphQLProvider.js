@@ -10,7 +10,7 @@ import { refreshToken } from 'api/auth';
 const GraphQLProvider = ({ children }) => {
   const { accessToken, onUpdate, onReset } = useAuth();
 
-  const request = (operation) => {
+  const request = operation => {
     operation.setContext({
       headers: {
         authorization: `Bearer ${accessToken}`,
@@ -20,10 +20,10 @@ const GraphQLProvider = ({ children }) => {
 
   const requestLink = new ApolloLink(
     (operation, forward) =>
-      new Observable((observer) => {
+      new Observable(observer => {
         let handle;
         Promise.resolve(operation)
-          .then((oper) => request(oper))
+          .then(oper => request(oper))
           .then(() => {
             handle = forward(operation).subscribe({
               next: observer.next.bind(observer),
@@ -38,7 +38,7 @@ const GraphQLProvider = ({ children }) => {
             handle.unsubscribe();
           }
         };
-      })
+      }),
   );
 
   const client = new ApolloClient({
@@ -52,13 +52,13 @@ const GraphQLProvider = ({ children }) => {
       onError(({ graphQLErrors, networkError, operation, forward }) => {
         if (
           (graphQLErrors || []).filter(
-            ({ extensions }) => extensions?.code === 'Unauthorized'
+            ({ extensions }) => extensions?.code === 'Unauthorized',
           ).length > 0
         ) {
           return fromPromise(
-            refreshToken().catch((error) => {
+            refreshToken().catch(error => {
               onReset();
-            })
+            }),
           ).flatMap(({ data: { accessToken, refreshToken } }) => {
             onUpdate({ accessToken, refreshToken });
             operation.setContext({
@@ -75,9 +75,9 @@ const GraphQLProvider = ({ children }) => {
           graphQLErrors.forEach(({ message, locations, path }) =>
             console.log(
               `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
-                locations
-              )}, Path: ${path}`
-            )
+                locations,
+              )}, Path: ${path}`,
+            ),
           );
 
         if (Boolean(networkError)) {

@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  View,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { H2, theme, Text, Separator, TextLink } from 'ui';
-import ClubList from 'components/ClubList';
 import ClubListCarousel from 'components/ClubListCarousel';
 import { CLUBS } from 'api/queries';
 import { useNavigation } from '@react-navigation/native';
@@ -86,7 +79,7 @@ const CurrentSessionItem = ({ session }) => {
 const CurrentSessionList = ({ sessions }) => {
   return (
     <View style={{ width: '100%', paddingTop: theme.spacing() }}>
-      {sessions.map((session) => (
+      {sessions.map(session => (
         <CurrentSessionItem key={session.id} session={session} />
       ))}
     </View>

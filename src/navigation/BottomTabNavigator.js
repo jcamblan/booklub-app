@@ -1,6 +1,5 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import Settings from 'screens/Setting/Settings';
 import ClubsNavigator from 'navigation/ClubsNavigator';
 import BooksNavigator from 'navigation/BooksNavigator';
 import SettingsNavigator from 'navigation/SettingsNavigator';
