@@ -21,7 +21,7 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "10",
+      "buildNumber": "11",
       "bundleIdentifier": "app.booklub.ios"
     },
     "web": {
