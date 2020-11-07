@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext, AppContext } from 'contexts';
 
 export const useAuth = () => {
@@ -19,4 +19,13 @@ export const useApp = () => {
   }
 
   return context;
+};
+
+export const useDebounce = (value, timeout) => {
+  const [state, setState] = useState(value);
+  useEffect(() => {
+    const handler = setTimeout(() => setState(value), timeout);
+    return () => clearTimeout(handler);
+  }, [value, timeout]);
+  return state;
 };

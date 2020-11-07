@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   ScrollView,
@@ -12,6 +12,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { BOOKS } from 'api/queries';
 import { CREATE_SUBMISSION } from 'api/mutations';
 import { useNavigation } from '@react-navigation/native';
+import { useDebounce } from 'hooks';
 
 const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
   const { data, loading, fetchMore } = useQuery(BOOKS, {
@@ -49,11 +50,7 @@ const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
       style={{ maxHeight: 200, borderRadius: 5 }}
       renderItem={({ item, index }) => {
         const result = (
-          <Text
-            style={{
-              color: theme.colors.lightText,
-            }}
-          >
+          <Text>
             {item?.title},{' '}
             <Text style={{ fontStyle: 'italic' }}>{item.author}</Text>
           </Text>
@@ -93,7 +90,15 @@ const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
 const BookSelection = ({ onSetBook, onSwitchForm }) => {
   const [resultsDisplay, setResultsDisplay] = useState(false);
   const [search, setSearch] = useState();
-  const [inputValue, setInputValue] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const debouncedText = useDebounce(debouncedSearch, 300);
+
+  useEffect(() => setSearch(debouncedText), [debouncedText]);
+
+  const handleChange = value => {
+    setDebouncedSearch(value);
+    setResultsDisplay(true);
+  };
 
   return (
     <>
@@ -101,17 +106,7 @@ const BookSelection = ({ onSetBook, onSwitchForm }) => {
 
       {/* Search input */}
 
-      <Input
-        label={'Titre, auteur...'}
-        value={inputValue}
-        onChangeText={value => {
-          setInputValue(value);
-        }}
-        onEndEditing={() => {
-          setResultsDisplay(true);
-          setSearch(inputValue);
-        }}
-      />
+      <Input label={'Titre, auteur...'} onChangeText={handleChange} />
 
       {/* We only render book list one the search begin. */}
       {/* We hide it when user press any item. */}
