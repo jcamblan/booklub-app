@@ -118,19 +118,11 @@ const SessionCard = ({ session, current = false, style }) => {
             </Text>
           )}
 
-          <Text style={{ color: textColor }}>
-            {session?.submissions?.totalCount}{' '}
-            {pluralize('inscrit', session?.submissions?.totalCount)}
-          </Text>
-
           {session?.state === 'submission' && (
             <Text style={{ color: textColor }}>
               Tirage au sort : {submissionDueDate}
             </Text>
           )}
-          <Text style={{ color: textColor }}>
-            Fin de la session le : {readDueDate}
-          </Text>
         </View>
 
         {!current && Boolean(note) && (

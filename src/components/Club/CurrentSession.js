@@ -42,11 +42,6 @@ const CurrentSession = ({ session }) => {
           >
             Session active
           </H2>
-          <TextLink
-            activeOpacity={1}
-            title={'+ Voir le détail'}
-            textStyle={{ color: theme.colors.lightText, fontWeight: '600' }}
-          />
         </View>
 
         <SessionCard session={session} current />

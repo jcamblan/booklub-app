@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Card, TextLink } from 'ui';
 import SessionCard from 'components/Club/SessionCard';
@@ -15,12 +15,20 @@ const LastSessions = ({ sessions }) => {
         keyExtractor={item => item?.id}
         data={sessions}
         renderItem={({ item, index, separators }) => (
-          <Card>
-            <SessionCard
-              style={{ paddingTop: 10, paddingHorizontal: 10 }}
-              session={item}
-            />
-            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('SessionDetails', {
+                sessionId: item.id,
+                title: item.name,
+              })
+            }
+          >
+            <Card>
+              <SessionCard
+                style={{ paddingTop: 10, paddingHorizontal: 10 }}
+                session={item}
+              />
+              {/* <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               <TextLink
                 title="+ Voir le détail"
                 onPress={() =>
@@ -30,8 +38,9 @@ const LastSessions = ({ sessions }) => {
                   })
                 }
               />
-            </View>
-          </Card>
+            </View> */}
+            </Card>
+          </TouchableOpacity>
         )}
         sliderWidth={screenWidth}
         itemWidth={screenWidth - 64}
