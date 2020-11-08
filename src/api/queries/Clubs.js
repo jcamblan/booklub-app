@@ -12,7 +12,9 @@ export const CLUBS = gql`
           }
           sessions(last: 1) {
             nodes {
+              id
               readDueDate
+              state
             }
           }
           currentSession {
@@ -25,6 +27,7 @@ export const CLUBS = gql`
               edges {
                 node {
                   book {
+                    id
                     author
                     title
                   }

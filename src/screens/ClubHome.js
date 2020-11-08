@@ -7,10 +7,20 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { H2, theme, Text, Separator, TextLink } from 'ui';
-import ClubListCarousel from 'components/ClubListCarousel';
+import {
+  H2,
+  theme,
+  Text,
+  Separator,
+  TextLink,
+  Table,
+  Row,
+  Cell,
+  HeadCell,
+} from 'ui';
 import { CLUBS } from 'api/queries';
 import { useNavigation } from '@react-navigation/native';
+import { formatDate } from 'utils';
 
 const CurrentSessionItem = ({ session }) => {
   const navigation = useNavigation();
@@ -92,6 +102,29 @@ const CurrentSessionList = ({ sessions }) => {
   );
 };
 
+const ClubTable = ({ clubs }) => {
+  const navigation = useNavigation();
+  return (
+    <Table style={{ paddingTop: theme.spacing() }}>
+      {clubs.map(club => (
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('ClubDetails', {
+              clubId: club.id,
+              title: club.name,
+            })
+          }
+          key={club.id}
+        >
+          <Row>
+            <Cell justifyContent="flex-start">{club.name}</Cell>
+          </Row>
+        </TouchableOpacity>
+      ))}
+    </Table>
+  );
+};
+
 const ClubHome = ({ navigation }) => {
   const { data, loading, refetch } = useQuery(CLUBS);
   const clubs = (data?.myClubs?.edges ?? []).map(({ node }) => ({
@@ -131,7 +164,7 @@ const ClubHome = ({ navigation }) => {
         )}
 
         <H2>Mes clubs</H2>
-        <ClubListCarousel clubs={clubs} />
+        <ClubTable clubs={clubs} />
         <Separator />
 
         <View style={{ justifyContent: 'space-around', flexDirection: 'row' }}>

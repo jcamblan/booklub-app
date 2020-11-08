@@ -169,6 +169,37 @@ const StyledCell = styled(View)`
   align-items: center;
 `;
 
+const StyledHeadCell = styled(View)`
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding-horizontal: 10px;
+  overflow: hidden;
+  min-width: 0px;
+  border-radius: 5px;
+  margin-horizontal: 1px;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledHeadCellText = styled(Text)`
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  overflow: visible;
+`;
+
+export const HeadCell = ({ children, variant, flexGrow, justifyContent }) => (
+  <StyledHeadCell
+    style={{
+      flexGrow: flexGrow || 1,
+      justifyContent: justifyContent || 'center',
+    }}
+  >
+    <StyledHeadCellText>{children}</StyledHeadCellText>
+  </StyledHeadCell>
+);
+
 export const Cell = ({ children, variant, flexGrow, justifyContent }) => {
   const color = () => {
     switch (variant) {
