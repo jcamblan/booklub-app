@@ -6,7 +6,16 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import { H2, H3, Text, theme, TextLink, Separator, Card } from 'ui';
+import {
+  H2,
+  H3,
+  Text,
+  theme,
+  TextLink,
+  Separator,
+  Card,
+  SearchInput,
+} from 'ui';
 import { Input } from 'ui/form';
 import { useQuery, useMutation } from '@apollo/client';
 import { BOOKS } from 'api/queries';
@@ -102,11 +111,10 @@ const BookSelection = ({ onSetBook, onSwitchForm }) => {
 
   return (
     <>
-      <H2>Sélection du livre</H2>
-
+      <H2 style={{ marginBottom: theme.spacing() }}>Sélection du livre</H2>
       {/* Search input */}
 
-      <Input label={'Titre, auteur...'} onChangeText={handleChange} />
+      <SearchInput onChangeText={handleChange} placeholder="Titre, auteur..." />
 
       {/* We only render book list one the search begin. */}
       {/* We hide it when user press any item. */}

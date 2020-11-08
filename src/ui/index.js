@@ -4,12 +4,14 @@ import {
   Text as RnText,
   View,
   Dimensions,
+  TextInput,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { material } from 'react-native-typography';
 import { DefaultTheme, DarkTheme } from 'react-native-paper';
 import { Appearance } from 'react-native';
 import { omit } from 'lodash';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const base = 16;
 export const spacing = (input = 1) => input * base;
@@ -243,5 +245,41 @@ export const Cell = ({ children, variant, flexGrow, justifyContent }) => {
         {children}
       </Text>
     </StyledCell>
+  );
+};
+
+export const SearchInput = ({ onChangeText, placeholder }) => {
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        backgroundColor: theme.colors.secondary,
+        height: 40,
+        borderRadius: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 16,
+        paddingHorizontal: 8,
+      }}
+    >
+      <MaterialCommunityIcons
+        name="search"
+        color={theme.colors.text}
+        size={26}
+        style={{ opacity: 0.5 }}
+      />
+      <TextInput
+        style={{
+          flex: 1,
+          color: theme.colors.text,
+          alignItems: 'center',
+          height: '100%',
+          paddingLeft: 5,
+          fontWeight: '500',
+        }}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+      />
+    </View>
   );
 };

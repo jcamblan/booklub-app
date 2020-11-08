@@ -6,24 +6,14 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   RefreshControl,
+  TextInput,
 } from 'react-native';
-import { Text, theme, H1, Separator } from 'ui';
+import { Text, theme, H1, Separator, SearchInput as SearchBook } from 'ui';
 import { useQuery } from '@apollo/client';
 import { findNoteColor } from 'utils';
 import { Input } from 'ui/form';
 import { BOOKS } from 'api/queries';
 import { round } from 'lodash';
-
-const SearchBook = ({ onSearch }) => {
-  return (
-    <Input
-      label="Titre, auteur..."
-      onChangeText={value => onSearch(value)}
-      textContentType="emailAddress"
-      style={{ marginBottom: 16 }}
-    />
-  );
-};
 
 const ListItem = ({
   book: { id, title, author, submissionCount, averageNote },
@@ -244,7 +234,7 @@ const BookList = () => {
   return (
     <SafeAreaView>
       <ScrollView
-        style={{ padding: 20 }}
+        style={{ paddingHorizontal: 20 }}
         onScroll={({ nativeEvent }) => {
           if (isCloseToBottom(nativeEvent)) {
             handleFetchMore();
@@ -255,7 +245,10 @@ const BookList = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <SearchBook onSearch={handleSearch} />
+        <SearchBook
+          onChangeText={handleSearch}
+          placeholder="Titre, auteur..."
+        />
         <List books={books} onReorder={handleReorder} />
         {(loading || fetching) && <ActivityIndicator margin={10} />}
         <Separator />
