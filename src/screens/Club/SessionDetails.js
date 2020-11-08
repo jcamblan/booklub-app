@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { SESSION_FULL_DETAILS } from 'api/queries';
-import { View, SafeAreaView, ScrollView } from 'react-native';
+import { View, SafeAreaView, ScrollView, RefreshControl } from 'react-native';
 import {
   Text,
   TextLink,
@@ -28,7 +28,7 @@ const states = {
 
 const SessionDetails = ({ route, navigation }) => {
   const sessionId = route?.params?.sessionId;
-  const { data, loading } = useQuery(SESSION_FULL_DETAILS, {
+  const { data, loading, refetch } = useQuery(SESSION_FULL_DETAILS, {
     variables: { id: sessionId },
   });
   const session = data?.node;
@@ -43,9 +43,22 @@ const SessionDetails = ({ route, navigation }) => {
       .map(({ node: { value } }) => value)
       .reduce((sum, note) => sum + note, 0) / session?.notes?.edges?.length;
 
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
   return (
     <SafeAreaView>
-      <ScrollView style={{ padding: 20 }}>
+      <ScrollView
+        style={{ padding: 20 }}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         {session?.canParticipate?.value && (
           <TextLink
             title="Participer"

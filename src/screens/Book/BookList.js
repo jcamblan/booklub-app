@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import { Text, theme, H1, Separator } from 'ui';
 import { useQuery } from '@apollo/client';
@@ -177,7 +178,7 @@ const BookList = () => {
   const [search, setSearch] = useState('');
   const [fetching, setFetching] = useState(false);
 
-  const { data, loading, fetchMore } = useQuery(BOOKS, {
+  const { data, loading, fetchMore, refetch } = useQuery(BOOKS, {
     variables: {
       orderBy: orderBy,
       orderDirection: direction,
@@ -232,6 +233,14 @@ const BookList = () => {
     setFetching(false);
   };
 
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
   return (
     <SafeAreaView>
       <ScrollView
@@ -242,6 +251,9 @@ const BookList = () => {
           }
         }}
         scrollEventThrottle={300}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
         <SearchBook onSearch={handleSearch} />
         <List books={books} onReorder={handleReorder} />

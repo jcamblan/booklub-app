@@ -1,5 +1,11 @@
-import React from 'react';
-import { View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  RefreshControl,
+} from 'react-native';
 import { useQuery } from '@apollo/client';
 import { H2, theme, Text, Separator, TextLink } from 'ui';
 import ClubListCarousel from 'components/ClubListCarousel';
@@ -87,7 +93,7 @@ const CurrentSessionList = ({ sessions }) => {
 };
 
 const ClubHome = ({ navigation }) => {
-  const { data, loading } = useQuery(CLUBS);
+  const { data, loading, refetch } = useQuery(CLUBS);
   const clubs = (data?.myClubs?.edges ?? []).map(({ node }) => ({
     ...node,
   }));
@@ -99,10 +105,21 @@ const ClubHome = ({ navigation }) => {
       ...{ club: { name: name, id: id } },
     }));
 
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
   return (
     <SafeAreaView>
       <ScrollView
         style={{ paddingHorizontal: 20, minHeight: theme.screenHeight }}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
         {currentSessions.length > 0 && (
           <>

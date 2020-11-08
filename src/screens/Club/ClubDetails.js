@@ -1,5 +1,5 @@
-import React from 'react';
-import { SafeAreaView, View, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, View, ScrollView, RefreshControl } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { H2, theme, Text, Separator, TextLink } from 'ui';
 import LastSessions from 'components/Club/LastSessions';
@@ -9,13 +9,21 @@ import CurrentSession from 'components/Club/CurrentSession';
 import { CLUB_FULL_DETAILS } from 'api/queries';
 
 const ClubDetails = ({ route, navigation }) => {
-  const { data, loading } = useQuery(CLUB_FULL_DETAILS, {
+  const { data, loading, refetch } = useQuery(CLUB_FULL_DETAILS, {
     variables: { id: route.params.clubId },
   });
   const node = data?.node;
   const sessions = (node?.sessions?.edges ?? []).map(({ node }) => ({
     ...node,
   }));
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
 
   if (loading) {
     return (
@@ -27,7 +35,12 @@ const ClubDetails = ({ route, navigation }) => {
 
   return (
     <SafeAreaView>
-      <ScrollView style={{ paddingHorizontal: 20 }}>
+      <ScrollView
+        style={{ paddingHorizontal: 20 }}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         {Boolean(node?.currentSession) && (
           <CurrentSession session={node?.currentSession} />
         )}
