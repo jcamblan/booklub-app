@@ -9,7 +9,7 @@ const EmptyHome = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={{ padding: theme.spacing() }}>
-      <View style={{ justifyContent: 'flex-start' }}>
+      <View>
         <Image
           source={image}
           style={{

@@ -1,36 +1,32 @@
 import React from 'react';
-import { View, SafeAreaView } from 'react-native';
-import { theme, TextLink } from 'ui';
+import { View, SafeAreaView, Image } from 'react-native';
+import { theme, TextLink, H1 } from 'ui';
 import BooklubTitle from 'components/BooklubTitle';
+import { Button } from 'ui/button';
 
 const Home = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <View
         style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: 15,
-          height: theme.screenHeight,
+          paddingHorizontal: theme.spacing(),
+          flex: 1,
         }}
       >
-        <BooklubTitle size={65} />
-        <View
-          style={{
-            width: '100%',
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            paddingBottom: 150,
-          }}
-        >
-          <TextLink
-            title="S'inscrire"
-            onPress={() => navigation.navigate('Register')}
-          />
-          <TextLink
-            title="Se connecter"
+        <View style={{ justifyContent: 'center', flex: 5 }}>
+          <BooklubTitle size={65} />
+        </View>
+
+        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+          <Button
+            variant="primary"
             onPress={() => navigation.navigate('Login')}
-          />
+          >
+            Sign in
+          </Button>
+          <Button onPress={() => navigation.navigate('Register')}>
+            Sign up
+          </Button>
         </View>
       </View>
     </SafeAreaView>

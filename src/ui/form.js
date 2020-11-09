@@ -9,7 +9,7 @@ export const Input = ({ ...props }) => {
     <View
       style={{
         flexDirection: 'row',
-        backgroundColor: theme.colors.secondary,
+        backgroundColor: theme.input.backgroundColor,
         height: 40,
         borderRadius: 15,
         alignItems: 'center',
@@ -21,7 +21,7 @@ export const Input = ({ ...props }) => {
       <TextInput
         style={{
           flex: 1,
-          color: theme.colors.text,
+          color: theme.input.textColor,
           alignItems: 'center',
           height: '100%',
           paddingLeft: 5,
@@ -39,12 +39,12 @@ color: ${({ theme }) => theme.colors.error}
 margin-top: ${({ theme }) => `${theme.spacing(0.5)}px`}
 `;
 
-export const SearchInput = ({ onChangeText, placeholder }) => {
+export const SearchInput = ({ ...props }) => {
   return (
     <View
       style={{
         flexDirection: 'row',
-        backgroundColor: theme.colors.secondary,
+        backgroundColor: theme.input.backgroundColor,
         height: 40,
         borderRadius: 15,
         alignItems: 'center',
@@ -55,7 +55,7 @@ export const SearchInput = ({ onChangeText, placeholder }) => {
     >
       <MaterialCommunityIcons
         name="search"
-        color={theme.colors.text}
+        color={theme.input.textColor}
         size={26}
         style={{ opacity: 0.5 }}
       />
@@ -68,8 +68,7 @@ export const SearchInput = ({ onChangeText, placeholder }) => {
           paddingLeft: 5,
           fontWeight: '500',
         }}
-        onChangeText={onChangeText}
-        placeholder={placeholder}
+        {...props}
       />
     </View>
   );

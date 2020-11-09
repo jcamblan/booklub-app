@@ -10,12 +10,24 @@ const AuthNavigator = () => {
   return (
     <AuthStack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
       }}
     >
-      <AuthStack.Screen name="Home" component={Home} />
-      <AuthStack.Screen name="Login" component={Login} />
-      <AuthStack.Screen name="Register" component={Register} />
+      <AuthStack.Screen
+        options={{ headerTitle: '' }}
+        name="Home"
+        component={Home}
+      />
+      <AuthStack.Screen
+        options={{ headerTitle: '' }}
+        name="Login"
+        component={Login}
+      />
+      <AuthStack.Screen
+        options={{ headerTitle: '' }}
+        name="Register"
+        component={Register}
+      />
     </AuthStack.Navigator>
   );
 };
