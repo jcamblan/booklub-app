@@ -8,7 +8,8 @@ import {
   RefreshControl,
   TextInput,
 } from 'react-native';
-import { Text, theme, H1, Separator, SearchInput as SearchBook } from 'ui';
+import { Text, theme, H1, Separator } from 'ui';
+import { SearchInput as SearchBook } from 'ui/form';
 import { useQuery } from '@apollo/client';
 import { findNoteColor } from 'utils';
 import { Input } from 'ui/form';
