@@ -11,10 +11,12 @@ import { material } from 'react-native-typography';
 import { DefaultTheme, DarkTheme } from 'react-native-paper';
 import { Appearance } from 'react-native';
 import { omit } from 'lodash';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const base = 16;
 export const spacing = (input = 1) => input * base;
+
+const primaryColor = '#6C63FF';
+const secondaryColor = '#F5F5F5';
 
 const lightTheme = {
   ...DefaultTheme,
@@ -23,8 +25,8 @@ const lightTheme = {
     text: '#343434',
     lightText: 'white',
     title: 'black',
-    primary: '#D23669',
-    secondary: '#F0F0F0',
+    primary: primaryColor,
+    secondary: secondaryColor,
     ternary: '#707070',
     background: 'white',
     success: '#92C84F',
@@ -42,6 +44,24 @@ const lightTheme = {
     elevation: 19,
     borderRadius: 15,
     padding: 10,
+  },
+  button: {
+    primary: {
+      backgroundColor: primaryColor,
+      textColor: '#FFFFFF',
+      borderRadius: 16,
+      paddingHorizontal: 40,
+      paddingVertical: 16,
+      marginBottom: 10,
+    },
+    secondary: {
+      backgroundColor: secondaryColor,
+      textColor: '#000000',
+      borderRadius: 16,
+      paddingHorizontal: 40,
+      paddingVertical: 16,
+      marginBottom: 10,
+    },
   },
   spacing,
   material,
@@ -245,41 +265,5 @@ export const Cell = ({ children, variant, flexGrow, justifyContent }) => {
         {children}
       </Text>
     </StyledCell>
-  );
-};
-
-export const SearchInput = ({ onChangeText, placeholder }) => {
-  return (
-    <View
-      style={{
-        flexDirection: 'row',
-        backgroundColor: theme.colors.secondary,
-        height: 40,
-        borderRadius: 15,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 16,
-        paddingHorizontal: 8,
-      }}
-    >
-      <MaterialCommunityIcons
-        name="search"
-        color={theme.colors.text}
-        size={26}
-        style={{ opacity: 0.5 }}
-      />
-      <TextInput
-        style={{
-          flex: 1,
-          color: theme.colors.text,
-          alignItems: 'center',
-          height: '100%',
-          paddingLeft: 5,
-          fontWeight: '500',
-        }}
-        onChangeText={onChangeText}
-        placeholder={placeholder}
-      />
-    </View>
   );
 };

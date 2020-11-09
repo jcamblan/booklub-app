@@ -21,17 +21,17 @@ const ClubsNavigator = () => {
       <BooklubStack.Screen
         name="ClubHome"
         component={ClubHome}
-        options={{ headerTitle: props => <BooklubTitle /> }}
+        options={{ headerTitle: '' }}
       />
       <BooklubStack.Screen
         name="CreateClub"
         component={CreateClub}
-        options={{ headerTitle: 'Créer un club' }}
+        options={{ headerTitle: '' }}
       />
       <BooklubStack.Screen
         name="JoinClub"
         component={JoinClub}
-        options={{ headerTitle: 'Rejoindre un club' }}
+        options={{ headerTitle: '' }}
       />
       <BooklubStack.Screen
         name="ClubDetails"
