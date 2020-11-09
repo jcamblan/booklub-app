@@ -7,6 +7,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import {
+  H1,
   H2,
   theme,
   Text,
@@ -20,6 +21,7 @@ import {
 import { CLUBS } from 'api/queries';
 import { useNavigation } from '@react-navigation/native';
 import { formatDate } from 'utils';
+import ClubCard from 'components/Club/ClubCard';
 
 const CurrentSessionTable = ({ sessions }) => {
   const navigation = useNavigation();
@@ -59,23 +61,11 @@ const CurrentSessionTable = ({ sessions }) => {
 const ClubTable = ({ clubs }) => {
   const navigation = useNavigation();
   return (
-    <Table style={{ paddingTop: theme.spacing() }}>
+    <View>
       {clubs.map(club => (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('SessionDetails', {
-              sessionId: session?.id,
-              title: session?.name,
-            })
-          }
-          key={club.id}
-        >
-          <Row>
-            <Cell justifyContent="flex-start">{club.name}</Cell>
-          </Row>
-        </TouchableOpacity>
+        <ClubCard club={club} />
       ))}
-    </Table>
+    </View>
   );
 };
 
@@ -112,7 +102,7 @@ const ActiveHome = ({ navigation, clubs }) => {
           </>
         )}
 
-        <H2>Mes clubs</H2>
+        <H1>Mes clubs</H1>
         <ClubTable clubs={clubs} />
         <Separator />
 

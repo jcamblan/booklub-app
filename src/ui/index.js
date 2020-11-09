@@ -63,6 +63,10 @@ const lightTheme = {
       marginBottom: 10,
     },
   },
+  input: {
+    backgroundColor: '#EFEFF0',
+    textColor: '#3C3C43',
+  },
   spacing,
   material,
   screenWidth: Dimensions.get('screen').width,
@@ -136,11 +140,13 @@ export const TextLink = ({
 );
 
 export const H1 = styled(RnText)`
-  ${({ theme }) => omit(theme.material.display1, ['lineHeight', 'fontWeight'])};
+  ${({ theme }) =>
+    omit(theme.material.display1, ['lineHeight', 'fontWeight', 'fontSize'])};
   line-height: ${({ theme }) => `${theme.material.display1.lineHeight}px`};
   font-weight: bold;
   padding-vertical: 3px;
   color: ${({ theme }) => theme.colors.title};
+  font-size: 34px;
 `;
 
 export const H2 = styled(RnText)`

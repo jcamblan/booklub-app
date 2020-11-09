@@ -1,19 +1,24 @@
 import React from 'react';
-import { TextLink } from 'ui/index';
 import {
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
   View,
   SafeAreaView,
   ScrollView,
   Platform,
+  Image,
 } from 'react-native';
 import { Formik } from 'formik';
+import { TextLink, H1, theme } from 'ui';
 import { Input, Error } from 'ui/form';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import BooklubTitle from 'components/BooklubTitle';
+import image from 'images/reading_book.png';
+import { Button } from 'ui/button';
 
 const Login = ({ navigation }) => {
   const { onUpdate } = useAuth();
@@ -33,17 +38,24 @@ const Login = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
+        style={{ flex: 1, paddingHorizontal: theme.spacing() }}
       >
-        <ScrollView style={{ padding: 20 }} alwaysBounceVertical={false}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View
             style={{
-              alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'flex-end',
               flex: 1,
             }}
           >
-            <BooklubTitle />
+            <H1>Sign in</H1>
+            <Image
+              source={image}
+              style={{
+                width: theme.screenWidth,
+                height: theme.screenWidth * 0.687444345503117,
+                resizeMode: 'contain',
+              }}
+            />
 
             <Formik
               validationSchema={Yup.object().shape({
@@ -76,7 +88,6 @@ const Login = ({ navigation }) => {
                     keyboardType="email-address"
                     returnKeyType="next"
                     textContentType="emailAddress"
-                    style={{ marginBottom: 16 }}
                     error={touched.username && errors.username}
                   />
                   <Input
@@ -93,31 +104,29 @@ const Login = ({ navigation }) => {
                     error={touched.password && errors.password}
                     onSubmitEditing={() => handleSubmit(values)}
                   />
-                  {/* <TextLink
-                    title="Mot de passe oublié ?"
-                    onPress={() =>
-                      navigation.navigate('ForgotPassword', {
-                        email: values.username,
-                      })
-                    }
-                  /> */}
                   <Error>{status}</Error>
-                  <View style={{ marginTop: 32, alignItems: 'center' }}>
-                    <TextLink
-                      title="Connexion"
+                  <View>
+                    <Button
                       onPress={() => handleSubmit(values)}
                       isLoading={isSubmitting}
-                    />
+                      variant="primary"
+                    >
+                      Sign me in
+                    </Button>
+
+                    <Button
+                      onPress={() => navigation.navigate('Register')}
+                      isLoading={isSubmitting}
+                    >
+                      I don't have an account
+                    </Button>
                   </View>
                 </View>
               )}
             </Formik>
-            <TextLink
-              title="Première connexion ?"
-              onPress={() => navigation.navigate('Register')}
-            />
+            <View style={{ flex: 1 }} />
           </View>
-        </ScrollView>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
