@@ -22,54 +22,23 @@ import { CLUBS } from 'api/queries';
 import { useNavigation } from '@react-navigation/native';
 import { formatDate } from 'utils';
 import ClubCard from 'components/Club/ClubCard';
+import { Button } from 'ui/button';
 
-const CurrentSessionTable = ({ sessions }) => {
+const ClubList = ({ clubs }) => {
   const navigation = useNavigation();
-  const states = {
-    submission: 'Inscript.',
-    draw: 'Tirage',
-    reading: 'Lecture',
-    conclusion: 'Vote',
-    archived: 'Archivé',
-  };
-  return (
-    <Table style={{ paddingTop: theme.spacing() }}>
-      {sessions.map(session => (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('ClubDetails', {
-              clubId: club.id,
-              title: club.name,
-            })
-          }
-          key={session.id}
-        >
-          <Row>
-            <Cell flexGrow={3} justifyContent="flex-start">
-              {[session.club?.name, session?.name].filter(Boolean).join(' - ')}
-            </Cell>
-            <Cell flexGrow={1} variant="success">
-              {states[session.state]}
-            </Cell>
-          </Row>
-        </TouchableOpacity>
-      ))}
-    </Table>
-  );
-};
 
-const ClubTable = ({ clubs }) => {
-  const navigation = useNavigation();
   return (
     <View>
       {clubs.map(club => (
-        <ClubCard club={club} />
+        <ClubCard key={club.id} club={club} />
       ))}
     </View>
   );
 };
 
-const ActiveHome = ({ navigation, clubs }) => {
+const ActiveHome = ({ clubs }) => {
+  const navigation = useNavigation();
+
   const currentSessions = (clubs ?? [])
     .filter(({ currentSession }) => Boolean(currentSession?.id))
     .map(({ currentSession, name, id }) => ({
@@ -93,28 +62,25 @@ const ActiveHome = ({ navigation, clubs }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {currentSessions.length > 0 && (
-          <>
-            <Separator />
-            <H2>Session{currentSessions.length > 1 && `s`} en cours</H2>
-            <CurrentSessionTable sessions={currentSessions} />
-            <Separator />
-          </>
-        )}
+        <H1 style={{ marginBottom: theme.spacing() }}>Mes clubs</H1>
+        <ClubList clubs={clubs} />
 
-        <H1>Mes clubs</H1>
-        <ClubTable clubs={clubs} />
-        <Separator />
-
-        <View style={{ justifyContent: 'space-around', flexDirection: 'row' }}>
-          <TextLink
-            title="Rejoindre un club"
+        {/* TODO: this must go into modal */}
+        <View
+          style={{
+            paddingTop: theme.spacing(2),
+            marginBottom: theme.spacing(15),
+          }}
+        >
+          <Button
             onPress={() => navigation.navigate('JoinClub')}
-          />
-          <TextLink
-            title="Créer un club"
-            onPress={() => navigation.navigate('CreateClub')}
-          />
+            variant="primary"
+          >
+            Join a club
+          </Button>
+          <Button onPress={() => navigation.navigate('CreateClub')}>
+            Create a club
+          </Button>
         </View>
       </ScrollView>
     </SafeAreaView>
