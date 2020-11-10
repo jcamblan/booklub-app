@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { Text, theme } from 'ui';
+import { Text } from './typography';
+import { theme } from './theme';
 import { TouchableOpacity } from 'react-native';
 
 export const Button = ({ children, variant, onPress }) => {
