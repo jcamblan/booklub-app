@@ -38,9 +38,9 @@ const JoinClub = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView>
-      <KeyboardAvoidingView>
-        <ScrollView style={{ paddingHorizontal: theme.spacing() }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <View style={{ paddingHorizontal: theme.spacing(), flex: 1 }}>
           <H1>Join a club</H1>
           <Text style={{ marginBottom: theme.spacing() }}>
             Enter the 8 digits invitation code provided by your friend.
@@ -62,7 +62,7 @@ const JoinClub = ({ navigation }) => {
               touched,
               isSubmitting,
             }) => (
-              <View style={{ width: '100%' }}>
+              <View style={{ width: '100%', flex: 1 }}>
                 <Input
                   label="Code d'invitation"
                   placeholder="1234568"
@@ -73,12 +73,15 @@ const JoinClub = ({ navigation }) => {
                   error={touched.invitationCode && errors.invitationCode}
                   onSubmitEditing={() => handleSubmit(values)}
                   keyboardType="numeric"
+                  autoFocus={true}
                 />
                 <Error>{status}</Error>
                 <View
                   style={{
                     justifyContent: 'flex-end',
                     alignItems: 'flex-end',
+                    flex: 1,
+                    marginBottom: 260,
                   }}
                 >
                   <Button
@@ -92,7 +95,7 @@ const JoinClub = ({ navigation }) => {
               </View>
             )}
           </Formik>
-        </ScrollView>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
