@@ -14,7 +14,7 @@ const BooksNavigator = () => {
       <Stack.Screen
         name="BookList"
         component={BookList}
-        options={{ headerTitle: 'Livres' }}
+        options={{ headerTitle: '' }}
       />
     </Stack.Navigator>
   );

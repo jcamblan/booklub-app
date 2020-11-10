@@ -246,6 +246,7 @@ const BookList = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
+        <H1 style={{ marginBottom: theme.spacing() }}>Explore</H1>
         <SearchBook
           onChangeText={handleSearch}
           placeholder="Titre, auteur..."
