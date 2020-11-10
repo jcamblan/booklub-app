@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { TextInput, View } from 'react-native';
-import { Text, theme } from 'ui';
+import { theme } from './theme';
+import { Text } from './typography';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const Input = ({ ...props }) => {
