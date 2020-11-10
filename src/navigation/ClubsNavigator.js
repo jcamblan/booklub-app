@@ -1,5 +1,7 @@
 import React from 'react';
+import { Text } from 'ui';
 import { createStackNavigator } from '@react-navigation/stack';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ClubHome from 'screens/ClubHome';
 import CreateClub from 'screens/Club/CreateClub';
 import JoinClub from 'screens/Club/JoinClub';
@@ -8,6 +10,7 @@ import SessionDetails from 'screens/Club/SessionDetails';
 import CreateSession from 'screens/Club/CreateSession';
 import CreateSubmission from 'screens/Club/CreateSubmission';
 import BooklubTitle from 'components/BooklubTitle';
+import { theme } from 'ui';
 
 const BooklubStack = createStackNavigator();
 
@@ -21,7 +24,19 @@ const ClubsNavigator = () => {
       <BooklubStack.Screen
         name="ClubHome"
         component={ClubHome}
-        options={{ headerTitle: '' }}
+        options={{
+          headerTitle: '',
+          headerRight: () => (
+            <MaterialIcons
+              name="add"
+              size={26}
+              style={{
+                color: theme.colors.primary,
+                marginRight: theme.spacing(),
+              }}
+            />
+          ),
+        }}
       />
       <BooklubStack.Screen
         name="CreateClub"
