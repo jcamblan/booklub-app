@@ -39,11 +39,21 @@ const Register = ({ navigation }) => {
 
   const handleRegister = async (values, { setStatus }) => {
     try {
-      await register({
+      const {
+        data: {
+          register: { errors, success },
+        },
+      } = await register({
         variables: {
           input: values,
         },
       });
+
+      if (errors.length > 0) {
+        const error = errors[0];
+        const { attribute, error: key } = error;
+        setStatus(attribute + ' : ' + key);
+      }
 
       const { data } = await signIn({
         username: values.email,
@@ -51,7 +61,7 @@ const Register = ({ navigation }) => {
       });
       onUpdate(data);
     } catch (err) {
-      console.dir(err);
+      console.log(err);
     }
   };
 

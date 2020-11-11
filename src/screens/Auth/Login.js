@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -26,7 +26,6 @@ const Login = ({ navigation }) => {
       const { data } = await signIn(values);
       onUpdate(data);
     } catch (err) {
-      console.dir(err);
       const error = err?.response?.data?.error;
       setStatus(ERRORS?.[error.toUpperCase()]);
     }
@@ -95,7 +94,7 @@ const Login = ({ navigation }) => {
                     error={touched.password && errors.password}
                     onSubmitEditing={() => handleSubmit(values)}
                   />
-                  <Error>{status}</Error>
+                  {Boolean(status) && <Error>{status}</Error>}
                   <View>
                     <Button
                       onPress={() => handleSubmit(values)}
