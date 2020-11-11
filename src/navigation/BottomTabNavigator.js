@@ -11,8 +11,11 @@ const Tab = createMaterialBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      activeColor={theme.bottomBar.active}
-      barStyle={{ backgroundColor: theme.bottomBar.background }}
+      activeColor={theme.colors.primary}
+      barStyle={{
+        backgroundColor: theme.colors.background,
+        shadowColor: 'transparent',
+      }}
     >
       <Tab.Screen
         name="Clubs"
