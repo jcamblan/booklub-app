@@ -11,7 +11,7 @@ const baseColors = {
     surface: 'red',
     error: 'red',
     onPrimary: 'white',
-    onSecondary: 'red',
+    onSecondary: '#343434',
     onBackground: '#343434',
     onSurface: '#343434',
     onError: 'red',

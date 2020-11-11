@@ -16,7 +16,6 @@ import { useAuth } from 'hooks';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import BooklubTitle from 'components/BooklubTitle';
-import image from 'images/reading_book.png';
 import { Button } from 'ui/button';
 
 const Login = ({ navigation }) => {
@@ -47,14 +46,6 @@ const Login = ({ navigation }) => {
             }}
           >
             <ScreenTitle>Sign in</ScreenTitle>
-            <Image
-              source={image}
-              style={{
-                width: theme.screenWidth,
-                height: theme.screenWidth * 0.687444345503117,
-                resizeMode: 'contain',
-              }}
-            />
 
             <Formik
               validationSchema={Yup.object().shape({
@@ -88,6 +79,7 @@ const Login = ({ navigation }) => {
                     returnKeyType="next"
                     textContentType="emailAddress"
                     error={touched.username && errors.username}
+                    autoFocus
                   />
                   <Input
                     label="Mot de passe"

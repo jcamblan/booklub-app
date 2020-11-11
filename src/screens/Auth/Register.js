@@ -18,7 +18,6 @@ import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
 import BooklubTitle from 'components/BooklubTitle';
 import { Button } from 'ui/button';
-import image from 'images/road_to_knowledge.png';
 
 const REGISTER = gql`
   mutation register($input: RegisterInput!) {
@@ -65,14 +64,7 @@ const Register = ({ navigation }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{ justifyContent: 'flex-end', flex: 1 }}>
             <ScreenTitle>Sign up</ScreenTitle>
-            <Image
-              source={image}
-              style={{
-                width: theme.screenWidth,
-                height: theme.screenWidth * 0.687444345503117,
-                resizeMode: 'contain',
-              }}
-            />
+
             <Formik
               validationSchema={Yup.object().shape({
                 email: Yup.string()
@@ -106,6 +98,7 @@ const Register = ({ navigation }) => {
                     returnKeyType="next"
                     textContentType="emailAddress"
                     error={touched.email && errors.email}
+                    autoFocus
                   />
                   <Input
                     label="Pseudo"
