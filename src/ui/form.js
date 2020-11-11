@@ -5,39 +5,49 @@ import { theme } from './theme';
 import { Text } from './typography';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialIcons';
 
-export const Input = ({ ...props }) => {
+export const Input = ({ error, ...props }) => {
+  const errorStyle = Boolean(error)
+    ? { borderColor: theme.colors.error, borderStyle: 'solid', borderWidth: 1 }
+    : {};
+
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        backgroundColor: theme.input.backgroundColor,
-        height: 40,
-        borderRadius: 15,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 16,
-        paddingHorizontal: 8,
-      }}
-    >
-      <TextInput
+    <View style={{ marginBottom: theme.spacing() }}>
+      <View
         style={{
-          flex: 1,
-          color: theme.input.textColor,
+          flexDirection: 'row',
+          backgroundColor: theme.input.backgroundColor,
+          height: 40,
+          borderRadius: 15,
           alignItems: 'center',
-          height: '100%',
-          paddingLeft: 5,
-          fontWeight: '500',
+          justifyContent: 'center',
+          paddingHorizontal: 8,
+          ...errorStyle,
         }}
-        autoCapitalize="none"
-        {...props}
-      />
+      >
+        <TextInput
+          style={{
+            flex: 1,
+            color: theme.input.textColor,
+            alignItems: 'center',
+            height: '100%',
+            paddingLeft: 5,
+            fontWeight: '500',
+          }}
+          autoCapitalize="none"
+          {...props}
+        />
+      </View>
+      {Boolean(error) && (
+        <Text style={{ color: theme.colors.error }}>{error}</Text>
+      )}
     </View>
   );
 };
 
 export const Error = styled(Text)`
 color: ${({ theme }) => theme.colors.error}
-margin-top: ${({ theme }) => `${theme.spacing(0.5)}px`}
+margin-bottom: ${({ theme }) => `${theme.spacing(0.5)}px`}
+text-align: center;
 `;
 
 export const SearchInput = ({ ...props }) => {
