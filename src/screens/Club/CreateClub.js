@@ -1,5 +1,6 @@
 import React from 'react';
-import { KeyboardAvoidingView, SafeAreaView, View } from 'react-native';
+import { KeyboardAvoidingView, View } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import { Formik } from 'formik';
 import { ScreenTitle, Text, theme } from 'ui';
 import { Input, Error } from 'ui/form';

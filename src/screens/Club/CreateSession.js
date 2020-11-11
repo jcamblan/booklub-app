@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import { ScreenTitle, Headline, Button, theme } from 'ui';
 import DateTimePicker from 'components/DateTimePicker';
 import { Input } from 'ui/form';

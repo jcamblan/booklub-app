@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  View,
-  ScrollView,
-  RefreshControl,
-  ActivityIndicator,
-} from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { Headline, theme, Text, Separator, TextLink, ScreenTitle } from 'ui';
 import LastSessions from 'components/Club/LastSessions';

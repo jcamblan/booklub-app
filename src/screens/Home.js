@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, SafeAreaView, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import { theme } from 'ui';
 import BooklubTitle from 'components/BooklubTitle';
 import { Button } from 'ui/button';
+import SafeAreaView from 'react-native-safe-area-view';
 
 const Home = ({ navigation }) => {
   return (
