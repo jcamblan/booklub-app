@@ -16,7 +16,6 @@ const lightTheme = {
     warning: 'green',
     textLink: colors.primary,
   },
-  bottomBar: { background: colors.secondary, active: colors.primary },
   button: {
     primary: {
       backgroundColor: colors.primary,
@@ -63,7 +62,6 @@ const darkTheme = {
     warning: '#E6973F',
     textLink: colors.primary,
   },
-  bottomBar: { background: '#222222', active: 'white' },
   button: {
     primary: {
       backgroundColor: colors.primary,

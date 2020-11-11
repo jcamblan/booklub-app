@@ -16,8 +16,11 @@ const AuthNavigator = () => {
     >
       <AuthStack.Screen
         options={{
-          headerTitle: '',
-          headerStyle: { backgroundColor: theme.colors.background },
+          headerTitle: 'toto',
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+            shadowColor: 'transparent',
+          },
         }}
         name="Home"
         component={Home}
@@ -25,7 +28,10 @@ const AuthNavigator = () => {
       <AuthStack.Screen
         options={{
           headerTitle: '',
-          headerStyle: { backgroundColor: theme.colors.background },
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+            shadowColor: 'transparent',
+          },
         }}
         name="Login"
         component={Login}
@@ -33,7 +39,10 @@ const AuthNavigator = () => {
       <AuthStack.Screen
         options={{
           headerTitle: '',
-          headerStyle: { backgroundColor: theme.colors.background },
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+            shadowColor: 'transparent',
+          },
         }}
         name="Register"
         component={Register}
