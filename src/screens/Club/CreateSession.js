@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, SafeAreaView } from 'react-native';
-import { H2, TextLink } from 'ui';
+import { ScreenTitle, Headline, Button, theme } from 'ui';
 import DateTimePicker from 'components/DateTimePicker';
 import { Input } from 'ui/form';
 import { useMutation } from '@apollo/client';
@@ -22,7 +22,6 @@ const CreateSession = ({ navigation, route }) => {
         variables: {
           input: {
             clubId: clubId,
-            name: name,
             readDueDate: readDueDate,
             submissionDueDate: submissionDueDate,
           },
@@ -36,26 +35,22 @@ const CreateSession = ({ navigation, route }) => {
 
   return (
     <SafeAreaView>
-      <View style={{ padding: 20 }}>
-        <Input
-          label="Nom de session (optionel)"
-          onChangeText={value => setName(value)}
-          textContentType="emailAddress"
-          style={{ marginBottom: 16 }}
-        />
-        <H2>Fin des inscriptions :</H2>
+      <View style={{ paddingHorizontal: theme.spacing() }}>
+        <ScreenTitle>Create session</ScreenTitle>
+
+        <Headline>Fin des inscriptions :</Headline>
         <DateTimePicker
           onChange={(event, date) => setSubmissionDueDate(date)}
           value={submissionDueDate}
         />
-        <H2>Date limite de lecture :</H2>
+        <Headline>Date limite de lecture :</Headline>
         <DateTimePicker
           onChange={(event, date) => setReadDueDate(date)}
           value={readDueDate}
         />
-        <View style={{ alignItems: 'center' }}>
-          <TextLink title="Valider" onPress={handleCreateSession} />
-        </View>
+        <Button onPress={handleCreateSession} primary>
+          Créer une nouvelle session
+        </Button>
       </View>
     </SafeAreaView>
   );

@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { TextLink, H1, Text, theme } from 'ui';
+import { TextLink, ScreenTitle, Text, theme } from 'ui';
 import { Input, Error } from 'ui/form';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
@@ -41,7 +41,7 @@ const JoinClub = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <View style={{ paddingHorizontal: theme.spacing(), flex: 1 }}>
-          <H1>Join a club</H1>
+          <ScreenTitle>Join a club</ScreenTitle>
           <Text style={{ marginBottom: theme.spacing() }}>
             Enter the 8 digits invitation code provided by your friend.
           </Text>
@@ -87,7 +87,7 @@ const JoinClub = ({ navigation }) => {
                   <Button
                     onPress={() => handleSubmit(values)}
                     isLoading={isSubmitting}
-                    variant="primary"
+                    primary
                   >
                     Join the club
                   </Button>

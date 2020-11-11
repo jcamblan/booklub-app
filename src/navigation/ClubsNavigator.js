@@ -9,7 +9,6 @@ import ClubDetails from 'screens/Club/ClubDetails';
 import SessionDetails from 'screens/Club/SessionDetails';
 import CreateSession from 'screens/Club/CreateSession';
 import CreateSubmission from 'screens/Club/CreateSubmission';
-import BooklubTitle from 'components/BooklubTitle';
 import { theme } from 'ui';
 
 const BooklubStack = createStackNavigator();
@@ -51,22 +50,22 @@ const ClubsNavigator = () => {
       <BooklubStack.Screen
         name="ClubDetails"
         component={ClubDetails}
-        options={({ route }) => ({ title: route.params.title || 'Club' })}
+        options={{ headerTitle: '' }}
       />
       <BooklubStack.Screen
         name="SessionDetails"
         component={SessionDetails}
-        options={({ route }) => ({ title: route.params.title || 'Session' })}
+        options={{ headerTitle: '' }}
       />
       <BooklubStack.Screen
         name="CreateSession"
         component={CreateSession}
-        options={{ headerTitle: 'Lancer une session' }}
+        options={{ headerTitle: '' }}
       />
       <BooklubStack.Screen
         name="CreateSubmission"
         component={CreateSubmission}
-        options={{ headerTitle: 'Participer' }}
+        options={{ headerTitle: '' }}
       />
     </BooklubStack.Navigator>
   );

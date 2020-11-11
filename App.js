@@ -2,7 +2,6 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
 import GraphQLProvider from 'GraphQLProvider';
 import { theme } from 'ui';
-import { Provider as PaperProvider } from 'react-native-paper';
 import AuthProvider from 'AuthProvider';
 import { NavigationContainer } from '@react-navigation/native';
 import { useAuth } from 'hooks';
@@ -31,13 +30,11 @@ const Root = () => {
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <PaperProvider theme={theme}>
-        <AuthProvider>
-          <GraphQLProvider>
-            <Root />
-          </GraphQLProvider>
-        </AuthProvider>
-      </PaperProvider>
+      <AuthProvider>
+        <GraphQLProvider>
+          <Root />
+        </GraphQLProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

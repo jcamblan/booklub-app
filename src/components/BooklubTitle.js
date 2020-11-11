@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { theme, H1 } from 'ui';
+import { theme, ScreenTitle } from 'ui';
 
 const BooklubTitle = ({ size = 40 }) => {
   return (
@@ -10,11 +10,13 @@ const BooklubTitle = ({ size = 40 }) => {
         justifyContent: 'center',
       }}
     >
-      <H1 style={{ fontSize: size, lineHeight: size * 1.25 }}>
+      <ScreenTitle style={{ fontSize: size, lineHeight: size * 1.25 }}>
         BOO
-        <H1 style={{ fontSize: size, color: theme.colors.primary }}>K</H1>
+        <ScreenTitle style={{ fontSize: size, color: theme.colors.primary }}>
+          K
+        </ScreenTitle>
         LÜB
-      </H1>
+      </ScreenTitle>
     </View>
   );
 };

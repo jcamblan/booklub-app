@@ -1,11 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import {
-  formatDistanceDate,
-  formatDate,
-  findNoteColor,
-  pluralize,
-} from 'utils';
+import { formatDistanceDate, formatDate, pluralize } from 'utils';
 import { theme, Text } from 'ui';
 import { round } from 'lodash';
 
@@ -20,13 +15,11 @@ const StatePill = ({ pillState, sessionState }) => {
 
   const backgroundColor =
     pillState === sessionState
-      ? theme.colors.highlight.text
-      : theme.colors.highlight.secondary;
+      ? theme.colors.onPrimary
+      : theme.colors.primaryVariant;
 
   const color =
-    pillState === sessionState
-      ? theme.colors.highlight.background
-      : theme.colors.highlight.ternary;
+    pillState === sessionState ? theme.colors.primary : theme.colors.onPrimary;
 
   return (
     <View
@@ -73,7 +66,7 @@ const SessionCard = ({ session, current = false, style }) => {
     1,
   );
 
-  const textColor = current ? theme.colors.highlight.text : theme.colors.text;
+  const textColor = current ? theme.colors.onPrimary : theme.colors.text;
 
   return (
     <View style={{ width: '100%', ...style }}>
@@ -134,7 +127,7 @@ const SessionCard = ({ session, current = false, style }) => {
           >
             <View
               style={{
-                backgroundColor: findNoteColor(note),
+                backgroundColor: theme.colors.primaryVariant,
                 width: 45,
                 paddingVertical: 6,
                 borderRadius: 10,

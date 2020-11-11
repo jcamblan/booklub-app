@@ -1,132 +1,25 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text, theme } from 'ui';
+import { Text, theme, Table, Row, Cell, HeadCell } from 'ui';
 
 const MemberList = ({ userEdges }) => {
   return (
     <View>
-      <View
-        style={{
-          flexDirection: 'row',
-          width: '100%',
-          justifyContent: 'space-between',
-          marginBottom: 3,
-        }}
-      >
-        <View
-          style={{
-            flexGrow: 2,
-            marginRight: 2,
-          }}
-        >
-          <Text
-            style={{ textAlign: 'center', fontSize: 10, fontWeight: 'bold' }}
-          >
-            Nom
-          </Text>
-        </View>
-        <View
-          style={{
-            width: 50,
-            marginRight: 2,
-          }}
-        >
-          <Text
-            style={{ textAlign: 'center', fontSize: 10, fontWeight: 'bold' }}
-          >
-            Sessions
-          </Text>
-        </View>
-        <View
-          style={{
-            width: 50,
-            marginRight: 2,
-          }}
-        >
-          <Text
-            style={{ textAlign: 'center', fontSize: 10, fontWeight: 'bold' }}
-          >
-            Tirages
-          </Text>
-        </View>
-        <View
-          style={{
-            width: 50,
-          }}
-        >
-          <Text
-            style={{ textAlign: 'center', fontSize: 10, fontWeight: 'bold' }}
-          >
-            Bonus
-          </Text>
-        </View>
-      </View>
+      <Row>
+        <HeadCell flexGrow={4}>Nom</HeadCell>
+        <HeadCell flexGrow={1.5}>Sessions</HeadCell>
+        <HeadCell flexGrow={1.2}>Tirages</HeadCell>
+        <HeadCell flexGrow={1}>Bonus</HeadCell>
+      </Row>
       {userEdges.map(({ node, sessionCount, selectionCount, bonusScore }) => (
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '100%',
-            justifyContent: 'space-between',
-            marginBottom: 3,
-          }}
-          key={node?.id}
-        >
-          <View
-            style={{
-              backgroundColor: theme.colors.secondary,
-              flexGrow: 2,
-              marginRight: 2,
-              borderRadius: 5,
-              padding: 10,
-            }}
-          >
-            <Text>{node?.username}</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: theme.colors.warning,
-              width: 50,
-              marginRight: 2,
-              borderRadius: 5,
-              padding: 10,
-            }}
-          >
-            <Text
-              style={{ textAlign: 'center', color: theme.colors.lightText }}
-            >
-              {sessionCount}
-            </Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: theme.colors.success,
-              width: 50,
-              marginRight: 2,
-              borderRadius: 5,
-              padding: 10,
-            }}
-          >
-            <Text
-              style={{ textAlign: 'center', color: theme.colors.lightText }}
-            >
-              {selectionCount}
-            </Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: theme.colors.primary,
-              width: 50,
-              borderRadius: 5,
-              padding: 10,
-            }}
-          >
-            <Text
-              style={{ textAlign: 'center', color: theme.colors.lightText }}
-            >
-              {bonusScore}
-            </Text>
-          </View>
-        </View>
+        <Row>
+          <Cell justifyContent="flex-start" flexGrow={4}>
+            {node?.username}
+          </Cell>
+          <Cell flexGrow={1.2}>{sessionCount}</Cell>
+          <Cell flexGrow={1.2}>{selectionCount}</Cell>
+          <Cell flexGrow={1}>{bonusScore}</Cell>
+        </Row>
       ))}
     </View>
   );

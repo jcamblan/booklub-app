@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import { H2, theme, Separator, TextLink } from 'ui';
+import { Headline, theme, Separator, TextLink } from 'ui';
 import SessionCard from 'components/Club/SessionCard';
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,8 +18,8 @@ const CurrentSession = ({ session }) => {
           })
         }
         style={{
-          backgroundColor: theme.colors.highlight.background,
-          color: theme.colors.highlight.text,
+          backgroundColor: theme.colors.primary,
+          color: theme.colors.onPrimary,
           marginHorizontal: 0,
           paddingHorizontal: 20,
           paddingVertical: 20,
@@ -33,15 +33,15 @@ const CurrentSession = ({ session }) => {
             alignItems: 'center',
           }}
         >
-          <H2
+          <Headline
             style={{
               marginBottom: 10,
               paddingTop: 0,
-              color: theme.colors.highlight.text,
+              color: theme.colors.onPrimary,
             }}
           >
             Session active
-          </H2>
+          </Headline>
         </View>
 
         <SessionCard session={session} current />

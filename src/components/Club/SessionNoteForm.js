@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Text, theme, Separator, H3 } from 'ui';
+import { Text, theme, Separator, Title } from 'ui';
 import Slider from '@react-native-community/slider';
 import { useMutation } from '@apollo/client';
 import { NOTE_SESSION } from 'api/mutations';
@@ -29,7 +29,7 @@ export const SessionNoteForm = ({ session, userNote }) => {
   return (
     <View style={{ paddingHorizontal: theme.spacing(2), alignItems: 'center' }}>
       {!Boolean(userNote) && <Text>Vous avez lu le livre ? Notez le !</Text>}
-      <H3>{note}/10</H3>
+      <Title>{note}/10</Title>
       <Slider
         style={{ width: '100%', height: 50 }}
         minimumValue={0}
