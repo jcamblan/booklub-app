@@ -12,7 +12,7 @@ const MemberList = ({ userEdges }) => {
         <HeadCell flexGrow={1}>Bonus</HeadCell>
       </Row>
       {userEdges.map(({ node, sessionCount, selectionCount, bonusScore }) => (
-        <Row>
+        <Row key={node?.id}>
           <Cell justifyContent="flex-start" flexGrow={4}>
             {node?.username}
           </Cell>
