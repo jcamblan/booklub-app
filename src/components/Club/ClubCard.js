@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
-import { Text, theme, H2 } from 'ui';
+import { Text, theme, Headline } from 'ui';
 import styled from 'styled-components/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import defaultCover from 'images/default-cover.jpg';
@@ -8,10 +8,10 @@ import { upperCase } from 'lodash';
 import { useNavigation } from '@react-navigation/native';
 
 const Card = styled(TouchableOpacity)`
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${props => props.theme.colors.secondary};
   border-radius: 12px;
-  padding-horizontal: ${({ theme }) => `${theme.spacing()}px`};
-  margin-bottom: ${({ theme }) => `${theme.spacing(0.5)}px`};
+  padding-horizontal: ${props => `${props.theme.spacing()}px`};
+  margin-bottom: ${props => `${props.theme.spacing(0.5)}px`};
   flex-direction: row;
   justify-content: space-between;
 `;
@@ -45,14 +45,14 @@ const ClubCard = ({ club }) => {
           paddingRight: theme.spacing(),
         }}
       >
-        <H2
+        <Headline
           style={{
             paddingTop: theme.spacing(),
             paddingBottom: theme.spacing(0.5),
           }}
         >
           {club.name}
-        </H2>
+        </Headline>
         <View style={{ flexDirection: 'row' }}>
           <MaterialCommunityIcons name="clock" color={theme.colors.primary} />
           <CardSubtitle

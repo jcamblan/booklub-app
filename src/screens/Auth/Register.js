@@ -4,12 +4,11 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
-  ScrollView,
   View,
   Image,
 } from 'react-native';
 import { Formik } from 'formik';
-import { TextLink, Text, H1, theme } from 'ui';
+import { TextLink, Text, ScreenTitle, theme } from 'ui';
 import { Input, Error } from 'ui/form';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
@@ -65,7 +64,7 @@ const Register = ({ navigation }) => {
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{ justifyContent: 'flex-end', flex: 1 }}>
-            <H1>Sign up</H1>
+            <ScreenTitle>Sign up</ScreenTitle>
             <Image
               source={image}
               style={{
@@ -138,7 +137,7 @@ const Register = ({ navigation }) => {
                     <Button
                       onPress={() => handleSubmit(values)}
                       isLoading={isSubmitting}
-                      variant="primary"
+                      primary
                     >
                       Create my account
                     </Button>

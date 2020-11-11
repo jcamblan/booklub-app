@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { View, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
 import {
-  View,
-  ScrollView,
-  SafeAreaView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
-import {
-  H2,
-  H3,
+  Headline,
+  ScreenTitle,
   Text,
   theme,
   TextLink,
   Separator,
   Card,
   SearchInput,
+  Button,
 } from 'ui';
 import { Input } from 'ui/form';
 import { useQuery, useMutation } from '@apollo/client';
@@ -22,6 +17,8 @@ import { BOOKS } from 'api/queries';
 import { CREATE_SUBMISSION } from 'api/mutations';
 import { useNavigation } from '@react-navigation/native';
 import { useDebounce } from 'hooks';
+import RefreshingScrollView from 'components/RefreshingScrollView';
+import BookCard from 'components/Book/BookCard';
 
 const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
   const { data, loading, fetchMore } = useQuery(BOOKS, {
@@ -37,62 +34,28 @@ const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
   }));
 
   return (
-    <FlatList
-      data={books}
-      ListFooterComponent={() => (
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
+    <>
+      {books.map(book => (
+        <BookCard
+          key={book.id}
+          buttonText="Proposer"
+          book={book}
+          onPressButton={() => {
+            onSetBook(book);
+            onHideResults();
           }}
-        >
-          <TextLink
-            title="Ajouter un livre"
-            onPress={() => {
-              onSetBook(null);
-              onHideResults();
-              onSwitchForm();
-            }}
-          />
-        </View>
-      )}
-      style={{ maxHeight: 200, borderRadius: 5 }}
-      renderItem={({ item, index }) => {
-        const result = (
-          <Text>
-            {item?.title},{' '}
-            <Text style={{ fontStyle: 'italic' }}>{item.author}</Text>
-          </Text>
-        );
-        return (
-          <TouchableOpacity
-            style={{
-              flexGrow: 2,
-              marginRight: 2,
-            }}
-            onPress={() => {
-              onSetBook(item);
-              onHideResults();
-            }}
-          >
-            <View
-              style={{
-                backgroundColor:
-                  index % 2 === 0
-                    ? theme.colors.secondary
-                    : theme.colors.ternary,
-                width: '100%',
-                marginRight: 2,
-                padding: 10,
-                justifyContent: 'center',
-              }}
-            >
-              {result}
-            </View>
-          </TouchableOpacity>
-        );
-      }}
-    />
+        />
+      ))}
+      <Button
+        onPress={() => {
+          onSetBook(null);
+          onHideResults();
+          onSwitchForm();
+        }}
+      >
+        Je ne trouve pas mon livre
+      </Button>
+    </>
   );
 };
 
@@ -111,14 +74,19 @@ const BookSelection = ({ onSetBook, onSwitchForm }) => {
 
   return (
     <>
-      <H2 style={{ marginBottom: theme.spacing() }}>Sélection du livre</H2>
-      {/* Search input */}
+      <Headline style={{ marginBottom: theme.spacing() }}>
+        Sélection du livre :
+      </Headline>
 
-      <SearchInput onChangeText={handleChange} placeholder="Titre, auteur..." />
+      {/* Search input */}
+      <SearchInput
+        autoFocus={true}
+        onChangeText={handleChange}
+        placeholder="Titre, auteur..."
+      />
 
       {/* We only render book list one the search begin. */}
       {/* We hide it when user press any item. */}
-
       {resultsDisplay && (
         <>
           <SearchResults
@@ -140,22 +108,27 @@ const NewBookForm = ({ onSwitchForm, onSubmit }) => {
 
   return (
     <View>
-      <H3>Ajouter un nouveau livre :</H3>
+      <Headline style={{ marginBottom: theme.spacing() }}>
+        Ajouter un nouveau livre :
+      </Headline>
       <Input
         label="Titre"
+        placeholder="Titre"
         onChangeText={value => setTitle(value)}
-        style={{ marginBottom: 10 }}
+        autoFocus={true}
       />
-      <Input label="Auteur" onChangeText={value => setAuthor(value)} />
-      <Separator />
-      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-        <TextLink
-          title="Revenir à la recherche"
-          onPress={() => onSwitchForm()}
-        />
-        <TextLink title="Valider" onPress={() => onSubmit({ title, author })} />
+      <Input
+        label="Auteur"
+        placeholder="Auteur"
+        onChangeText={value => setAuthor(value)}
+      />
+
+      <View>
+        <Button onPress={() => onSubmit({ title, author })} primary>
+          Ajouter mon livre
+        </Button>
+        <Button onPress={() => onSwitchForm()}>Revenir à la recherche</Button>
       </View>
-      <Separator />
     </View>
   );
 };
@@ -193,57 +166,46 @@ const CreateSubmission = ({ route }) => {
   };
 
   return (
-    <SafeAreaView>
-      <ScrollView style={{ padding: 20 }}>
-        {!Boolean(submittedBook) && form === 'search' && (
-          <BookSelection
-            onSetBook={value => setBook(value)}
-            onSwitchForm={() => setForm('new')}
-          />
-        )}
-        {!Boolean(submittedBook) && form === 'new' && (
-          <NewBookForm
-            onSwitchForm={() => setForm('search')}
-            onSubmit={value => setNewBook(value)}
-          />
-        )}
-        {Boolean(submittedBook) && (
-          <>
-            <Card>
-              <H3>Livre proposé :</H3>
-              <Text style={{ fontSize: 15, color: theme.colors.success }}>
-                {submittedBook.title}, {submittedBook.author}
-              </Text>
-              <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <TextLink
-                  title="Modifier"
-                  onPress={() => {
-                    setBook(null);
-                    setNewBook(null);
-                  }}
-                />
-              </View>
-            </Card>
-            <Separator />
+    <RefreshingScrollView>
+      <ScreenTitle>Participate</ScreenTitle>
+      {!Boolean(submittedBook) && form === 'search' && (
+        <BookSelection
+          onSetBook={value => setBook(value)}
+          onSwitchForm={() => setForm('new')}
+        />
+      )}
+      {!Boolean(submittedBook) && form === 'new' && (
+        <NewBookForm
+          onSwitchForm={() => setForm('search')}
+          onSubmit={value => setNewBook(value)}
+        />
+      )}
+      {Boolean(submittedBook) && (
+        <>
+          <Card>
+            <Text style={{ fontSize: 15, color: theme.colors.success }}>
+              {submittedBook.title}, {submittedBook.author}
+            </Text>
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               <TextLink
-                title="Valider mon inscription"
-                onPress={() => handleCreateSubmission()}
+                title="Modifier"
+                onPress={() => {
+                  setBook(null);
+                  setNewBook(null);
+                }}
               />
             </View>
-          </>
-        )}
-
-        <Separator />
-
-        <Text style={{ color: theme.colors.ternary }}>
-          Vous vous apprêtez à rejoindre une nouvelle session de lecture. Vous
-          pouvez rechercher un livre à proposer avec le formulaire ci-dessus. Si
-          vous ne trouvez pas le livre que vous cherchez, vous pouvez l'ajouter
-          dans notre base de données.
-        </Text>
-      </ScrollView>
-    </SafeAreaView>
+          </Card>
+          <Separator />
+          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <TextLink
+              title="Valider mon inscription"
+              onPress={() => handleCreateSubmission()}
+            />
+          </View>
+        </>
+      )}
+    </RefreshingScrollView>
   );
 };
 

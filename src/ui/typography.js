@@ -9,23 +9,24 @@ export const Text = styled(RnText)`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const H1 = styled(RnText)`
+export const ScreenTitle = styled(RnText)`
   font-style: normal;
   font-weight: bold;
   font-size: 34px;
   line-height: 41px;
   /* identical to box height, or 121% */
   letter-spacing: 0.374px;
+  margin-bottom: ${({ theme }) => `${theme.spacing()}px`};
 `;
 
-export const H2 = styled(RnText)`
+export const Headline = styled(RnText)`
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   line-height: 24px;
 `;
 
-export const H3 = styled(RnText)`
+export const Title = styled(RnText)`
   ${({ theme }) => omit(theme.material.title, ['lineHeight', 'fontWeight'])};
   line-height: ${({ theme }) => `${theme.material.title.lineHeight}px`};
   font-weight: bold;

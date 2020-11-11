@@ -5,12 +5,11 @@ import {
   Keyboard,
   View,
   SafeAreaView,
-  ScrollView,
   Platform,
   Image,
 } from 'react-native';
 import { Formik } from 'formik';
-import { TextLink, H1, theme } from 'ui';
+import { TextLink, ScreenTitle, theme } from 'ui';
 import { Input, Error } from 'ui/form';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
@@ -47,7 +46,7 @@ const Login = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <H1>Sign in</H1>
+            <ScreenTitle>Sign in</ScreenTitle>
             <Image
               source={image}
               style={{

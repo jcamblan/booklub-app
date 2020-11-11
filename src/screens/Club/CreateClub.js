@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  KeyboardAvoidingView,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from 'react-native';
+import { KeyboardAvoidingView, SafeAreaView, View } from 'react-native';
 import { Formik } from 'formik';
-import { H1, Text, theme } from 'ui';
+import { ScreenTitle, Text, theme } from 'ui';
 import { Input, Error } from 'ui/form';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
@@ -35,7 +30,7 @@ const CreateClub = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <View style={{ padding: 20, flex: 1 }}>
-          <H1>Create a club</H1>
+          <ScreenTitle>Create a club</ScreenTitle>
           <Text style={{ marginBottom: theme.spacing() }}>
             Enter a name for your club, and remember, it's not a poney club.
           </Text>
@@ -78,7 +73,7 @@ const CreateClub = ({ navigation }) => {
                   <Button
                     onPress={() => handleSubmit(values)}
                     isLoading={isSubmitting}
-                    variant="primary"
+                    primary
                   >
                     Create the club
                   </Button>

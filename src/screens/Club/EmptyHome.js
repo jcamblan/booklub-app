@@ -1,14 +1,20 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Image, Text } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import image from 'images/reading_time.png';
-import { H1, theme } from 'ui';
+import { ScreenTitle, theme } from 'ui';
 import { Button } from 'ui/button';
 import { useNavigation } from '@react-navigation/native';
+import RefreshingScrollView from 'components/RefreshingScrollView';
 
-const EmptyHome = () => {
+const EmptyHome = ({ onRefetch }) => {
   const navigation = useNavigation();
+
+  const onRefresh = async () => {
+    await onRefetch();
+  };
+
   return (
-    <ScrollView style={{ padding: theme.spacing() }}>
+    <RefreshingScrollView onRefresh={onRefresh}>
       <View>
         <Image
           source={image}
@@ -18,24 +24,21 @@ const EmptyHome = () => {
             resizeMode: 'contain',
           }}
         />
-        <H1 style={{ textAlign: 'center' }}>Hey Julien!</H1>
+        <ScreenTitle style={{ textAlign: 'center' }}>Hey Julien!</ScreenTitle>
         <View style={{ padding: theme.spacing() }}>
           <Text style={{ textAlign: 'center' }}>
             Create or join your first book club
           </Text>
           <Text style={{ textAlign: 'center' }}> and start reading!</Text>
         </View>
-        <Button
-          onPress={() => navigation.navigate('JoinClub')}
-          variant="primary"
-        >
+        <Button onPress={() => navigation.navigate('JoinClub')} primary>
           Join a club
         </Button>
         <Button onPress={() => navigation.navigate('CreateClub')}>
           Create a club
         </Button>
       </View>
-    </ScrollView>
+    </RefreshingScrollView>
   );
 };
 
