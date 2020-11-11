@@ -3,10 +3,10 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  SafeAreaView,
   View,
   Image,
 } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import { Formik } from 'formik';
 import { TextLink, Text, ScreenTitle, theme } from 'ui';
 import { Input, Error } from 'ui/form';

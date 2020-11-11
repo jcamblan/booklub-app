@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
+import { View, FlatList, TouchableOpacity } from 'react-native';
 import {
   Headline,
   ScreenTitle,

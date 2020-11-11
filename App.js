@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useAuth } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
 import BottomTabNavigator from 'navigation/BottomTabNavigator';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import * as Sentry from 'sentry-expo';
 
@@ -32,7 +33,9 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <GraphQLProvider>
-          <Root />
+          <SafeAreaProvider>
+            <Root />
+          </SafeAreaProvider>
         </GraphQLProvider>
       </AuthProvider>
     </ThemeProvider>

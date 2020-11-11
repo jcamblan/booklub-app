@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, RefreshControl } from 'react-native';
+import { ScrollView, RefreshControl } from 'react-native';
 import { theme } from 'ui';
+import SafeAreaView from 'react-native-safe-area-view';
 
 const RefreshingScrollView = ({ children, onRefresh, ...props }) => {
   const [refreshing, setRefreshing] = useState(false);
@@ -16,7 +17,7 @@ const RefreshingScrollView = ({ children, onRefresh, ...props }) => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView
         style={{ paddingHorizontal: theme.spacing() }}
         refreshControl={
