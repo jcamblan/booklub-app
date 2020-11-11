@@ -108,7 +108,7 @@ const Login = ({ navigation }) => {
                     <Button
                       onPress={() => handleSubmit(values)}
                       isLoading={isSubmitting}
-                      variant="primary"
+                      primary
                     >
                       Sign me in
                     </Button>

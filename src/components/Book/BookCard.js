@@ -20,7 +20,7 @@ const BookAuthor = styled(Text)`
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
-  color: ${props => props.theme.colors.secondaryVariant};
+  color: ${props => props.theme.colors.ternary};
 `;
 
 const Cover = ({ url }) => {

@@ -17,6 +17,7 @@ export const ScreenTitle = styled(RnText)`
   /* identical to box height, or 121% */
   letter-spacing: 0.374px;
   margin-bottom: ${({ theme }) => `${theme.spacing()}px`};
+  color: ${({ theme }) => theme.colors.title};
 `;
 
 export const Headline = styled(RnText)`
@@ -24,6 +25,7 @@ export const Headline = styled(RnText)`
   font-weight: bold;
   font-size: 20px;
   line-height: 24px;
+  color: ${({ theme }) => theme.colors.title};
 `;
 
 export const Title = styled(RnText)`
