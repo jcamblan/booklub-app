@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { SESSION_FULL_DETAILS } from 'api/queries';
-import { View } from 'react-native';
-import {
-  Text,
-  TextLink,
-  ScreenTitle,
-  Headline,
-  Title,
-  Card,
-  theme,
-  Table,
-  Row,
-  Cell,
-  Separator,
-} from 'ui';
-import { formatDate } from 'utils';
-import SessionNoteForm from 'components/Club/SessionNoteForm';
+import { View, Image } from 'react-native';
+import { Text, ScreenTitle, Headline, Title, Card, theme, Button } from 'ui';
+import { formatDistanceDate } from 'utils';
 import RefreshingScrollView from 'components/RefreshingScrollView';
+import Carousel from 'react-native-snap-carousel';
+import { getCover } from 'api/googleBooks';
+import defaultCover from 'images/default-cover.jpg';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import BookCard from 'components/Book/BookCard';
 
 const states = {
   submission: 'Inscription',
@@ -25,6 +17,53 @@ const states = {
   reading: 'Lecture',
   conclusion: 'Vote',
   archived: 'Archivé',
+};
+
+const StateCard = ({ style, iconName, text, title }) => {
+  return (
+    <Card style={{ flex: 1, height: 143, ...style }}>
+      <View style={{ flex: 0, padding: theme.spacing(0.5) }}>
+        <FontAwesome5 name={iconName} size={26} />
+      </View>
+      <View
+        style={{
+          flex: 1,
+          padding: theme.spacing(0.5),
+          justifyContent: 'flex-end',
+        }}
+      >
+        <Text
+          style={{ fontWeight: 'bold', color: theme.colors.secondaryVariant }}
+        >
+          {text}
+        </Text>
+        <Title>{title}</Title>
+      </View>
+    </Card>
+  );
+};
+
+const BookProposal = ({ book, user }) => {
+  const url = getCover({ id: book?.googleBookId });
+  const image = Boolean(url) ? { uri: url } : defaultCover;
+
+  return (
+    <View>
+      <Image
+        source={image}
+        style={{
+          width: 130,
+          height: 208,
+          resizeMode: 'cover',
+          borderRadius: 12,
+        }}
+      />
+      <Text style={{ fontWeight: 'bold' }}>{book.title}</Text>
+      <Text style={{ color: theme.colors.secondaryVariant }}>
+        By {user.username}
+      </Text>
+    </View>
+  );
 };
 
 const SessionDetails = ({ route, navigation }) => {
@@ -44,131 +83,84 @@ const SessionDetails = ({ route, navigation }) => {
       .map(({ node: { value } }) => value)
       .reduce((sum, note) => sum + note, 0) / session?.notes?.edges?.length;
 
-  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = async () => await refetch();
 
-  const onRefresh = async () => {
-    setRefreshing(true);
-    await refetch();
-    setRefreshing(false);
-  };
+  const selectedBookAuthors = (session?.selectedBook?.authors?.edges ?? []).map(
+    ({ node: { name } }) => name,
+  );
+  console.log(selectedBookAuthors);
 
   return (
     <RefreshingScrollView onRefresh={onRefresh}>
       <ScreenTitle>{session?.name}</ScreenTitle>
-      {session?.canParticipate?.value && (
-        <TextLink
-          title="Participer"
-          onPress={() =>
-            navigation.navigate('CreateSubmission', { sessionId: sessionId })
-          }
+
+      <View style={{ flexDirection: 'row', marginBottom: theme.spacing(2) }}>
+        {session?.state === 'submission' && (
+          <StateCard
+            iconName="clock"
+            text="Starts in"
+            title={formatDistanceDate({
+              date: session?.submissionDueDate,
+              addSuffix: false,
+            })}
+            style={{ marginRight: theme.spacing() }}
+          />
+        )}
+        {session?.state !== 'submission' && (
+          <StateCard
+            iconName="clock"
+            text="Ends in"
+            title={formatDistanceDate({
+              date: session?.readDueDate,
+              addSuffix: false,
+            })}
+            style={{ marginRight: theme.spacing() }}
+          />
+        )}
+        <StateCard
+          iconName="users"
+          text="Participants"
+          title={submissions?.length}
         />
-      )}
+      </View>
 
       {Boolean(session?.selectedBook) && (
-        <View style={{ paddingHorizontal: -20 }}>
-          <ScreenTitle style={{ textAlign: 'center' }}>
-            {session?.selectedBook?.title}
-          </ScreenTitle>
-          <Headline style={{ textAlign: 'center', fontStyle: 'italic' }}>
-            {session?.selectedBook?.author}
-          </Headline>
-
-          <Separator />
-        </View>
-      )}
-
-      {session?.canNote?.value && (
-        <SessionNoteForm session={session} userNote={session?.userNote} />
-      )}
-
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-        <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
-          <Card>
-            <Title>{session?.submissions?.totalCount}</Title>
-            <Text>Participants</Text>
-          </Card>
-        </View>
-        <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
-          <Card>
-            <Title>{states[session?.state]}</Title>
-            <Text>Statut</Text>
-          </Card>
-        </View>
-        <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
-          <Card>
-            <Title>{formatDate(session?.submissionDueDate, 'dd/MM/yy')}</Title>
-            <Text>Fin des inscriptions</Text>
-          </Card>
-        </View>
-        <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
-          <Card>
-            <Title>{formatDate(session?.readDueDate, 'dd/MM/yy')}</Title>
-            <Text>Date limite de lecture</Text>
-          </Card>
-        </View>
-        {Boolean(averageClubNote) && (
-          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
-            <Card
-              style={{
-                backgroundColor: theme.colors.ternary,
-              }}
-            >
-              <Title style={{ color: theme.colors.lightText }}>
-                {averageClubNote}
-              </Title>
-              <Text style={{ color: theme.colors.lightText }}>
-                Note moy. (club)
-              </Text>
-            </Card>
-          </View>
-        )}
-        {Boolean(session?.selectedBook?.averageNote) && (
-          <View style={{ width: '50%', padding: theme.spacing(0.2) }}>
-            <Card>
-              <Title>{session?.selectedBook?.averageNote}</Title>
-              <Text>Note moy. (global)</Text>
-            </Card>
-          </View>
-        )}
-      </View>
-      <Separator />
-
-      {notes.length > 0 && (
         <>
-          <Headline>Notes :</Headline>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-            {notes.map(({ id, value, user }) => (
-              <View
-                key={id}
-                style={{ width: '33%', padding: theme.spacing(0.2) }}
-              >
-                <Card style={{ alignItems: 'center' }}>
-                  <Title>{value}</Title>
-                  <Text>{user?.username}</Text>
-                </Card>
-              </View>
-            ))}
-          </View>
-          <Separator />
+          <Headline style={{ marginBottom: theme.spacing() }}>
+            Selected book
+          </Headline>
+          <BookCard
+            coverUrl={getCover({ id: session?.selectedBook?.googleBookId })}
+            book={session?.selectedBook}
+            authorNames={selectedBookAuthors}
+            withNote
+          />
         </>
       )}
 
-      <Headline>Propositions :</Headline>
-      {submissions.length > 0 ? (
-        <Table>
-          {submissions.map(({ id, book, user }) => (
-            <Row key={id}>
-              <Cell justifyContent="flex-start" flexGrow={3}>
-                {book.title}, {book.author}
-              </Cell>
-              <Cell variant="primary">{user.username}</Cell>
-            </Row>
-          ))}
-        </Table>
-      ) : (
-        <Text>Aucun-e inscrit-e pour le moment.</Text>
+      {submissions.length > 0 && (
+        <>
+          <Headline style={{ marginBottom: theme.spacing() }}>
+            Book proposals
+          </Headline>
+          <Carousel
+            keyExtractor={item => item?.id}
+            data={submissions}
+            renderItem={({ item: { user, book }, index, separators }) => (
+              <BookProposal user={user} book={book} />
+            )}
+            itemWidth={130}
+            sliderWidth={theme.screenWidth}
+            slideStyle={{ marginRight: theme.spacing(0.5) }}
+            inactiveSlideScale={1}
+            inactiveSlideOpacity={1}
+            activeSlideAlignment={'start'}
+            contentContainerCustomStyle={{ marginBottom: theme.spacing() }}
+          />
+        </>
       )}
-      <Separator />
+
+      {session?.canParticipate?.value && <Button primary>Submit a book</Button>}
     </RefreshingScrollView>
   );
 };

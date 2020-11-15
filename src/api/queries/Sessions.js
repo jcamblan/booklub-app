@@ -23,6 +23,7 @@ export const SESSION_FULL_DETAILS = gql`
               }
               book {
                 id
+                googleBookId
                 authors {
                   edges {
                     node {
@@ -40,6 +41,8 @@ export const SESSION_FULL_DETAILS = gql`
         selectedBook {
           id
           title
+          googleBookId
+          averageNote
           authors {
             edges {
               node {
