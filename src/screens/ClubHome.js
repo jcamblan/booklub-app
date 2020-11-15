@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { CLUBS } from 'api/queries';
-import ActiveHome from 'screens/Club/ActiveHome';
+import SessionsFeed from 'screens/Club/SessionsFeed';
 import EmptyHome from 'screens/Club/EmptyHome';
 import { ActivityIndicator } from 'react-native';
 
@@ -16,7 +16,7 @@ const ClubHome = ({ navigation }) => {
   }
 
   if (clubs.length > 0) {
-    return <ActiveHome clubs={clubs} onRefetch={refetch} />;
+    return <SessionsFeed clubs={clubs} onRefetch={refetch} />;
   }
 
   return <EmptyHome onRefetch={refetch} />;

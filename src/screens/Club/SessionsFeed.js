@@ -31,7 +31,7 @@ const ClubList = ({ clubs }) => {
   );
 };
 
-const ActiveHome = ({ clubs, onRefetch }) => {
+const SessionsFeed = ({ clubs, onRefetch }) => {
   const navigation = useNavigation();
 
   const currentSessions = (clubs ?? [])
@@ -47,11 +47,11 @@ const ActiveHome = ({ clubs, onRefetch }) => {
 
   return (
     <RefreshingScrollView onRefresh={onRefresh}>
-      <ScreenTitle>Mes clubs</ScreenTitle>
+      <ScreenTitle>Home</ScreenTitle>
       <ClubList clubs={clubs} />
 
       {/* TODO: this must go into modal */}
-      <View
+      {/* <View
         style={{
           paddingTop: theme.spacing(2),
           marginBottom: theme.spacing(15),
@@ -63,9 +63,9 @@ const ActiveHome = ({ clubs, onRefetch }) => {
         <Button onPress={() => navigation.navigate('CreateClub')}>
           Create a club
         </Button>
-      </View>
+      </View> */}
     </RefreshingScrollView>
   );
 };
 
-export default ActiveHome;
+export default SessionsFeed;
