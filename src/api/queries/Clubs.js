@@ -28,7 +28,15 @@ export const CLUBS = gql`
                 node {
                   book {
                     id
-                    author
+                    authors {
+                      edges {
+                        node {
+                          id
+                          name
+                        }
+                      }
+                    }
+                    googleBookId
                     title
                   }
                 }
@@ -38,7 +46,15 @@ export const CLUBS = gql`
             selectedBook {
               id
               title
-              author
+              googleBookId
+              authors {
+                edges {
+                  node {
+                    id
+                    name
+                  }
+                }
+              }
             }
             selectedBookSubmitters {
               nodes {
@@ -86,8 +102,16 @@ export const CLUB_FULL_DETAILS = gql`
               node {
                 book {
                   id
-                  author
                   title
+                  googleBookId
+                  authors {
+                    edges {
+                      node {
+                        id
+                        name
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -96,7 +120,15 @@ export const CLUB_FULL_DETAILS = gql`
           selectedBook {
             id
             title
-            author
+            googleBookId
+            authors {
+              edges {
+                node {
+                  id
+                  name
+                }
+              }
+            }
           }
           selectedBookSubmitters {
             nodes {
@@ -118,7 +150,15 @@ export const CLUB_FULL_DETAILS = gql`
               selectedBook {
                 id
                 title
-                author
+                googleBookId
+                authors {
+                  edges {
+                    node {
+                      id
+                      name
+                    }
+                  }
+                }
               }
               selectedBookSubmitters {
                 nodes {
@@ -133,7 +173,15 @@ export const CLUB_FULL_DETAILS = gql`
                   node {
                     book {
                       id
-                      author
+                      googleBookId
+                      authors {
+                        edges {
+                          node {
+                            id
+                            name
+                          }
+                        }
+                      }
                       title
                     }
                   }
