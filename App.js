@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components/native';
 import GraphQLProvider from 'GraphQLProvider';
 import { theme } from 'ui';
 import AuthProvider from 'AuthProvider';
+import AppProvider from 'AppProvider';
 import { NavigationContainer } from '@react-navigation/native';
 import { useAuth } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
@@ -33,9 +34,11 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <GraphQLProvider>
-          <SafeAreaProvider>
-            <Root />
-          </SafeAreaProvider>
+          <AppProvider>
+            <SafeAreaProvider>
+              <Root />
+            </SafeAreaProvider>
+          </AppProvider>
         </GraphQLProvider>
       </AuthProvider>
     </ThemeProvider>
