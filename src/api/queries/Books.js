@@ -18,7 +18,15 @@ export const BOOKS = gql`
         node {
           id
           title
-          author
+          authors {
+            edges {
+              node {
+                id
+                name
+              }
+            }
+          }
+          googleBookId
           averageNote
           submissionCount
           noteCount
