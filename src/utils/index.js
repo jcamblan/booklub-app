@@ -1,4 +1,4 @@
-import { format, formatDistance } from 'date-fns';
+import { format, formatDistanceStrict } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { theme } from 'ui';
 
@@ -36,17 +36,17 @@ export const formatDate = (date, frmt) => {
   }
 };
 
-export const formatDistanceDate = date => {
+export const formatDistanceDate = ({ date, addSuffix = true }) => {
   try {
-    return formatDistance(new Date(date), new Date(), {
-      addSuffix: true,
+    return formatDistanceStrict(new Date(date), new Date(), {
+      addSuffix: addSuffix,
       locale: fr,
     });
   } catch (err) {
     console.log(err.message, date);
     try {
-      return formatDistance(date, new Date(), {
-        addSuffix: true,
+      return formatDistanceStrict(date, new Date(), {
+        addSuffix: addSuffix,
         locale: fr,
       });
     } catch (err) {
