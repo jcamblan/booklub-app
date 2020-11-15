@@ -5,9 +5,11 @@ import { Button } from 'ui/button';
 import { useNavigation } from '@react-navigation/native';
 import RefreshingScrollView from 'components/RefreshingScrollView';
 import ReadingTime from 'images/ReadingTime';
+import { useApp } from 'hooks';
 
 const EmptyHome = ({ onRefetch }) => {
   const navigation = useNavigation();
+  const { currentUser } = useApp();
 
   const onRefresh = async () => {
     await onRefetch();
@@ -20,7 +22,7 @@ const EmptyHome = ({ onRefetch }) => {
         <ScreenTitle
           style={{ textAlign: 'center', paddingTop: theme.spacing(2) }}
         >
-          Hey Julien!
+          Hey {currentUser?.username}!
         </ScreenTitle>
         <View style={{ paddingBottom: theme.spacing() }}>
           <Text style={{ textAlign: 'center' }}>
