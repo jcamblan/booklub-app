@@ -60,9 +60,7 @@ const Register = ({ navigation }) => {
         password: values.password,
       });
       onUpdate(data);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

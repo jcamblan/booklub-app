@@ -23,7 +23,14 @@ export const SESSION_FULL_DETAILS = gql`
               }
               book {
                 id
-                author
+                authors {
+                  edges {
+                    node {
+                      id
+                      name
+                    }
+                  }
+                }
                 title
               }
             }
@@ -33,7 +40,14 @@ export const SESSION_FULL_DETAILS = gql`
         selectedBook {
           id
           title
-          author
+          authors {
+            edges {
+              node {
+                id
+                name
+              }
+            }
+          }
           averageNote
         }
         selectedBookSubmitters {
