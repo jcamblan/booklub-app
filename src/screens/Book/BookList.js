@@ -14,13 +14,27 @@ import { BOOKS } from 'api/queries';
 import { round } from 'lodash';
 import BookCard from 'components/Book/BookCard';
 import RefreshingScrollView from 'components/RefreshingScrollView';
+import { getCover } from 'api/googleBooks';
 
 const List = ({ books, onReorder }) => {
   return (
     <View>
-      {books.map(book => (
-        <BookCard key={book.id} book={book} />
-      ))}
+      {books.map(book => {
+        const authorNames = (book?.authors?.edges ?? []).map(
+          ({ node }) => node?.name,
+        );
+
+        const coverUrl = getCover({ id: book.googleBookId });
+
+        return (
+          <BookCard
+            coverUrl={coverUrl}
+            key={book.id}
+            book={book}
+            authorNames={authorNames}
+          />
+        );
+      })}
     </View>
   );
 };

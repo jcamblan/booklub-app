@@ -24,7 +24,7 @@ const BookAuthor = styled(Text)`
 `;
 
 const Cover = ({ url }) => {
-  const image = url || defaultCover;
+  const image = Boolean(url) ? { uri: url } : defaultCover;
 
   return (
     <Image
@@ -81,11 +81,18 @@ const BookButton = ({ children, onPress }) => {
   );
 };
 
-const BookCard = ({ book, buttonText, onPressButton }) => {
+const BookCard = ({
+  book,
+  authorNames,
+  coverUrl,
+  buttonText,
+  onPressButton,
+  withNote = false,
+}) => {
   return (
     <View style={{ flexDirection: 'row', marginBottom: theme.spacing() }}>
       <View style={{ width: 100, justifyContent: 'center' }}>
-        <Cover />
+        <Cover url={coverUrl} />
       </View>
       <View
         style={{
@@ -95,8 +102,8 @@ const BookCard = ({ book, buttonText, onPressButton }) => {
         }}
       >
         <BookTitle>{book?.title}</BookTitle>
-        <BookAuthor>{book?.author}</BookAuthor>
-        <BookNote note={book.averageNote} />
+        <BookAuthor>{authorNames?.join(', ')}</BookAuthor>
+        {withNote && <BookNote note={book.averageNote} />}
         {Boolean(buttonText) && (
           <BookButton onPress={onPressButton}>{buttonText}</BookButton>
         )}

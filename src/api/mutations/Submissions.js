@@ -14,7 +14,15 @@ export const CREATE_SUBMISSION = gql`
         book {
           id
           title
-          author
+          googleBookId
+          authors {
+            edges {
+              node {
+                id
+                name
+              }
+            }
+          }
         }
       }
       errors {

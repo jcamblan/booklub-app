@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import defaultCover from 'images/default-cover.jpg';
 import { upperCase } from 'lodash';
 import { useNavigation } from '@react-navigation/native';
+import { getCover } from 'api/googleBooks';
 
 const Card = styled(TouchableOpacity)`
   background-color: ${props => props.theme.colors.secondary};
@@ -29,6 +30,10 @@ const CardSubtitle = styled(Text)`
 
 const ClubCard = ({ club }) => {
   const navigation = useNavigation();
+  const coverUrl = getCover({
+    id: club?.currentSession?.selectedBook?.googleBookId,
+  });
+
   return (
     <Card
       onPress={() =>
@@ -64,7 +69,7 @@ const ClubCard = ({ club }) => {
       </View>
       <View style={{ width: '25%', justifyContent: 'center' }}>
         <Image
-          source={defaultCover}
+          source={{ uri: coverUrl }}
           style={{
             width: 'auto',
             height: 112,
