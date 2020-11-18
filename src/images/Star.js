@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
+import { theme } from 'ui';
 
 const Star = ({ fill }) => {
-  const color = Boolean(fill) ? '#FFC41F' : '#DEDEDE';
+  const color = Boolean(fill) ? '#FFC41F' : theme.colors.secondary;
   return (
     <Svg width={14} height={13} viewBox="0 0 14 13" fill="none">
       <Path
