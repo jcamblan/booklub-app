@@ -28,18 +28,19 @@ const CardSubtitle = styled(Text)`
   color: #9b9b9b;
 `;
 
-const ClubCard = ({ club }) => {
+const FeedItem = ({ session }) => {
   const navigation = useNavigation();
   const coverUrl = getCover({
-    id: club?.currentSession?.selectedBook?.googleBookId,
+    id: session?.selectedBook?.googleBookId,
   });
+  const club = session?.club;
 
   return (
     <Card
       onPress={() =>
-        navigation.navigate('ClubDetails', {
-          clubId: club.id,
-          title: club.name,
+        navigation.navigate('SessionDetails', {
+          sessionId: session?.id,
+          title: session?.name,
         })
       }
     >
@@ -56,14 +57,14 @@ const ClubCard = ({ club }) => {
             paddingBottom: theme.spacing(0.5),
           }}
         >
-          {club.name}
+          {session?.club?.name}
         </Headline>
         <View style={{ flexDirection: 'row' }}>
           <MaterialCommunityIcons name="clock" color={theme.colors.primary} />
           <CardSubtitle
             style={{ paddingBottom: theme.spacing(), paddingLeft: 4 }}
           >
-            {club.currentSession?.state}
+            {session?.name} : {session?.state}
           </CardSubtitle>
         </View>
       </View>
@@ -81,4 +82,4 @@ const ClubCard = ({ club }) => {
   );
 };
 
-export default ClubCard;
+export default FeedItem;

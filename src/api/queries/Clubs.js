@@ -1,68 +1,12 @@
 import gql from 'graphql-tag';
 
-export const CLUBS = gql`
+export const CLUBS_COUNT = gql`
   query myClubs {
     myClubs(last: 5) {
       edges {
         node {
           id
           name
-          users {
-            totalCount
-          }
-          sessions(last: 1) {
-            nodes {
-              id
-              readDueDate
-              state
-            }
-          }
-          currentSession {
-            id
-            name
-            state
-            readDueDate
-            submissionDueDate
-            submissions {
-              edges {
-                node {
-                  book {
-                    id
-                    authors {
-                      edges {
-                        node {
-                          id
-                          name
-                        }
-                      }
-                    }
-                    googleBookId
-                    title
-                  }
-                }
-              }
-              totalCount
-            }
-            selectedBook {
-              id
-              title
-              googleBookId
-              authors {
-                edges {
-                  node {
-                    id
-                    name
-                  }
-                }
-              }
-            }
-            selectedBookSubmitters {
-              nodes {
-                id
-                username
-              }
-            }
-          }
         }
       }
     }

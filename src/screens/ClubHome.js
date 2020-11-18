@@ -1,22 +1,20 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { CLUBS } from 'api/queries';
-import SessionsFeed from 'screens/Club/SessionsFeed';
+import { CLUBS_COUNT } from 'api/queries';
+import Feed from 'screens/Club/Feed';
 import EmptyHome from 'screens/Club/EmptyHome';
 import { ActivityIndicator } from 'react-native';
 
 const ClubHome = ({ navigation }) => {
-  const { data, loading, refetch } = useQuery(CLUBS);
-  const clubs = (data?.myClubs?.edges ?? []).map(({ node }) => ({
-    ...node,
-  }));
+  const { data, loading, refetch } = useQuery(CLUBS_COUNT);
+  const clubCount = data?.myClubs?.edges?.length;
 
   if (loading) {
     return <ActivityIndicator />;
   }
 
-  if (clubs.length > 0) {
-    return <SessionsFeed clubs={clubs} onRefetch={refetch} />;
+  if (clubCount > 0) {
+    return <Feed />;
   }
 
   return <EmptyHome onRefetch={refetch} />;
