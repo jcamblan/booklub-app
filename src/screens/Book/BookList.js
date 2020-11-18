@@ -32,6 +32,7 @@ const List = ({ books, onReorder }) => {
             key={book.id}
             book={book}
             authorNames={authorNames}
+            withNote
           />
         );
       })}

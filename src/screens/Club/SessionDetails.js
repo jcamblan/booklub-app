@@ -23,7 +23,11 @@ const StateCard = ({ style, iconName, text, title }) => {
   return (
     <Card style={{ flex: 1, height: 143, ...style }}>
       <View style={{ flex: 0, padding: theme.spacing(0.5) }}>
-        <FontAwesome5 name={iconName} size={26} />
+        <FontAwesome5
+          name={iconName}
+          size={26}
+          color={theme.colors.onSecondary}
+        />
       </View>
       <View
         style={{

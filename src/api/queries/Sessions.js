@@ -82,3 +82,30 @@ export const SESSION_FULL_DETAILS = gql`
     }
   }
 `;
+
+export const SESSIONS = gql`
+  query mySessions {
+    mySessions(last: 100, order: { by: next_step_date, direction: desc }) {
+      edges {
+        node {
+          id
+          name
+          readDueDate
+          state
+          submissionDueDate
+          club {
+            id
+            name
+          }
+          submissions {
+            totalCount
+          }
+          selectedBook {
+            id
+            googleBookId
+          }
+        }
+      }
+    }
+  }
+`;
