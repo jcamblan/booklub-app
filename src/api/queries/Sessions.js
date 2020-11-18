@@ -13,6 +13,10 @@ export const SESSION_FULL_DETAILS = gql`
         canParticipate {
           value
         }
+        club {
+          id
+          name
+        }
         submissions {
           edges {
             node {

@@ -165,6 +165,16 @@ const SessionDetails = ({ route, navigation }) => {
       )}
 
       {session?.canParticipate?.value && <Button primary>Submit a book</Button>}
+      <Button
+        onPress={() =>
+          navigation.navigate('ClubDetails', {
+            clubId: session?.club?.id,
+            title: session?.club?.name,
+          })
+        }
+      >
+        View club profile
+      </Button>
     </RefreshingScrollView>
   );
 };
