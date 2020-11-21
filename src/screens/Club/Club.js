@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { Headline, theme, Text, TextLink, ScreenTitle, Separator } from 'ui';
+import { Headline, theme, Text, Button, ScreenTitle, Separator } from 'ui';
 import { CLUB_FULL_DETAILS } from 'api/queries';
 import RefreshingScrollView from 'components/RefreshingScrollView';
 import SessionCard from 'components/Club/SessionCard';
@@ -55,6 +55,22 @@ const Club = ({ route, navigation }) => {
       {Boolean(club?.currentSession) && (
         <>
           <SessionCard session={club?.currentSession} />
+          <Separator />
+        </>
+      )}
+
+      {club?.canCreateSession?.value && (
+        <>
+          <Button
+            primary
+            onPress={() =>
+              navigation.navigate('CreateSession', {
+                clubId: club?.id,
+              })
+            }
+          >
+            Start new session
+          </Button>
           <Separator />
         </>
       )}
