@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, View } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { Formik } from 'formik';
@@ -8,17 +8,26 @@ import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { CREATE_CLUB } from 'api/mutations';
 import { Button } from 'ui/button';
+import ImagePicker from 'components/ImagePicker';
+import { ReactNativeFile } from 'apollo-upload-client';
 
 const CreateClub = ({ navigation }) => {
+  const [imageUri, setImageUri] = useState();
   const [createClub] = useMutation(CREATE_CLUB, {
     refetchQueries: ['myClubs'],
+  });
+
+  const file = new ReactNativeFile({
+    uri: imageUri,
+    name: 'a.jpg',
+    type: 'image/jpeg',
   });
 
   const handleCreateClub = async values => {
     try {
       await createClub({
         variables: {
-          input: values,
+          input: { file, ...values },
         },
       });
       navigation.navigate('ClubHome');
@@ -62,6 +71,7 @@ const CreateClub = ({ navigation }) => {
                   onSubmitEditing={() => handleSubmit(values)}
                   autoFocus={true}
                 />
+                <ImagePicker onPickImage={uri => setImageUri(uri)} />
                 <Error>{status}</Error>
                 <View
                   style={{

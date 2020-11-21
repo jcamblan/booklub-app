@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  TouchableOpacity,
-  Text as RnText,
-  View,
-  Dimensions,
-  TextInput,
-} from 'react-native';
+import { View } from 'react-native';
+import { theme } from './theme';
 import styled from 'styled-components/native';
-import theme from './theme';
 
 export const Card = styled(View)`
   elevation: 19;
@@ -16,4 +10,15 @@ export const Card = styled(View)`
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
-export const Separator = () => <View style={{ marginVertical: 20 }} />;
+export const Separator = ({ spacing = theme.spacing() }) => {
+  return (
+    <View
+      style={{
+        marginVertical: spacing,
+        borderBottomColor: theme.colors.onBackground,
+        opacity: 0.08,
+        borderBottomWidth: 1,
+      }}
+    />
+  );
+};

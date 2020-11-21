@@ -2,11 +2,28 @@ import gql from 'graphql-tag';
 
 export const CLUBS_COUNT = gql`
   query myClubs {
-    myClubs(last: 5) {
+    myClubs {
       edges {
         node {
           id
           name
+        }
+      }
+    }
+  }
+`;
+
+export const MY_CLUBS = gql`
+  query myClubs {
+    myClubs {
+      edges {
+        node {
+          id
+          name
+          bannerUrl
+          users {
+            totalCount
+          }
         }
       }
     }
@@ -65,6 +82,7 @@ export const CLUB_FULL_DETAILS = gql`
             id
             title
             googleBookId
+            averageNote
             authors {
               edges {
                 node {
@@ -85,7 +103,10 @@ export const CLUB_FULL_DETAILS = gql`
           id
           username
         }
-        sessions {
+        sessions(
+          filter: { state: { in: [conclusion, archived] } }
+          order: { by: read_due_date, direction: desc }
+        ) {
           edges {
             node {
               id
@@ -95,6 +116,7 @@ export const CLUB_FULL_DETAILS = gql`
                 id
                 title
                 googleBookId
+                averageNote
                 authors {
                   edges {
                     node {

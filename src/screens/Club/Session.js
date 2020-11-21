@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { SESSION_FULL_DETAILS } from 'api/queries';
 import { View, Image } from 'react-native';
-import { Text, ScreenTitle, Headline, Title, Card, theme, Button } from 'ui';
+import {
+  Text,
+  ScreenTitle,
+  Headline,
+  Title,
+  Card,
+  theme,
+  Button,
+  Separator,
+} from 'ui';
 import { formatDistanceDate } from 'utils';
 import RefreshingScrollView from 'components/RefreshingScrollView';
 import Carousel from 'react-native-snap-carousel';
@@ -70,7 +79,7 @@ const BookProposal = ({ book, user }) => {
   );
 };
 
-const SessionDetails = ({ route, navigation }) => {
+const Session = ({ route, navigation }) => {
   const sessionId = route?.params?.sessionId;
   const { data, loading, refetch } = useQuery(SESSION_FULL_DETAILS, {
     variables: { id: sessionId },
@@ -98,7 +107,7 @@ const SessionDetails = ({ route, navigation }) => {
     <RefreshingScrollView onRefresh={onRefresh}>
       <ScreenTitle>{session?.name}</ScreenTitle>
 
-      <View style={{ flexDirection: 'row', marginBottom: theme.spacing(2) }}>
+      <View style={{ flexDirection: 'row' }}>
         {session?.state === 'submission' && (
           <StateCard
             iconName="clock"
@@ -128,6 +137,8 @@ const SessionDetails = ({ route, navigation }) => {
         />
       </View>
 
+      <Separator />
+
       {Boolean(session?.selectedBook) && (
         <>
           <Headline style={{ marginBottom: theme.spacing() }}>
@@ -139,6 +150,10 @@ const SessionDetails = ({ route, navigation }) => {
             authorNames={selectedBookAuthors}
             withNote
           />
+          <View style={{ marginTop: theme.spacing() }}>
+            <Button primary>Submit your review</Button>
+          </View>
+          <Separator />
         </>
       )}
 
@@ -165,18 +180,8 @@ const SessionDetails = ({ route, navigation }) => {
       )}
 
       {session?.canParticipate?.value && <Button primary>Submit a book</Button>}
-      <Button
-        onPress={() =>
-          navigation.navigate('ClubDetails', {
-            clubId: session?.club?.id,
-            title: session?.club?.name,
-          })
-        }
-      >
-        View club profile
-      </Button>
     </RefreshingScrollView>
   );
 };
 
-export default SessionDetails;
+export default Session;
