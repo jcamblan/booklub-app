@@ -8,7 +8,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const SelectedBook = ({ book, session }) => {
   const url = getCover({ id: book?.googleBookId });
-  const image = Boolean(url) ? { uri: url } : defaultCover;
   const navigation = useNavigation();
 
   return (
@@ -21,7 +20,7 @@ const SelectedBook = ({ book, session }) => {
       }
     >
       <Image
-        source={image}
+        source={{ uri: url }}
         style={{
           width: 130,
           height: 208,
