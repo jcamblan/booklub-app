@@ -1,174 +1,83 @@
 import React from 'react';
-import { View } from 'react-native';
-import { formatDistanceDate, formatDate, pluralize } from 'utils';
-import { theme, Text } from 'ui';
-import { round } from 'lodash';
+import { View, Image, TouchableOpacity } from 'react-native';
+import { Text, theme, Headline } from 'ui';
+import styled from 'styled-components/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import defaultCover from 'images/default-cover.jpg';
+import { upperCase } from 'lodash';
+import { useNavigation } from '@react-navigation/native';
+import { getCover } from 'api/googleBooks';
 
-const StatePill = ({ pillState, sessionState }) => {
-  const states = {
-    submission: 'Inscript.',
-    draw: 'Tirage',
-    reading: 'Lecture',
-    conclusion: 'Vote',
-    archived: 'Archivé',
-  };
+const Card = styled(TouchableOpacity)`
+  background-color: ${props => props.theme.colors.secondary};
+  border-radius: 12px;
+  padding-horizontal: ${props => `${props.theme.spacing()}px`};
+  margin-bottom: ${props => `${props.theme.spacing(0.5)}px`};
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
-  const backgroundColor =
-    pillState === sessionState
-      ? theme.colors.onPrimary
-      : theme.colors.primaryVariant;
+const CardSubtitle = styled(Text)`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height, or 117% */
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #9b9b9b;
+`;
 
-  const color =
-    pillState === sessionState ? theme.colors.primary : theme.colors.onPrimary;
+const SessionCard = ({ session }) => {
+  const navigation = useNavigation();
+  const coverUrl = getCover({
+    id: session?.selectedBook?.googleBookId,
+  });
 
   return (
-    <View
-      style={{
-        backgroundColor: backgroundColor,
-        padding: 5,
-        width: '24%',
-        borderRadius: 5,
-      }}
+    <Card
+      onPress={() =>
+        navigation.navigate('Session', {
+          sessionId: session?.id,
+          title: session?.name,
+        })
+      }
     >
-      <Text style={{ color: color, textAlign: 'center' }}>
-        {states[pillState]}
-      </Text>
-    </View>
-  );
-};
-
-const StateBar = ({ state }) => {
-  return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginBottom: 10,
-      }}
-    >
-      <StatePill sessionState={state} pillState="submission" />
-      <StatePill sessionState={state} pillState="draw" />
-      <StatePill sessionState={state} pillState="reading" />
-      <StatePill sessionState={state} pillState="conclusion" />
-    </View>
-  );
-};
-
-const SessionCard = ({ session, current = false, style }) => {
-  const book = session?.selectedBook;
-  const submitters = session?.selectedBookSubmitters?.nodes;
-  const readDueDate = formatDate(session?.readDueDate, 'dd/MM/yyyy');
-  const submissionDueDate = formatDistanceDate(session?.submissionDueDate);
-  const note = round(
-    (session?.notes?.edges ?? [])
-      .map(({ node: { value } }) => value)
-      .reduce((sum, note) => sum + note, 0) / session?.notes?.edges?.length,
-    1,
-  );
-
-  const textColor = current ? theme.colors.onPrimary : theme.colors.text;
-
-  return (
-    <View style={{ width: '100%', ...style }}>
-      {current && <StateBar state={session?.state} />}
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <View style={{ flexShrink: 2 }}>
-          {Boolean(book) && session?.state !== 'submission' && (
-            <>
-              <Text
-                style={{
-                  fontWeight: 'bold',
-                  textDecorationLine: 'underline',
-                  fontSize: 20,
-                  color: textColor,
-                }}
-              >
-                {book?.title}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 20,
-                  marginBottom: 10,
-                  fontStyle: 'italic',
-                  fontSize: 20,
-                  color: textColor,
-                }}
-              >
-                {book?.author}
-              </Text>
-
-              <Text style={{ color: textColor }}>
-                Proposé par :{' '}
-                {submitters?.map(user => user.username).join(', ')}
-              </Text>
-            </>
-          )}
-
-          {(session?.state === 'submission' || session?.state === 'draw') && (
-            <Text style={{ color: textColor }}>
-              {session?.submissions?.totalCount}{' '}
-              {pluralize('livre proposé', session?.submissions?.totalCount)}
-            </Text>
-          )}
-
-          {session?.state === 'submission' && (
-            <Text style={{ color: textColor }}>
-              Tirage au sort : {submissionDueDate}
-            </Text>
-          )}
-        </View>
-
-        {!current && Boolean(note) && (
-          <View
-            style={{
-              paddingLeft: 10,
-              justifyContent: 'center',
-            }}
+      <View
+        style={{
+          width: '75%',
+          justifyContent: 'center',
+          paddingRight: theme.spacing(),
+        }}
+      >
+        <Headline
+          style={{
+            paddingTop: theme.spacing(),
+            paddingBottom: theme.spacing(0.5),
+          }}
+        >
+          {session?.name}
+        </Headline>
+        <View style={{ flexDirection: 'row' }}>
+          <MaterialCommunityIcons name="clock" color={theme.colors.primary} />
+          <CardSubtitle
+            style={{ paddingBottom: theme.spacing(), paddingLeft: 4 }}
           >
-            <View
-              style={{
-                backgroundColor: theme.colors.primaryVariant,
-                width: 45,
-                paddingVertical: 6,
-                borderRadius: 10,
-              }}
-            >
-              <View>
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    color: theme.colors.lightText,
-                    fontSize: 20,
-                  }}
-                >
-                  {note}
-                </Text>
-              </View>
-              <View alignItems="center">
-                <View
-                  style={{
-                    borderBottomColor: theme.colors.lightText,
-                    borderBottomWidth: 1,
-                    width: '50%',
-                  }}
-                />
-              </View>
-              <View>
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    color: theme.colors.lightText,
-                    fontSize: 20,
-                  }}
-                >
-                  10
-                </Text>
-              </View>
-            </View>
-          </View>
-        )}
+            {session?.state}
+          </CardSubtitle>
+        </View>
       </View>
-    </View>
+      <View style={{ width: '25%', justifyContent: 'center' }}>
+        <Image
+          source={{ uri: coverUrl }}
+          style={{
+            width: 'auto',
+            height: 112,
+            resizeMode: 'cover',
+          }}
+        />
+      </View>
+    </Card>
   );
 };
 

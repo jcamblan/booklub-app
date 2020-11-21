@@ -6,7 +6,6 @@ import {
   Text,
   theme,
   TextLink,
-  Separator,
   Card,
   SearchInput,
   Button,
@@ -92,7 +91,6 @@ const BookSelection = ({ onSetBook, onSwitchForm }) => {
             onSetBook={value => onSetBook(value)}
             onHideResults={() => setResultsDisplay(false)}
           />
-          <Separator />
         </>
       )}
     </>
@@ -120,7 +118,7 @@ const CreateSubmission = ({ route }) => {
     try {
       const { data } = await createSubmission({ variables });
       if (Boolean(data?.createSubmission?.submission?.id)) {
-        navigation.navigate('SessionDetails', { sessionId: sessionId });
+        navigation.navigate('Session', { sessionId: sessionId });
       }
     } catch (err) {
       console.dir(err);

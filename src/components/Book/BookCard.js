@@ -44,7 +44,7 @@ const NoteWrapper = styled(View)`
   padding-vertical: ${props => `${props.theme.spacing(0.5)}px`};
 `;
 
-const BookNote = ({ note }) => {
+export const BookNote = ({ note }) => {
   return (
     <NoteWrapper>
       <Star fill={note >= 2} />
@@ -90,7 +90,7 @@ const BookCard = ({
   withNote = false,
 }) => {
   return (
-    <View style={{ flexDirection: 'row', marginBottom: theme.spacing() }}>
+    <View style={{ flexDirection: 'row' }}>
       <View style={{ width: 100, justifyContent: 'center' }}>
         <Cover url={coverUrl} />
       </View>

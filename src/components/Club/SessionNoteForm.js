@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Text, theme, Separator, Title } from 'ui';
+import { Text, theme, Title } from 'ui';
 import Slider from '@react-native-community/slider';
 import { useMutation } from '@apollo/client';
 import { NOTE_SESSION } from 'api/mutations';
@@ -41,8 +41,6 @@ export const SessionNoteForm = ({ session, userNote }) => {
         onValueChange={value => setNote(value)}
         onSlidingComplete={() => handleSlidingComplete()}
       />
-      {/* <TextLink title="Valider mon vote" /> */}
-      <Separator />
     </View>
   );
 };

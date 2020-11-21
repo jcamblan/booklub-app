@@ -6,7 +6,7 @@ import {
   RefreshControl,
   TextInput,
 } from 'react-native';
-import { Text, theme, ScreenTitle, Separator } from 'ui';
+import { Text, theme, ScreenTitle } from 'ui';
 import { SearchInput as SearchBook } from 'ui/form';
 import { useQuery } from '@apollo/client';
 import { Input } from 'ui/form';
@@ -27,13 +27,15 @@ const List = ({ books, onReorder }) => {
         const coverUrl = getCover({ id: book.googleBookId });
 
         return (
-          <BookCard
-            coverUrl={coverUrl}
-            key={book.id}
-            book={book}
-            authorNames={authorNames}
-            withNote
-          />
+          <View style={{ marginBottom: theme.spacing() }}>
+            <BookCard
+              coverUrl={coverUrl}
+              key={book.id}
+              book={book}
+              authorNames={authorNames}
+              withNote
+            />
+          </View>
         );
       })}
     </View>
@@ -133,8 +135,6 @@ const BookList = () => {
       <List books={books} onReorder={handleReorder} />
 
       {(loading || fetching) && <ActivityIndicator margin={10} />}
-
-      <Separator />
     </RefreshingScrollView>
   );
 };
