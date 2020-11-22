@@ -23,7 +23,7 @@ const PreviousBook = ({ book }) => {
           borderRadius: 12,
         }}
       />
-      <Text style={{ fontWeight: 'bold' }}>{book.title}</Text>
+      <Text style={{ fontWeight: 'bold' }}>{book?.title}</Text>
       <Text style={{ color: theme.colors.secondaryVariant }}>
         By {user.username}
       </Text>
