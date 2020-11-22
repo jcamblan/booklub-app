@@ -6,12 +6,11 @@ import {
   View,
 } from 'react-native';
 import { Formik } from 'formik';
-import { TextLink, ScreenTitle, Text, theme } from 'ui';
+import { ScreenTitle, Text, theme, Button } from 'ui';
 import { Input, Error } from 'ui/form';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { JOIN_CLUB } from 'api/mutations';
-import { Button } from 'ui/button';
 
 const JoinClub = ({ navigation }) => {
   const [joinClub] = useMutation(JOIN_CLUB);

@@ -9,14 +9,13 @@ import {
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { Formik } from 'formik';
-import { TextLink, ScreenTitle, theme } from 'ui';
+import { ScreenTitle, theme, Button } from 'ui';
 import { Input, Error } from 'ui/form';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import BooklubTitle from 'components/BooklubTitle';
-import { Button } from 'ui/button';
 
 const Login = ({ navigation }) => {
   const { onUpdate } = useAuth();

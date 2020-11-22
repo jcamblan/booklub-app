@@ -5,7 +5,6 @@ import {
   ScreenTitle,
   Text,
   theme,
-  TextLink,
   Card,
   SearchInput,
   Button,

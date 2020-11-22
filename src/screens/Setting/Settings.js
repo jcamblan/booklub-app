@@ -1,16 +1,16 @@
 import React from 'react';
-import { SafeAreaView, View } from 'react-native';
-import { TextLink } from 'ui';
+import { View } from 'react-native';
+import { Button, ScreenTitle, theme } from 'ui';
 import { useAuth } from 'hooks';
+import SafeAreaView from 'react-native-safe-area-view';
 
 const Settings = () => {
   const { onReset } = useAuth();
 
   return (
-    <SafeAreaView>
-      <View style={{ padding: 20 }}>
-        <TextLink onPress={() => onReset()} title="Se déconnecter" />
-      </View>
+    <SafeAreaView style={{ paddingHorizontal: theme.spacing() }}>
+      <ScreenTitle>Settings</ScreenTitle>
+      <Button onPress={() => onReset()}>Se déconnecter</Button>
     </SafeAreaView>
   );
 };
