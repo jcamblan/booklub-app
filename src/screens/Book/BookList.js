@@ -27,10 +27,9 @@ const List = ({ books, onReorder }) => {
         const coverUrl = getCover({ id: book.googleBookId });
 
         return (
-          <View style={{ marginBottom: theme.spacing() }}>
+          <View style={{ marginBottom: theme.spacing() }} key={book.id}>
             <BookCard
               coverUrl={coverUrl}
-              key={book.id}
               book={book}
               authorNames={authorNames}
               withNote

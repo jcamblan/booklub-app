@@ -26,11 +26,9 @@ export const formatDate = (date, frmt) => {
   try {
     return format(new Date(date), frmt, { locale: fr });
   } catch (err) {
-    console.log(err.message, date);
     try {
       return format(date, frmt, { locale: fr });
     } catch (err) {
-      console.log(err.message);
       return '';
     }
   }
@@ -43,14 +41,12 @@ export const formatDistanceDate = ({ date, addSuffix = true }) => {
       locale: fr,
     });
   } catch (err) {
-    console.log(err.message, date);
     try {
       return formatDistanceStrict(date, new Date(), {
         addSuffix: addSuffix,
         locale: fr,
       });
     } catch (err) {
-      console.log(err.message);
       return '';
     }
   }

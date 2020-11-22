@@ -101,7 +101,6 @@ const Session = ({ route, navigation }) => {
   const selectedBookAuthors = (session?.selectedBook?.authors?.edges ?? []).map(
     ({ node: { name } }) => name,
   );
-  console.log(selectedBookAuthors);
 
   return (
     <RefreshingScrollView onRefresh={onRefresh}>
@@ -151,7 +150,9 @@ const Session = ({ route, navigation }) => {
             withNote
           />
           <View style={{ marginTop: theme.spacing() }}>
-            <Button primary>Submit your review</Button>
+            <Button primary>
+              {Boolean(session?.userNote) ? 'Edit' : 'Submit'} your review
+            </Button>
           </View>
           <Separator />
         </>
