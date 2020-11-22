@@ -185,7 +185,16 @@ const Session = ({ route, navigation }) => {
         </>
       )}
 
-      {session?.canParticipate?.value && <Button primary>Submit a book</Button>}
+      {session?.canParticipate?.value && (
+        <Button
+          primary
+          onPress={() =>
+            navigation.navigate('CreateSubmission', { sessionId: session?.id })
+          }
+        >
+          Submit a book
+        </Button>
+      )}
     </RefreshingScrollView>
   );
 };

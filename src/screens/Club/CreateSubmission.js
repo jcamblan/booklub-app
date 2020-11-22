@@ -45,7 +45,7 @@ const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
           buttonText="Proposer"
           book={book}
           authorNames={book.authors}
-          coverUrl={book.imageLinks.thumbnail}
+          coverUrl={book?.imageLinks?.thumbnail}
           onPressButton={() => {
             onSetBook(book);
             onHideResults();
@@ -117,10 +117,13 @@ const CreateSubmission = ({ route }) => {
 
     try {
       const { data } = await createSubmission({ variables });
+      console.log(data);
       if (Boolean(data?.createSubmission?.submission?.id)) {
         navigation.navigate('Session', { sessionId: sessionId });
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -139,8 +142,8 @@ const CreateSubmission = ({ route }) => {
           </Headline>
           <BookCard
             book={book}
-            authorNames={book.authors}
-            coverUrl={book.imageLinks.thumbnail}
+            authorNames={book?.authors}
+            coverUrl={book?.imageLinks?.thumbnail}
           />
           <Button primary onPress={() => handleCreateSubmission()}>
             Valider mon inscription
