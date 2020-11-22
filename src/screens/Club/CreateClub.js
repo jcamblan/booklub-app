@@ -31,9 +31,7 @@ const CreateClub = ({ navigation }) => {
         },
       });
       navigation.navigate('ClubHome');
-    } catch (err) {
-      console.dir(err);
-    }
+    } catch (err) {}
   };
 
   return (

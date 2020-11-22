@@ -29,9 +29,7 @@ const CreateSession = ({ navigation, route }) => {
         },
       });
       navigation.goBack();
-    } catch (err) {
-      console.dir(err);
-    }
+    } catch (err) {}
   };
 
   return (

@@ -26,6 +26,10 @@ export const NOTE_SESSION = gql`
       note {
         id
         value
+        book {
+          id
+          averageNote
+        }
       }
       errors {
         attribute

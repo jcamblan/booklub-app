@@ -120,9 +120,7 @@ const CreateSubmission = ({ route }) => {
       if (Boolean(data?.createSubmission?.submission?.id)) {
         navigation.navigate('Session', { sessionId: sessionId });
       }
-    } catch (err) {
-      console.dir(err);
-    }
+    } catch (err) {}
   };
 
   return (

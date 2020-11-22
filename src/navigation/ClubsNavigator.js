@@ -7,6 +7,7 @@ import CreateClub from 'screens/Club/CreateClub';
 import JoinClub from 'screens/Club/JoinClub';
 import Club from 'screens/Club/Club';
 import Session from 'screens/Club/Session';
+import ReviewBook from 'screens/Club/ReviewBook';
 import CreateSession from 'screens/Club/CreateSession';
 import CreateSubmission from 'screens/Club/CreateSubmission';
 import { theme } from 'ui';
@@ -38,13 +39,14 @@ const ClubsNavigator = () => {
         <BooklubStack.Screen
           name="Session"
           component={Session}
-          options={({ route }) => ({ title: route.params.name })}
+          options={({ route }) => ({ title: route.params.title })}
         />
         <BooklubStack.Screen name="CreateSession" component={CreateSession} />
         <BooklubStack.Screen
           name="CreateSubmission"
           component={CreateSubmission}
         />
+        <BooklubStack.Screen name="ReviewBook" component={ReviewBook} />
       </BooklubStack.Navigator>
     </Host>
   );
