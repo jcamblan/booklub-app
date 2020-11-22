@@ -84,10 +84,21 @@ const ClubsHome = () => {
           modalStyle={{ padding: theme.spacing() }}
           modalHeight={170}
         >
-          <Button primary onPress={() => navigation.navigate('JoinClub')}>
+          <Button
+            primary
+            onPress={() => {
+              modalizeRef.current?.close();
+              navigation.navigate('JoinClub');
+            }}
+          >
             Join a club
           </Button>
-          <Button onPress={() => navigation.navigate('CreateClub')}>
+          <Button
+            onPress={() => {
+              modalizeRef.current?.close();
+              navigation.navigate('CreateClub');
+            }}
+          >
             Create a club
           </Button>
         </Modalize>
