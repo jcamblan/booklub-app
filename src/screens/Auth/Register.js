@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { Formik } from 'formik';
-import { TextLink, Text, ScreenTitle, theme } from 'ui';
+import { Text, ScreenTitle, theme, Button } from 'ui';
 import { Input, Error } from 'ui/form';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
@@ -17,7 +17,6 @@ import { useMutation } from '@apollo/client';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
 import BooklubTitle from 'components/BooklubTitle';
-import { Button } from 'ui/button';
 
 const REGISTER = gql`
   mutation register($input: RegisterInput!) {

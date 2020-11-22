@@ -9,12 +9,13 @@ const SettingsNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: true,
+        headerTitleContainerStyle: { display: 'none' },
       }}
     >
       <Stack.Screen
         name="Settings"
         component={Settings}
-        options={{ headerTitle: 'Paramètres' }}
+        options={{ headerTitle: 'Settings' }}
       />
     </Stack.Navigator>
   );
