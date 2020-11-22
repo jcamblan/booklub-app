@@ -21,9 +21,7 @@ export const SessionNoteForm = ({ session, userNote }) => {
           },
         },
       });
-    } catch (err) {
-      console.dir(err);
-    }
+    } catch (err) {}
   };
 
   return (

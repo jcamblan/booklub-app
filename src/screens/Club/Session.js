@@ -150,7 +150,12 @@ const Session = ({ route, navigation }) => {
             withNote
           />
           <View style={{ marginTop: theme.spacing() }}>
-            <Button primary>
+            <Button
+              primary
+              onPress={() =>
+                navigation.navigate('ReviewBook', { session: session })
+              }
+            >
               {Boolean(session?.userNote) ? 'Edit' : 'Submit'} your review
             </Button>
           </View>

@@ -32,9 +32,7 @@ const JoinClub = ({ navigation }) => {
       } else {
         navigation.navigate('ClubHome');
       }
-    } catch (err) {
-      console.dir(err);
-    }
+    } catch (err) {}
   };
 
   return (
