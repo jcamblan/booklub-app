@@ -44,6 +44,9 @@ const lightTheme = {
       emptyBackgroundColor: '',
     },
   },
+  bottomSheet: {
+    backgroundColor: colors.background,
+  },
   spacing,
   material,
   screenWidth: Dimensions.get('screen').width,
@@ -72,7 +75,7 @@ const darkTheme = {
       marginBottom: 10,
     },
     secondary: {
-      backgroundColor: colors.secondary,
+      backgroundColor: '#323236',
       textColor: colors.onSecondary,
       borderRadius: 16,
       paddingHorizontal: 40,
@@ -94,6 +97,9 @@ const darkTheme = {
     elevation: 19,
     borderRadius: 15,
     padding: 10,
+  },
+  bottomSheet: {
+    backgroundColor: '#1E1E1E',
   },
   spacing,
   material,

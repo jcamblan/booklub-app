@@ -48,9 +48,16 @@ const ClubsHome = () => {
                 backgroundColor: theme.colors.secondary,
                 justifyContent: 'center',
                 alignItems: 'center',
+                paddingLeft: 1,
+                paddingTop: 2,
               }}
             >
-              <FontAwesome name="plus" size={20} />
+              <FontAwesome
+                name="plus"
+                size={20}
+                color={theme.colors.onSecondary}
+                style={{ opacity: 0.8 }}
+              />
             </View>
           </TouchableOpacity>
         </View>
@@ -81,7 +88,10 @@ const ClubsHome = () => {
       <Portal>
         <Modalize
           ref={modalizeRef}
-          modalStyle={{ padding: theme.spacing() }}
+          modalStyle={{
+            padding: theme.spacing(),
+            backgroundColor: theme.bottomSheet.backgroundColor,
+          }}
           modalHeight={170}
         >
           <Button
