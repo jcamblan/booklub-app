@@ -59,11 +59,13 @@ const ClubsHome = () => {
           keyExtractor={item => item?.id}
           data={clubs}
           renderItem={({ item, index, separators }) => (
-            <ClubCard key={item.id} club={item} />
+            <View key={item.id} style={{ marginRight: theme.spacing(0.5) }}>
+              <ClubCard club={item} />
+            </View>
           )}
           itemWidth={theme.screenWidth - theme.spacing(2.5)}
           sliderWidth={theme.screenWidth}
-          slideStyle={{ marginRight: theme.spacing(0.5) }}
+          slideStyle={{}}
           inactiveSlideScale={1}
           inactiveSlideOpacity={1}
           activeSlideAlignment={'start'}
