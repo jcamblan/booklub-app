@@ -10,16 +10,23 @@ export const CREATE_SUBMISSION = gql`
         }
         session {
           id
-        }
-        book {
-          id
-          title
-          googleBookId
-          authors {
+          submissions {
             edges {
               node {
                 id
-                name
+                book {
+                  id
+                  title
+                  googleBookId
+                  authors {
+                    edges {
+                      node {
+                        id
+                        name
+                      }
+                    }
+                  }
+                }
               }
             }
           }
