@@ -82,7 +82,7 @@ const ClubsHome = () => {
         <Modalize
           ref={modalizeRef}
           modalStyle={{ padding: theme.spacing() }}
-          modalHeight={150}
+          modalHeight={170}
         >
           <Button primary onPress={() => navigation.navigate('JoinClub')}>
             Join a club
