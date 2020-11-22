@@ -29,8 +29,8 @@ const SelectedBook = ({ book, session }) => {
           marginBottom: theme.spacing(0.5),
         }}
       />
-      <Text style={{ fontWeight: 'bold' }}>{book.title}</Text>
-      <BookNote note={book.averageNote} />
+      <Text style={{ fontWeight: 'bold' }}>{book?.title}</Text>
+      <BookNote note={book?.averageNote} />
     </TouchableOpacity>
   );
 };
