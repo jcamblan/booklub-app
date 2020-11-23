@@ -93,7 +93,7 @@ const Login = ({ navigation }) => {
                     error={touched.password && errors.password}
                     onSubmitEditing={() => handleSubmit(values)}
                   />
-                  {Boolean(status) && <Error>{status}</Error>}
+                  <Error>{status}</Error>
                   <View>
                     <Button
                       onPress={() => handleSubmit(values)}

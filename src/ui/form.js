@@ -11,32 +11,19 @@ export const Input = ({ error, ...props }) => {
     : {};
 
   return (
-    <View style={{ marginBottom: theme.spacing() }}>
-      <View
+    <View style={{ paddingVertical: theme.spacing(0.5) }}>
+      <TextInput
         style={{
-          flexDirection: 'row',
-          backgroundColor: theme.input.backgroundColor,
-          height: 40,
-          borderRadius: 15,
+          color: theme.input.textColor,
           alignItems: 'center',
-          justifyContent: 'center',
-          paddingHorizontal: 8,
-          ...errorStyle,
+          fontWeight: '500',
+          borderBottomWidth: 1,
+          borderColor: '#DEDEE0',
+          paddingVertical: theme.spacing(0.5),
         }}
-      >
-        <TextInput
-          style={{
-            flex: 1,
-            color: theme.input.textColor,
-            alignItems: 'center',
-            height: '100%',
-            paddingLeft: 5,
-            fontWeight: '500',
-          }}
-          autoCapitalize="none"
-          {...props}
-        />
-      </View>
+        autoCapitalize="none"
+        {...props}
+      />
       {Boolean(error) && (
         <Text style={{ color: theme.colors.error }}>{error}</Text>
       )}
