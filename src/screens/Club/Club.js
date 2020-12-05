@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { Headline, theme, Text, Button, ScreenTitle, Separator } from 'ui';
+import { Headline, theme, Text, Button, Separator } from 'ui';
 import { CLUB_FULL_DETAILS } from 'api/queries';
 import RefreshingScrollView from 'components/RefreshingScrollView';
 import SessionCard from 'components/Club/SessionCard';
 import SessionsBooks from 'components/Club/SessionsBooks';
 import MemberList from 'components/Club/MemberList';
+import { truncate } from 'lodash';
+import ScreenTitle from 'components/ScreenTitle';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const PreviousBook = ({ book }) => {
   const url = getCover({ id: book?.googleBookId });
@@ -51,7 +54,18 @@ const Club = ({ route, navigation }) => {
 
   return (
     <RefreshingScrollView onRefresh={onRefresh}>
-      <ScreenTitle>{club?.name}</ScreenTitle>
+      <ScreenTitle
+        iconElement={
+          <FontAwesome
+            name="plus"
+            size={20}
+            color={theme.colors.onSecondary}
+            style={{ opacity: 0.8 }}
+          />
+        }
+      >
+        {truncate(club?.name, { length: 18 })}
+      </ScreenTitle>
       {Boolean(club?.currentSession) && (
         <>
           <SessionCard session={club?.currentSession} />

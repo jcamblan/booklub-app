@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import { ScreenTitle, theme, Headline, Text, Button } from 'ui';
+import { theme, Headline, Text, Button } from 'ui';
 import { MY_CLUBS } from 'api/queries';
 import ClubCard from 'components/Club/ClubCard';
 import RefreshingScrollView from 'components/RefreshingScrollView';
@@ -10,6 +10,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Modalize } from 'react-native-modalize';
 import { useNavigation } from '@react-navigation/native';
 import { Portal } from 'react-native-portalize';
+import ScreenTitle from 'components/ScreenTitle';
 
 const ClubsHome = () => {
   const navigation = useNavigation();
@@ -30,37 +31,19 @@ const ClubsHome = () => {
   return (
     <>
       <RefreshingScrollView onRefresh={onRefresh}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <ScreenTitle>My clubs</ScreenTitle>
-          <TouchableOpacity
-            style={{
-              marginBottom: theme.spacing(),
-              flex: 1,
-              alignItems: 'flex-end',
-            }}
-            onPress={onOpen}
-          >
-            <View
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 50,
-                backgroundColor: theme.colors.secondary,
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingLeft: 1,
-                paddingTop: 2,
-              }}
-            >
-              <FontAwesome
-                name="plus"
-                size={20}
-                color={theme.colors.onSecondary}
-                style={{ opacity: 0.8 }}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
+        <ScreenTitle
+          iconElement={
+            <FontAwesome
+              name="plus"
+              size={20}
+              color={theme.colors.onSecondary}
+              style={{ opacity: 0.8 }}
+            />
+          }
+          onPress={onOpen}
+        >
+          My clubs
+        </ScreenTitle>
 
         <Carousel
           keyExtractor={item => item?.id}
