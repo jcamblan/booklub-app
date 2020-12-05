@@ -16,6 +16,7 @@ import { useAuth } from 'hooks';
 import { ERRORS } from 'utils';
 import * as Yup from 'yup';
 import BooklubTitle from 'components/BooklubTitle';
+import { t } from 'i18n-js';
 
 const Login = ({ navigation }) => {
   const { onUpdate } = useAuth();
@@ -43,7 +44,7 @@ const Login = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <ScreenTitle>Sign in</ScreenTitle>
+            <ScreenTitle>{t('screens.sign-in.title')}</ScreenTitle>
 
             <Formik
               validationSchema={Yup.object().shape({
@@ -67,8 +68,8 @@ const Login = ({ navigation }) => {
               }) => (
                 <View style={{ width: '100%' }}>
                   <Input
-                    label="E-mail"
-                    placeholder="E-mail"
+                    label={t('screens.sign-in.email')}
+                    placeholder={t('screens.sign-in.email')}
                     value={values.username}
                     onChangeText={handleChange('username')}
                     onBlur={handleBlur('username')}
@@ -80,8 +81,8 @@ const Login = ({ navigation }) => {
                     autoFocus
                   />
                   <Input
-                    label="Mot de passe"
-                    placeholder="Mot de passe"
+                    label={t('screens.sign-in.password')}
+                    placeholder={t('screens.sign-in.password')}
                     value={values.password}
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
@@ -100,14 +101,14 @@ const Login = ({ navigation }) => {
                       isLoading={isSubmitting}
                       primary
                     >
-                      Sign me in
+                      {t('screens.sign-in.submit')}
                     </Button>
 
                     <Button
                       onPress={() => navigation.navigate('Register')}
                       isLoading={isSubmitting}
                     >
-                      I don't have an account
+                      {t('screens.sign-in.register')}
                     </Button>
                   </View>
                 </View>

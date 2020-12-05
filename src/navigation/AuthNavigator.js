@@ -4,6 +4,7 @@ import Home from 'screens/Auth/Home';
 import Login from 'screens/Auth/Login';
 import Register from 'screens/Auth/Register';
 import { theme } from 'ui';
+import { t } from 'i18n-js';
 
 const AuthStack = createStackNavigator();
 
@@ -12,11 +13,12 @@ const AuthNavigator = () => {
     <AuthStack.Navigator
       screenOptions={{
         headerShown: true,
+        headerTitleContainerStyle: { display: 'none' },
       }}
     >
       <AuthStack.Screen
         options={{
-          headerTitle: 'toto',
+          headerTitle: t('screens.home.title'),
           headerStyle: {
             backgroundColor: theme.colors.background,
             shadowColor: 'transparent',
@@ -27,7 +29,7 @@ const AuthNavigator = () => {
       />
       <AuthStack.Screen
         options={{
-          headerTitle: '',
+          headerTitle: t('screens.sign-in.title'),
           headerStyle: {
             backgroundColor: theme.colors.background,
             shadowColor: 'transparent',
@@ -38,7 +40,7 @@ const AuthNavigator = () => {
       />
       <AuthStack.Screen
         options={{
-          headerTitle: '',
+          headerTitle: t('screens.sign-up.title'),
           headerStyle: {
             backgroundColor: theme.colors.background,
             shadowColor: 'transparent',

@@ -1,0 +1,24 @@
+{ 
+  "screens": {
+    "home": {
+      "title": "Home",
+      "sign-in": "Sign in",
+      "sign-up": "Sign up"
+    },
+    "sign-in": {
+      "title": "Sign in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign me in",
+      "register": "I don't have an account"
+    },
+    "sign-up": {
+      "title": "Sign up",
+      "email": "Email",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Create my account",
+      "sign-in": "I already have an account"
+    }
+  } 
+}
