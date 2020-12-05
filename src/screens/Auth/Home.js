@@ -4,6 +4,7 @@ import { theme } from 'ui';
 import BooklubTitle from 'components/BooklubTitle';
 import { Button } from 'ui/button';
 import SafeAreaView from 'react-native-safe-area-view';
+import { t } from 'i18n-js';
 
 const Home = ({ navigation }) => {
   return (
@@ -20,10 +21,10 @@ const Home = ({ navigation }) => {
 
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <Button primary onPress={() => navigation.navigate('Login')}>
-            Sign in
+            {t('screens.home.sign-in')}
           </Button>
           <Button onPress={() => navigation.navigate('Register')}>
-            Sign up
+            {t('screens.home.sign-up')}
           </Button>
         </View>
       </View>

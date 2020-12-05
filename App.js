@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from 'sentry-expo';
 import { ThemeProvider } from 'styled-components/native';
 import GraphQLProvider from 'GraphQLProvider';
 import { theme } from 'ui';
@@ -9,8 +10,17 @@ import { useAuth } from 'hooks';
 import AuthNavigator from 'navigation/AuthNavigator';
 import BottomTabNavigator from 'navigation/BottomTabNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import * as Localization from 'expo-localization';
+import i18n from 'i18n-js';
+import en from 'locales/en.json';
+import fr from 'locales/fr.json';
 
-import * as Sentry from 'sentry-expo';
+i18n.translations = {
+  'en-EN': en,
+  fr: fr,
+};
+i18n.locale = Localization.locale;
+i18n.fallbacks = true;
 
 Sentry.init({
   dsn:

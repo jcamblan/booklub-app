@@ -17,6 +17,7 @@ import { useMutation } from '@apollo/client';
 import { signIn } from 'api/auth';
 import { useAuth } from 'hooks';
 import BooklubTitle from 'components/BooklubTitle';
+import { t } from 'i18n-js';
 
 const REGISTER = gql`
   mutation register($input: RegisterInput!) {
@@ -70,7 +71,7 @@ const Register = ({ navigation }) => {
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{ justifyContent: 'flex-end', flex: 1 }}>
-            <ScreenTitle>Sign up</ScreenTitle>
+            <ScreenTitle>{t('screens.sign-up.title')}</ScreenTitle>
 
             <Formik
               validationSchema={Yup.object().shape({
@@ -95,8 +96,8 @@ const Register = ({ navigation }) => {
               }) => (
                 <View style={{ width: '100%' }}>
                   <Input
-                    label="E-mail"
-                    placeholder="E-mail"
+                    label={t('screens.sign-up.email')}
+                    placeholder={t('screens.sign-up.email')}
                     value={values.email}
                     onChangeText={handleChange('email')}
                     onBlur={handleBlur('email')}
@@ -108,8 +109,8 @@ const Register = ({ navigation }) => {
                     autoFocus
                   />
                   <Input
-                    label="Pseudo"
-                    placeholder="Username"
+                    label={t('screens.sign-up.username')}
+                    placeholder={t('screens.sign-up.username')}
                     value={values.username}
                     onChangeText={handleChange('username')}
                     onBlur={handleBlur('username')}
@@ -119,8 +120,8 @@ const Register = ({ navigation }) => {
                     error={touched.username && errors.username}
                   />
                   <Input
-                    label="Mot de passe"
-                    placeholder="Mot de passe"
+                    label={t('screens.sign-up.password')}
+                    placeholder={t('screens.sign-up.password')}
                     value={values.password}
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
@@ -139,14 +140,14 @@ const Register = ({ navigation }) => {
                       isLoading={isSubmitting}
                       primary
                     >
-                      Create my account
+                      {t('screens.sign-up.submit')}
                     </Button>
 
                     <Button
                       onPress={() => navigation.navigate('Login')}
                       isLoading={isSubmitting}
                     >
-                      I already have an account
+                      {t('screens.sign-up.sign-in')}
                     </Button>
                   </View>
                 </View>
