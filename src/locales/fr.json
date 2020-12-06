@@ -45,7 +45,8 @@
     "ReviewBook": {
       "editTitle": "Edit review",
       "submitTitle": "Submit review",
-      "saveButton": "Save my review"
+      "saveButton": "Save my review",
+      "explanation": "How much did you enjoyed this book?"
     },
     "BookList": {
       "title": "Explore",
