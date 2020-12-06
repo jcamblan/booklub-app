@@ -71,7 +71,7 @@ const Register = ({ navigation }) => {
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{ justifyContent: 'flex-end', flex: 1 }}>
-            <ScreenTitle>{t('screens.sign-up.title')}</ScreenTitle>
+            <ScreenTitle>{t('screens.Register.title')}</ScreenTitle>
 
             <Formik
               validationSchema={Yup.object().shape({
@@ -96,8 +96,8 @@ const Register = ({ navigation }) => {
               }) => (
                 <View style={{ width: '100%' }}>
                   <Input
-                    label={t('screens.sign-up.email')}
-                    placeholder={t('screens.sign-up.email')}
+                    label={t('screens.Register.email')}
+                    placeholder={t('screens.Register.email')}
                     value={values.email}
                     onChangeText={handleChange('email')}
                     onBlur={handleBlur('email')}
@@ -109,8 +109,8 @@ const Register = ({ navigation }) => {
                     autoFocus
                   />
                   <Input
-                    label={t('screens.sign-up.username')}
-                    placeholder={t('screens.sign-up.username')}
+                    label={t('screens.Register.username')}
+                    placeholder={t('screens.Register.username')}
                     value={values.username}
                     onChangeText={handleChange('username')}
                     onBlur={handleBlur('username')}
@@ -120,8 +120,8 @@ const Register = ({ navigation }) => {
                     error={touched.username && errors.username}
                   />
                   <Input
-                    label={t('screens.sign-up.password')}
-                    placeholder={t('screens.sign-up.password')}
+                    label={t('screens.Register.password')}
+                    placeholder={t('screens.Register.password')}
                     value={values.password}
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
@@ -140,14 +140,14 @@ const Register = ({ navigation }) => {
                       isLoading={isSubmitting}
                       primary
                     >
-                      {t('screens.sign-up.submit')}
+                      {t('screens.Register.submit')}
                     </Button>
 
                     <Button
                       onPress={() => navigation.navigate('Login')}
                       isLoading={isSubmitting}
                     >
-                      {t('screens.sign-up.sign-in')}
+                      {t('screens.Register.sign-in')}
                     </Button>
                   </View>
                 </View>

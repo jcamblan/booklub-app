@@ -21,10 +21,10 @@ const Home = ({ navigation }) => {
 
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <Button primary onPress={() => navigation.navigate('Login')}>
-            {t('screens.home.sign-in')}
+            {t('screens.Home.sign-in')}
           </Button>
           <Button onPress={() => navigation.navigate('Register')}>
-            {t('screens.home.sign-up')}
+            {t('screens.Home.sign-up')}
           </Button>
         </View>
       </View>

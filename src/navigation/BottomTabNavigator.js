@@ -6,6 +6,7 @@ import SettingsNavigator from 'navigation/SettingsNavigator';
 import { theme } from 'ui';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Host } from 'react-native-portalize';
+import { t } from 'i18n-js';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -23,7 +24,7 @@ const BottomTabNavigator = () => {
           name="Clubs"
           component={ClubsNavigator}
           options={{
-            tabBarLabel: 'Clubs',
+            tabBarLabel: t('BottomTab.labels.Clubs'),
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons
                 name="account-group"
@@ -37,7 +38,7 @@ const BottomTabNavigator = () => {
           name="Books"
           component={BooksNavigator}
           options={{
-            tabBarLabel: 'Livres',
+            tabBarLabel: t('BottomTab.labels.Books'),
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons
                 name="book-open-page-variant"
@@ -51,7 +52,7 @@ const BottomTabNavigator = () => {
           name="Settings"
           component={SettingsNavigator}
           options={{
-            tabBarLabel: 'Paramètres',
+            tabBarLabel: t('BottomTab.labels.Settings'),
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="settings" color={color} size={26} />
             ),

@@ -44,7 +44,7 @@ const Login = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <ScreenTitle>{t('screens.sign-in.title')}</ScreenTitle>
+            <ScreenTitle>{t('screens.Login.title')}</ScreenTitle>
 
             <Formik
               validationSchema={Yup.object().shape({
@@ -68,8 +68,8 @@ const Login = ({ navigation }) => {
               }) => (
                 <View style={{ width: '100%' }}>
                   <Input
-                    label={t('screens.sign-in.email')}
-                    placeholder={t('screens.sign-in.email')}
+                    label={t('screens.Login.email')}
+                    placeholder={t('screens.Login.email')}
                     value={values.username}
                     onChangeText={handleChange('username')}
                     onBlur={handleBlur('username')}
@@ -81,8 +81,8 @@ const Login = ({ navigation }) => {
                     autoFocus
                   />
                   <Input
-                    label={t('screens.sign-in.password')}
-                    placeholder={t('screens.sign-in.password')}
+                    label={t('screens.Login.password')}
+                    placeholder={t('screens.Login.password')}
                     value={values.password}
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
@@ -101,14 +101,14 @@ const Login = ({ navigation }) => {
                       isLoading={isSubmitting}
                       primary
                     >
-                      {t('screens.sign-in.submit')}
+                      {t('screens.Login.submit')}
                     </Button>
 
                     <Button
                       onPress={() => navigation.navigate('Register')}
                       isLoading={isSubmitting}
                     >
-                      {t('screens.sign-in.register')}
+                      {t('screens.Login.register')}
                     </Button>
                   </View>
                 </View>
