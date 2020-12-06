@@ -41,6 +41,46 @@
       "submissionStateCardText": "Starts in",
       "postSubmissionStateCardText": "Ends in",
       "attendancesCountCardText": "Participants"
+    },
+    "ReviewBook": {
+      "editTitle": "Edit review",
+      "submitTitle": "Submit review",
+      "saveButton": "Save my review"
+    },
+    "BookList": {
+      "title": "Explore",
+      "searchPlaceholder": "Author, title..."
+    },
+    "Settings": {
+      "title": "Settings",
+      "logoutButton": "Log out"
+    },
+    "JoinClub": {
+      "title": "Join a club",
+      "submitButton": "Join the club",
+      "inputLabel": "Invitation code",
+      "inputPlaceholder": "1234568",
+      "explanation": "Enter the 8 digits invitation code provided by your friend."
+    },
+    "CreateClub": {
+      "title": "Create a club",
+      "inputLabel": "Club's name",
+      "inputPlaceholder": "Club's name",
+      "explanation": "Enter a name for your club, and remember, it's not a poney club.",
+      "submitButton": "Create your club"
+    },
+    "CreateSession": {
+      "title": "Create session",
+      "submitButton": "Create new club session"
+    },
+    "CreateSubmission": {
+      "title": "Participate",
+      "selectTitle": "Select a book:",
+      "searchPlaceholder": "Author, title...",
+      "submitBookButton": "Choose",
+      "confirmChoiceTitle": "Selected book:",
+      "validateButton": "Submit my book",
+      "editButton": "Select another book"
     }
   },
   "objects": {

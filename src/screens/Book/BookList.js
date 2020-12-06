@@ -15,6 +15,7 @@ import { round } from 'lodash';
 import BookCard from 'components/Book/BookCard';
 import RefreshingScrollView from 'components/RefreshingScrollView';
 import { getCover } from 'api/googleBooks';
+import { t } from 'i18n-js';
 
 const List = ({ books, onReorder }) => {
   return (
@@ -127,9 +128,12 @@ const BookList = () => {
       scrollEventThrottle={300}
       onRefresh={onRefresh}
     >
-      <ScreenTitle>Explore</ScreenTitle>
+      <ScreenTitle>{t('screens.BookList.title')}</ScreenTitle>
 
-      <SearchBook onChangeText={handleSearch} placeholder="Titre, auteur..." />
+      <SearchBook
+        onChangeText={handleSearch}
+        placeholder={t('screens.BookList.searchPlaceholder')}
+      />
 
       <List books={books} onReorder={handleReorder} />
 
