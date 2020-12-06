@@ -46,13 +46,21 @@ const ReviewBook = ({ navigation, route }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView style={{ flex: 1 }}>
-        <View style={{ paddingHorizontal: theme.spacing(), flex: 1 }}>
-          <ScreenTitle>
-            {Boolean(session?.userNote)
-              ? t('screens.ReviewBook.editTitle')
-              : t('screens.ReviewBook.submitTitle')}
-          </ScreenTitle>
-          <Text>TODO: cheum, à designer</Text>
+        <View
+          style={{
+            paddingHorizontal: theme.spacing(),
+            flex: 1,
+            justifyContent: 'space-between',
+          }}
+        >
+          <View>
+            <ScreenTitle>
+              {Boolean(session?.userNote)
+                ? t('screens.ReviewBook.editTitle')
+                : t('screens.ReviewBook.submitTitle')}
+            </ScreenTitle>
+            <Text>{t('screens.ReviewBook.explanation')}</Text>
+          </View>
           <NoteWrapper>
             <TouchableOpacity onPress={() => setNote(2)}>
               <Star size={50} fill={note >= 2} />
@@ -70,9 +78,11 @@ const ReviewBook = ({ navigation, route }) => {
               <Star size={50} fill={note === 10} />
             </TouchableOpacity>
           </NoteWrapper>
-          <Button primary onPress={handleSubmit}>
-            {t('screens.ReviewBook.saveButton')}
-          </Button>
+          <View>
+            <Button primary onPress={handleSubmit}>
+              {t('screens.ReviewBook.saveButton')}
+            </Button>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
