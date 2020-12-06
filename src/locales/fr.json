@@ -1,24 +1,64 @@
 { 
   "screens": {
-    "home": {
+    "Home": {
       "title": "Home",
       "sign-in": "Sign in",
       "sign-up": "Sign up"
     },
-    "sign-in": {
+    "Login": {
       "title": "Sign in",
       "email": "Email",
       "password": "Password",
       "submit": "Sign me in",
       "register": "I don't have an account"
     },
-    "sign-up": {
+    "Register": {
       "title": "Sign up",
       "email": "Email",
       "username": "Username",
       "password": "Password",
       "submit": "Create my account",
       "sign-in": "I already have an account"
+    },
+    "ClubHome": {
+      "title": "My clubs",
+      "popularSubtitle": "Popular clubs",
+      "JoinClubButton": "Join club",
+      "CreateClubButton": "Create club"
+    },
+    "Club": {
+      "newSessionButton": "Start new session",
+      "lastSessionsTitle": "Les sessions",
+      "memberListTitle": "Membres"
+    },
+    "Session": {
+      "by": "by %{name}",
+      "editReviewButton": "Edit your review",
+      "submitReviewButton": "Submit your review",
+      "submitBookButton": "Submit a book",
+      "selectedBookTitle": "Selected book",
+      "proposalsTitle": "Book proposals",
+      "submissionStateCardText": "Starts in",
+      "postSubmissionStateCardText": "Ends in",
+      "attendancesCountCardText": "Participants"
     }
-  } 
+  },
+  "objects": {
+    "session": {
+      "state": {
+        "submission": "submission",
+        "draw": "draw",
+        "reading": "reading",
+        "conclusion": "conclusion",
+        "archived": "archived"
+      }
+    }
+  },
+  "BottomTab": {
+    "labels": {
+      "Clubs": "Clubs",
+      "Books": "Books",
+      "Settings": "Settings"
+    }
+  }
 }

@@ -18,7 +18,7 @@ const AuthNavigator = () => {
     >
       <AuthStack.Screen
         options={{
-          headerTitle: t('screens.home.title'),
+          headerTitle: t('screens.Home.title'),
           headerStyle: {
             backgroundColor: theme.colors.background,
             shadowColor: 'transparent',
@@ -29,7 +29,7 @@ const AuthNavigator = () => {
       />
       <AuthStack.Screen
         options={{
-          headerTitle: t('screens.sign-in.title'),
+          headerTitle: t('screens.Login.title'),
           headerStyle: {
             backgroundColor: theme.colors.background,
             shadowColor: 'transparent',
@@ -40,7 +40,7 @@ const AuthNavigator = () => {
       />
       <AuthStack.Screen
         options={{
-          headerTitle: t('screens.sign-up.title'),
+          headerTitle: t('screens.Register.title'),
           headerStyle: {
             backgroundColor: theme.colors.background,
             shadowColor: 'transparent',

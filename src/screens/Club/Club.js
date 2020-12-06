@@ -10,6 +10,7 @@ import MemberList from 'components/Club/MemberList';
 import { truncate } from 'lodash';
 import ScreenTitle from 'components/ScreenTitle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { t } from 'i18n-js';
 
 const PreviousBook = ({ book }) => {
   const url = getCover({ id: book?.googleBookId });
@@ -83,7 +84,7 @@ const Club = ({ route, navigation }) => {
               })
             }
           >
-            Start new session
+            {t('screens.Club.newSessionButton')}
           </Button>
           <Separator />
         </>
@@ -92,7 +93,7 @@ const Club = ({ route, navigation }) => {
       {oldSessions.length > 0 && (
         <>
           <Headline style={{ marginBottom: theme.spacing() }}>
-            Last sessions
+            {t('screens.Club.lastSessionsTitle')}
           </Headline>
           <SessionsBooks sessions={oldSessions} />
           <Separator />
@@ -101,7 +102,9 @@ const Club = ({ route, navigation }) => {
 
       {userEdges.length > 0 && (
         <>
-          <Headline style={{ marginBottom: theme.spacing() }}>Members</Headline>
+          <Headline style={{ marginBottom: theme.spacing() }}>
+            {t('screens.Club.memberListTitle')}
+          </Headline>
           <MemberList userEdges={userEdges} />
         </>
       )}

@@ -7,6 +7,7 @@ import defaultCover from 'images/default-cover.jpg';
 import { upperCase } from 'lodash';
 import { useNavigation } from '@react-navigation/native';
 import { getCover } from 'api/googleBooks';
+import { t } from 'i18n-js';
 
 const Card = styled(TouchableOpacity)`
   background-color: ${props => props.theme.colors.secondary};
@@ -22,7 +23,6 @@ const CardSubtitle = styled(Text)`
   font-weight: bold;
   font-size: 12px;
   line-height: 14px;
-  /* identical to box height, or 117% */
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: #9b9b9b;
@@ -63,7 +63,7 @@ const SessionCard = ({ session }) => {
           <CardSubtitle
             style={{ paddingBottom: theme.spacing(), paddingLeft: 4 }}
           >
-            {session?.state}
+            {t(`objects.session.state.${session?.state}`)}
           </CardSubtitle>
         </View>
       </View>

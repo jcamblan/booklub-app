@@ -19,14 +19,7 @@ import { getCover } from 'api/googleBooks';
 import defaultCover from 'images/default-cover.jpg';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import BookCard from 'components/Book/BookCard';
-
-const states = {
-  submission: 'Inscription',
-  draw: 'Tirage',
-  reading: 'Lecture',
-  conclusion: 'Vote',
-  archived: 'Archivé',
-};
+import { t } from 'i18n-js';
 
 const StateCard = ({ style, iconName, text, title }) => {
   return (
@@ -73,7 +66,7 @@ const BookProposal = ({ book, user }) => {
       />
       <Text style={{ fontWeight: 'bold' }}>{book.title}</Text>
       <Text style={{ color: theme.colors.secondaryVariant }}>
-        By {user.username}
+        {t('screens.Session.by', { name: user.username })}
       </Text>
     </View>
   );
@@ -110,7 +103,7 @@ const Session = ({ route, navigation }) => {
         {session?.state === 'submission' && (
           <StateCard
             iconName="clock"
-            text="Starts in"
+            text={t('screens.Session.submissionStateCardText')}
             title={formatDistanceDate({
               date: session?.submissionDueDate,
               addSuffix: false,
@@ -121,7 +114,7 @@ const Session = ({ route, navigation }) => {
         {session?.state !== 'submission' && (
           <StateCard
             iconName="clock"
-            text="Ends in"
+            text={t('screens.Session.postSubmissionStateCardText')}
             title={formatDistanceDate({
               date: session?.readDueDate,
               addSuffix: false,
@@ -131,7 +124,7 @@ const Session = ({ route, navigation }) => {
         )}
         <StateCard
           iconName="users"
-          text="Participants"
+          text={t('screens.Session.attendancesCountCardText')}
           title={submissions?.length}
         />
       </View>
@@ -141,7 +134,7 @@ const Session = ({ route, navigation }) => {
       {Boolean(session?.selectedBook) && (
         <>
           <Headline style={{ marginBottom: theme.spacing() }}>
-            Selected book
+            {t('screens.Session.selectedBookTitle')}
           </Headline>
           <BookCard
             coverUrl={getCover({ id: session?.selectedBook?.googleBookId })}
@@ -156,7 +149,9 @@ const Session = ({ route, navigation }) => {
                 navigation.navigate('ReviewBook', { session: session })
               }
             >
-              {Boolean(session?.userNote) ? 'Edit' : 'Submit'} your review
+              {Boolean(session?.userNote)
+                ? t('screens.Session.editReviewButton')
+                : t('screens.Session.submitReviewButton')}
             </Button>
           </View>
           <Separator />
@@ -166,7 +161,7 @@ const Session = ({ route, navigation }) => {
       {submissions.length > 0 && (
         <>
           <Headline style={{ marginBottom: theme.spacing() }}>
-            Book proposals
+            {t('screens.Session.proposalsTitle')}
           </Headline>
           <Carousel
             keyExtractor={item => item?.id}
@@ -192,7 +187,7 @@ const Session = ({ route, navigation }) => {
             navigation.navigate('CreateSubmission', { sessionId: session?.id })
           }
         >
-          Submit a book
+          {t('screens.Session.submitBookButton')}
         </Button>
       )}
     </RefreshingScrollView>

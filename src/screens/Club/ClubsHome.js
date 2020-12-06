@@ -11,6 +11,7 @@ import { Modalize } from 'react-native-modalize';
 import { useNavigation } from '@react-navigation/native';
 import { Portal } from 'react-native-portalize';
 import ScreenTitle from 'components/ScreenTitle';
+import { t } from 'i18n-js';
 
 const ClubsHome = () => {
   const navigation = useNavigation();
@@ -42,7 +43,7 @@ const ClubsHome = () => {
           }
           onPress={onOpen}
         >
-          My clubs
+          {t('screens.ClubHome.title')}
         </ScreenTitle>
 
         <Carousel
@@ -63,7 +64,7 @@ const ClubsHome = () => {
         />
 
         <Headline style={{ marginBottom: theme.spacing() }}>
-          Popular clubs
+          {t('screens.ClubHome.popularSubtitle')}
         </Headline>
         <Text>TODO</Text>
       </RefreshingScrollView>
@@ -84,7 +85,7 @@ const ClubsHome = () => {
               navigation.navigate('JoinClub');
             }}
           >
-            Join a club
+            {t('screens.ClubHome.JoinClubButton')}
           </Button>
           <Button
             onPress={() => {
@@ -92,7 +93,7 @@ const ClubsHome = () => {
               navigation.navigate('CreateClub');
             }}
           >
-            Create a club
+            {t('screens.ClubHome.CreateClubButton')}
           </Button>
         </Modalize>
       </Portal>
