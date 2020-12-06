@@ -10,6 +10,7 @@ import { CREATE_CLUB } from 'api/mutations';
 import { Button } from 'ui/button';
 import ImagePicker from 'components/ImagePicker';
 import { ReactNativeFile } from 'apollo-upload-client';
+import { t } from 'i18n-js';
 
 const CreateClub = ({ navigation }) => {
   const [imageUri, setImageUri] = useState();
@@ -40,7 +41,7 @@ const CreateClub = ({ navigation }) => {
         <View style={{ padding: 20, flex: 1 }}>
           <ScreenTitle>Create a club</ScreenTitle>
           <Text style={{ marginBottom: theme.spacing() }}>
-            Enter a name for your club, and remember, it's not a poney club.
+            {t('screens.CreateClub.explanation')}
           </Text>
           <Formik
             validationSchema={Yup.object().shape({ name: Yup.string() })}
@@ -59,8 +60,8 @@ const CreateClub = ({ navigation }) => {
             }) => (
               <View style={{ width: '100%', flex: 1 }}>
                 <Input
-                  label="Nom du club"
-                  placeholder="Nom du club"
+                  label={t('screens.CreateClub.inputLabel')}
+                  placeholder={t('screens.CreateClub.inputPlaceholder')}
                   value={values.name}
                   onChangeText={handleChange('name')}
                   onBlur={handleBlur('name')}
@@ -84,7 +85,7 @@ const CreateClub = ({ navigation }) => {
                     isLoading={isSubmitting}
                     primary
                   >
-                    Create the club
+                    {t('screens.CreateClub.submitButton')}
                   </Button>
                 </View>
               </View>

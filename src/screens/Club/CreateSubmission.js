@@ -17,6 +17,7 @@ import { useDebounce } from 'hooks';
 import RefreshingScrollView from 'components/RefreshingScrollView';
 import BookCard from 'components/Book/BookCard';
 import { searchBook } from 'api/googleBooks';
+import { t } from 'i18n-js';
 
 const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
   const [apiDatas, setApiDatas] = useState();
@@ -41,7 +42,7 @@ const SearchResults = ({ search, onSetBook, onSwitchForm, onHideResults }) => {
       {books.map(book => (
         <BookCard
           key={book.id}
-          buttonText="Proposer"
+          buttonText={t('screens.CreateSubmission.submitBookButton')}
           book={book}
           authorNames={book.authors}
           coverUrl={book?.imageLinks?.thumbnail}
@@ -71,14 +72,14 @@ const BookSelection = ({ onSetBook, onSwitchForm }) => {
   return (
     <>
       <Headline style={{ marginBottom: theme.spacing() }}>
-        Sélection du livre :
+        {t('screens.CreateSubmission.selectTitle')}
       </Headline>
 
       {/* Search input */}
       <SearchInput
         autoFocus={true}
         onChangeText={handleChange}
-        placeholder="Titre, auteur..."
+        placeholder={t('screens.CreateSubmission.searchPlaceholder')}
       />
 
       {/* We only render book list one the search begin. */}
@@ -127,7 +128,7 @@ const CreateSubmission = ({ route }) => {
 
   return (
     <RefreshingScrollView>
-      <ScreenTitle>Participate</ScreenTitle>
+      <ScreenTitle>{t('screens.CreateSubmission.title')}</ScreenTitle>
       {!Boolean(book) && (
         <BookSelection
           onSetBook={value => setBook(value)}
@@ -137,7 +138,7 @@ const CreateSubmission = ({ route }) => {
       {Boolean(book) && (
         <>
           <Headline style={{ marginBottom: theme.spacing() }}>
-            Vous avez sélectionné :
+            {t('screens.CreateSubmission.confirmChoiceTitle')}
           </Headline>
           <BookCard
             book={book}
@@ -145,9 +146,11 @@ const CreateSubmission = ({ route }) => {
             coverUrl={book?.imageLinks?.thumbnail}
           />
           <Button primary onPress={() => handleCreateSubmission()}>
-            Valider mon inscription
+            {t('screens.CreateSubmission.validateButton')}
           </Button>
-          <Button onPress={() => setBook(null)}>Modifier mon choix</Button>
+          <Button onPress={() => setBook(null)}>
+            {t('screens.CreateSubmission.editButton')}
+          </Button>
         </>
       )}
     </RefreshingScrollView>

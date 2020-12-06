@@ -6,6 +6,7 @@ import DateTimePicker from 'components/DateTimePicker';
 import { Input } from 'ui/form';
 import { useMutation } from '@apollo/client';
 import { CREATE_SESSION } from 'api/mutations';
+import { t } from 'i18n-js';
 
 const CreateSession = ({ navigation, route }) => {
   const clubId = route?.params?.clubId;
@@ -35,7 +36,7 @@ const CreateSession = ({ navigation, route }) => {
   return (
     <SafeAreaView>
       <View style={{ paddingHorizontal: theme.spacing() }}>
-        <ScreenTitle>Create session</ScreenTitle>
+        <ScreenTitle>{t('screens.CreateSession.title')}</ScreenTitle>
 
         <Headline>Fin des inscriptions :</Headline>
         <DateTimePicker
@@ -48,7 +49,7 @@ const CreateSession = ({ navigation, route }) => {
           value={readDueDate}
         />
         <Button onPress={handleCreateSession} primary>
-          Créer une nouvelle session
+          {t('screens.CreateSession.submitButton')}
         </Button>
       </View>
     </SafeAreaView>

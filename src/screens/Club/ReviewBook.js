@@ -15,6 +15,7 @@ import { NOTE_SESSION } from 'api/mutations';
 import Star from 'images/Star';
 import styled from 'styled-components/native';
 import { getCover } from 'api/googleBooks';
+import { t } from 'i18n-js';
 
 const NoteWrapper = styled(View)`
   flex-direction: row;
@@ -47,7 +48,9 @@ const ReviewBook = ({ navigation, route }) => {
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <View style={{ paddingHorizontal: theme.spacing(), flex: 1 }}>
           <ScreenTitle>
-            {Boolean(session?.userNote) ? 'Edit' : 'Submit'} review
+            {Boolean(session?.userNote)
+              ? t('screens.ReviewBook.editTitle')
+              : t('screens.ReviewBook.submitTitle')}
           </ScreenTitle>
           <Text>TODO: cheum, à designer</Text>
           <NoteWrapper>
@@ -68,7 +71,7 @@ const ReviewBook = ({ navigation, route }) => {
             </TouchableOpacity>
           </NoteWrapper>
           <Button primary onPress={handleSubmit}>
-            Save my review
+            {t('screens.ReviewBook.saveButton')}
           </Button>
         </View>
       </KeyboardAvoidingView>

@@ -11,6 +11,7 @@ import { Input, Error } from 'ui/form';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { JOIN_CLUB } from 'api/mutations';
+import { t } from 'i18n-js';
 
 const JoinClub = ({ navigation }) => {
   const [joinClub] = useMutation(JOIN_CLUB);
@@ -38,9 +39,9 @@ const JoinClub = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <View style={{ paddingHorizontal: theme.spacing(), flex: 1 }}>
-          <ScreenTitle>Join a club</ScreenTitle>
+          <ScreenTitle>{t('screens.JoinClub.title')}</ScreenTitle>
           <Text style={{ marginBottom: theme.spacing() }}>
-            Enter the 8 digits invitation code provided by your friend.
+            {t('screens.JoinClub.explanation')}
           </Text>
           <Formik
             validationSchema={Yup.object().shape({
@@ -61,8 +62,8 @@ const JoinClub = ({ navigation }) => {
             }) => (
               <View style={{ width: '100%', flex: 1 }}>
                 <Input
-                  label="Code d'invitation"
-                  placeholder="1234568"
+                  label={t('screens.JoinClub.inputLabel')}
+                  placeholder={t('screens.JoinClub.inputPlaceholder')}
                   value={values.name}
                   onChangeText={handleChange('invitationCode')}
                   onBlur={handleBlur('invitationCode')}
@@ -86,7 +87,7 @@ const JoinClub = ({ navigation }) => {
                     isLoading={isSubmitting}
                     primary
                   >
-                    Join the club
+                    {t('screens.JoinClub.submitButton')}
                   </Button>
                 </View>
               </View>
