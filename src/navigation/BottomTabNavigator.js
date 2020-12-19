@@ -18,6 +18,7 @@ const BottomTabNavigator = () => {
         barStyle={{
           backgroundColor: theme.colors.background,
           shadowColor: 'transparent',
+          padding: theme.spacing(),
         }}
       >
         <Tab.Screen

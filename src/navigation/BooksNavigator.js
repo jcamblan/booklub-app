@@ -9,12 +9,13 @@ const BooksNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: true,
+        headerTitleContainerStyle: { display: 'none' },
       }}
     >
       <Stack.Screen
         name="BookList"
         component={BookList}
-        options={{ headerTitle: '' }}
+        options={{ headerTitle: 'Books list' }}
       />
     </Stack.Navigator>
   );
