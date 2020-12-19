@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Image, View, Platform } from 'react-native';
 import * as ExpoImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
+import { t } from 'i18n-js';
 
 const ImagePicker = ({ onPickImage }) => {
   const [image, setImage] = useState(null);
@@ -35,7 +36,10 @@ const ImagePicker = ({ onPickImage }) => {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      <Button
+        title={t('components.ImagePicker.buttonText')}
+        onPress={pickImage}
+      />
       {image && (
         <Image source={{ uri: image }} style={{ width: 50, height: 50 }} />
       )}

@@ -1,4 +1,9 @@
 { 
+  "components": {
+    "ImagePicker": {
+      "buttonText": "Pick an image"
+    }
+  },
   "screens": {
     "Home": {
       "title": "Home",
@@ -28,8 +33,9 @@
     },
     "Club": {
       "newSessionButton": "Start new session",
-      "lastSessionsTitle": "Les sessions",
-      "memberListTitle": "Membres"
+      "lastSessionsTitle": "Sessions",
+      "memberListTitle": "Members",
+      "updateButton": "Update"
     },
     "Session": {
       "by": "by %{name}",

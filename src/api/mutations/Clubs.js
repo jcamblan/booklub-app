@@ -22,7 +22,26 @@ export const CREATE_CLUB = gql`
     createClub(input: $input) {
       club {
         name
+        bannerUrl
         id
+      }
+      errors {
+        attribute
+        error
+        message
+        path
+      }
+    }
+  }
+`;
+
+export const UPDATE_CLUB = gql`
+  mutation updateClub($input: UpdateClubInput!) {
+    updateClub(input: $input) {
+      club {
+        id
+        name
+        bannerUrl
       }
       errors {
         attribute

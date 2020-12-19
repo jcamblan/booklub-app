@@ -40,6 +40,9 @@ export const CLUB_FULL_DETAILS = gql`
         canCreateSession {
           value
         }
+        canUpdate {
+          value
+        }
         users {
           edges {
             node {
