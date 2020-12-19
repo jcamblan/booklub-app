@@ -77,8 +77,6 @@ const Club = ({ route, navigation }) => {
     } catch (err) {}
   };
 
-  console.log(data);
-
   return (
     <>
       <RefreshingScrollView onRefresh={onRefresh}>
