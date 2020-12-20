@@ -1,111 +1,113 @@
 { 
   "components": {
     "ImagePicker": {
-      "buttonText": "Pick an image"
+      "buttonText": "Choisissez une image"
     }
   },
   "screens": {
     "Home": {
-      "title": "Home",
-      "sign-in": "Sign in",
-      "sign-up": "Sign up"
+      "title": "Accueil",
+      "sign-in": "Se connecter",
+      "sign-up": "Créer un compte"
     },
     "Login": {
-      "title": "Sign in",
+      "title": "Connexion",
       "email": "Email",
-      "password": "Password",
-      "submit": "Sign me in",
-      "register": "I don't have an account"
+      "password": "Mot de passe",
+      "submit": "Je me connecte",
+      "register": "Je n'ai pas de compte"
     },
     "Register": {
-      "title": "Sign up",
+      "title": "Inscription",
       "email": "Email",
-      "username": "Username",
-      "password": "Password",
-      "submit": "Create my account",
-      "sign-in": "I already have an account"
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "submit": "Je crée mon compte",
+      "sign-in": "J'ai déjà un compte"
     },
     "ClubHome": {
-      "title": "My clubs",
-      "popularSubtitle": "Popular clubs",
-      "JoinClubButton": "Join club",
-      "CreateClubButton": "Create club"
+      "title": "Mes clubs",
+      "popularSubtitle": "Clubs populaires",
+      "JoinClubButton": "Rejoindre un club",
+      "CreateClubButton": "Créer un club"
     },
     "Club": {
-      "newSessionButton": "Start new session",
+      "newSessionButton": "Lancer une nouvelle session",
       "lastSessionsTitle": "Sessions",
-      "memberListTitle": "Members",
-      "updateButton": "Update"
+      "memberListTitle": "Membres",
+      "updateButton": "Mettre à jour"
     },
     "Session": {
-      "by": "by %{name}",
-      "editReviewButton": "Edit your review",
-      "submitReviewButton": "Submit your review",
-      "submitBookButton": "Submit a book",
-      "selectedBookTitle": "Selected book",
-      "proposalsTitle": "Book proposals",
-      "submissionStateCardText": "Starts in",
-      "postSubmissionStateCardText": "Ends in",
+      "by": "par %{name}",
+      "editReviewButton": "Modifier la note",
+      "submitReviewButton": "Noter le livre",
+      "submitBookButton": "Proposer un livre",
+      "selectedBookTitle": "Livre sélectionné",
+      "proposalsTitle": "Propositions de livres",
+      "submissionStateCardText": "Commence dans",
+      "postSubmissionStateCardText": "Finis dans",
       "attendancesCountCardText": "Participants"
     },
     "ReviewBook": {
-      "editTitle": "Edit review",
-      "submitTitle": "Submit review",
-      "saveButton": "Save my review",
-      "explanation": "How much did you enjoyed this book?"
+      "editTitle": "Modifier la note",
+      "submitTitle": "Ajouter une note",
+      "saveButton": "Enregistrer",
+      "explanation": "A quel point avez-vous apprécié ce que vous avez lu ?"
     },
     "BookList": {
-      "title": "Explore",
-      "searchPlaceholder": "Author, title..."
+      "title": "Livres proposés",
+      "searchPlaceholder": "Auteur, titre..."
     },
     "Settings": {
-      "title": "Settings",
-      "logoutButton": "Log out"
+      "title": "Paramètres",
+      "logoutButton": "Se déconnecter"
     },
     "JoinClub": {
-      "title": "Join a club",
-      "submitButton": "Join the club",
-      "inputLabel": "Invitation code",
+      "title": "Rejoindre un club",
+      "submitButton": "Rejoindre",
+      "inputLabel": "Code d'invitation",
       "inputPlaceholder": "1234568",
-      "explanation": "Enter the 8 digits invitation code provided by your friend."
+      "explanation": "Entrez le code d'invitation à 8 chiffres que vous a fourni votre ami."
     },
     "CreateClub": {
-      "title": "Create a club",
-      "inputLabel": "Club's name",
-      "inputPlaceholder": "Club's name",
-      "explanation": "Enter a name for your club, and remember, it's not a poney club.",
-      "submitButton": "Create your club"
+      "title": "Créer un club",
+      "inputLabel": "Nom du club",
+      "inputPlaceholder": "Nom du club",
+      "explanation": "Trouvez un nom à votre club. Choisissez... judicieusement !",
+      "submitButton": "Créer le club"
     },
     "CreateSession": {
-      "title": "Create session",
-      "submitButton": "Create new club session"
+      "title": "Créer une session",
+      "submitButton": "Démarrer",
+      "submissionDueDateHeadline": "Fin des inscriptions :",
+      "readDueDateHeadline": "Date limite de lecture :"
     },
     "CreateSubmission": {
-      "title": "Participate",
-      "selectTitle": "Select a book:",
-      "searchPlaceholder": "Author, title...",
-      "submitBookButton": "Choose",
-      "confirmChoiceTitle": "Selected book:",
-      "validateButton": "Submit my book",
-      "editButton": "Select another book"
+      "title": "Participer",
+      "selectTitle": "Choisir un livre :",
+      "searchPlaceholder": "Auteur, titre...",
+      "submitBookButton": "Choisir",
+      "confirmChoiceTitle": "Livre sélectionné :",
+      "validateButton": "Participer",
+      "editButton": "Choisir un autre livre"
     }
   },
   "objects": {
     "session": {
       "state": {
-        "submission": "submission",
-        "draw": "draw",
-        "reading": "reading",
-        "conclusion": "conclusion",
-        "archived": "archived"
+        "submission": "Inscription",
+        "draw": "Tirage au sort",
+        "reading": "Lecture",
+        "conclusion": "Terminé",
+        "archived": "Terminé"
       }
     }
   },
   "BottomTab": {
     "labels": {
       "Clubs": "Clubs",
-      "Books": "Books",
-      "Settings": "Settings"
+      "Books": "Livres",
+      "Settings": "Paramètres"
     }
   }
 }

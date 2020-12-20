@@ -38,12 +38,14 @@ const CreateSession = ({ navigation, route }) => {
       <View style={{ paddingHorizontal: theme.spacing() }}>
         <ScreenTitle>{t('screens.CreateSession.title')}</ScreenTitle>
 
-        <Headline>Fin des inscriptions :</Headline>
+        <Headline>
+          {t('screens.CreateSession.submissionDueDateHeadline')}
+        </Headline>
         <DateTimePicker
           onChange={(event, date) => setSubmissionDueDate(date)}
           value={submissionDueDate}
         />
-        <Headline>Date limite de lecture :</Headline>
+        <Headline>{t('screens.CreateSession.readDueDateHeadline')}</Headline>
         <DateTimePicker
           onChange={(event, date) => setReadDueDate(date)}
           value={readDueDate}
